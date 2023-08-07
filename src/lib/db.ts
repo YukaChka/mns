@@ -7,18 +7,18 @@ type dbquery={
 }
 
 export async function Query(params: dbquery) {
-  const dbconn = await mysql.createConnection({
+  const dbconn = await 
+  mysql.createConnection({
     host: "46.161.48.157",
     port:3306,
+    user: "root1",
+    password: "AdminMM!",
     database: "testdb",
-    user: "admin",
-    password: "root",
-  });
-
+  })
   try {
-    const query = "SELECT * FROM testtable;"
-    const [results] = await dbconn.execute(query, params.values);
-    console.log(results)
+    
+    const [results] = await dbconn.execute(params.query, params.values);
+    //console.log(results)
     dbconn.end();
     return results;
   } catch (error) {
