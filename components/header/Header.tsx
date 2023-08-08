@@ -5,13 +5,14 @@ export default async function Header() {
   return (
     <header>
       <div>
-        <Image
-          src="/next.svg"
-          width={100}
-          height={100}
-          alt="Picture of the author"
-        />
-        <p>Header</p>
+        <div className={style.container}>
+          <div> <Image  className={style.centerobgect} src="img/menu.svg" alt="" height={25} width={25} /></div>
+          <div> <Image className={style.centerobgect} src="img/logo.svg" alt="" height={50} width={50} /> </div>
+          <div > <p  className={style.centerobgect}>Ghjlerns</p>  </div>
+          <div> Решения </div>
+          <div> О нас </div>
+          <div> 6 </div>
+        </div>
       </div>
     </header>
   );
