@@ -1,0 +1,11 @@
+query postQuery {
+  posts {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+}
