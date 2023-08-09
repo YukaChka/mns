@@ -1,17 +1,18 @@
-.bg{
-    background: #009CF3;
+.bg {
+  background: #009cf3;
+  min-width: 1200px;
 }
 .container {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 33% 33% 33%;
-    padding: 20px 0px 0px 0px;
-  }
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 33% 33% 33%;
+  padding: 20px 0px 0px 0px;
+}
 
-  .text{
-    margin-left: auto;
-    margin-right: auto;
+.text {
+  margin-left: auto;
+  margin-right: auto;
 
-    height: 100%;
-    vertical-align: middle;
-  }
+  height: 100%;
+  vertical-align: middle;
+}
