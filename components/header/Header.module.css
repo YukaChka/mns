@@ -3,8 +3,8 @@
 .container {
     display: grid;
     gap: 20px;
-
-    grid-template-columns: 20% 15% 15% 15% 15% 20%;
+    grid-template-columns: 15% 15% 15% 15% 15% 15%;
+    padding: 20px 0px 0px 0px;
   }
 
   .centerobgect{
@@ -16,4 +16,16 @@
     content: "";
     
 
+  }
+
+  .textphonemaill{
+    color: #007CC2;
+    font-family: Montserrat;
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .text{
+   font-weight: 600;
   }
