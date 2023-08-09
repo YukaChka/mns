@@ -1,0 +1,17 @@
+.bg{
+    background: #009CF3;
+}
+.container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 33% 33% 33%;
+    padding: 20px 0px 0px 0px;
+  }
+
+  .text{
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 100%;
+    vertical-align: middle;
+  }
