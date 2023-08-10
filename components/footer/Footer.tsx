@@ -6,18 +6,21 @@ export default async function Footer() {
     <footer>
       <div className={style.bg}>
         <div className={style.container}>
-          <div className={style.text}>+7 (495) 223-89-86 <br />
+          <div className={style.containervertical1}>
+            <div className={style.text}>
+            +7 (495) 223-89-86 <br />
             phonex@megatel.ru
-            <br />
-            <br />
+            </div>
+            <div className={style.text}>
             1992 - 2023 © Megatel
+            </div>
           </div>
-          <div className={style.text}>
-            Продукты 
-            <br />
-            Решения
-            <br />
-            О нас
+          <div className={style.containervertical2}>
+            <div className={style.text}>Продукты </div> 
+            
+           <div className={style.text}>Решения</div> 
+            
+            <div className={style.text}>О нас</div> 
           </div>
           <div className={style.text}>
             @Telegram

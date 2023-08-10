@@ -1,11 +1,13 @@
 .bg{
     background: #009CF3;
+    min-width: 100%;
 }
 .container {
     display: grid;
     gap: 20px;
     grid-template-columns: 33% 33% 33%;
-    padding: 20px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+
   }
 
   .text{
@@ -14,4 +16,18 @@
 
     height: 100%;
     vertical-align: middle;
+  }
+
+
+  .containervertical1 {
+    display: grid;
+  
+
+    grid-template-rows: auto auto;
+  }
+  .containervertical2 {
+    display: grid;
+  
+
+    grid-template-rows: auto auto auto;
   }
