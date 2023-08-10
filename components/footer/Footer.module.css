@@ -12,11 +12,11 @@
 .text {
   margin-left: auto;
   margin-right: auto;
+  font-family: "Montserrat", sans-serif;
 
   vertical-align: middle;
 
   color: #ffffff;
-  font-family: Montserrat;
 
   font-style: normal;
   font-weight: 400;
