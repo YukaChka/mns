@@ -25,9 +25,9 @@ export default async function Footer() {
           <div className={style.text}>
             @Telegram
           </div>
-          
         </div>
       </div>
     </footer>
   );
 }
+
