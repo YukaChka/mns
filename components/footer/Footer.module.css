@@ -1,11 +1,11 @@
 .bg{
     background: #009CF3;
-    min-width: 100%;
+    min-width: auto;
+    min-height: auto;
 }
 .container {
     display: grid;
-    gap: 20px;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: auto auto auto;
     padding: 10px 10px 10px 10px;
 
   }
@@ -14,8 +14,14 @@
   margin-left: auto;
   margin-right: auto;
 
-    height: 100%;
     vertical-align: middle;
+
+    color: #ffffff;
+    font-family: Montserrat;
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 
 
@@ -31,3 +37,5 @@
 
     grid-template-rows: auto auto auto;
   }
+
+  
