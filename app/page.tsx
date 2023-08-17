@@ -55,23 +55,99 @@ export default function Home() {
         <div className="bg-gradient-to-t">
           <div className="flex justify-center">
             <div className="max-w-6xl">
-              <div className="text-6xl font-bold mt-10">Партнёры</div>
+              <div className="text-6xl font-bold mt-10">
+                Партнёры
+              </div>
               <div className=" flex justify-center grid grid-cols-5 gap-4 content-start mt-10">
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
-                <Image src="/img/i.png" alt="qe" height={11440} width={1741} />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                /><Image
+                src="/img/i.png"
+                alt="qe"
+                height={11440}
+                width={1741}
+              />
+              <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
               </div>
             </div>
           </div>
@@ -80,130 +156,141 @@ export default function Home() {
         <div className="bg-gradient-to-t bg-[#009CF3] mt-16">
           <div className="flex justify-center">
             <div className="max-w-6xl">
-              <div className="text-white text-6xl font-bold mt-10">Новости</div>
+              <div className="text-white text-6xl font-bold mt-10">
+                Новости
+              </div>
               <div className="text-white mt-10 text-2xl">
                 <div className="containerNews mb-14">
+
                   <div>
                     <div className="text-9xl font-bold flex justify-center">
                       11
                     </div>
 
-                    <div>Cентября</div>
+                    <div>
+                      Cентября
+                    </div>
+
                   </div>
 
-                  <div>
-                    <div className="ml-11 font-bold text-3xl">Заголовок</div>
-                    <div className="ml-11">
-<<<<<<< Updated upstream
-                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
-=======
-                      <span>
-                        Ясность нашей позиции очевидна: сплочённость команды
-                        профессионалов играет определяющее значение для
-                        дальнейших направлений развития.
-                        <div className="font-bold">Подробнее...</div>
-                      </span>
->>>>>>> Stashed changes
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
                     </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
+                    </div>
+
                   </div>
+
                 </div>
                 <div className="containerNews mb-14">
+
                   <div>
                     <div className="text-9xl font-bold flex justify-center">
                       11
                     </div>
 
-                    <div>Cентября</div>
+                    <div>
+                      Cентября
+                    </div>
+
                   </div>
 
-                  <div>
-                    <div className="ml-11 font-bold text-3xl">Заголовок</div>
-                    <div className="ml-11">
-<<<<<<< Updated upstream
-                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
-=======
-                      Ясность нашей позиции очевидна: сплочённость команды
-                      профессионалов играет определяющее значение для дальнейших
-                      направлений развития.{" "}
-                      <nob className="font-bold">Подробнее...</nob>
->>>>>>> Stashed changes
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
                     </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
+                    </div>
+
                   </div>
+
                 </div>
                 <div className="containerNews mb-14">
+
                   <div>
                     <div className="text-9xl font-bold flex justify-center">
                       11
                     </div>
 
-                    <div>Cентября</div>
+                    <div>
+                      Cентября
+                    </div>
+
                   </div>
 
-                  <div>
-                    <div className="ml-11 font-bold text-3xl">Заголовок</div>
-                    <div className="ml-11">
-<<<<<<< Updated upstream
-                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
-=======
-                      Ясность нашей позиции очевидна: сплочённость команды
-                      профессионалов играет определяющее значение для дальнейших
-                      направлений развития.{" "}
-                      <nob className="font-bold">Подробнее...</nob>
->>>>>>> Stashed changes
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
                     </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
+                    </div>
+
                   </div>
+
                 </div>
                 <div className="containerNews mb-14">
+
                   <div>
                     <div className="text-9xl font-bold flex justify-center">
                       11
                     </div>
 
-                    <div>Cентября</div>
+                    <div>
+                      Cентября
+                    </div>
+
                   </div>
 
-                  <div>
-                    <div className="ml-11 font-bold text-3xl">Заголовок</div>
-                    <div className="ml-11">
-<<<<<<< Updated upstream
-                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
-=======
-                      Ясность нашей позиции очевидна: сплочённость команды
-                      профессионалов играет определяющее значение для дальнейших
-                      направлений развития.{" "}
-                      <nob className="font-bold">Подробнее...</nob>
->>>>>>> Stashed changes
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
                     </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
+                    </div>
+
                   </div>
+
                 </div>
                 <div className="containerNews mb-14">
+
                   <div>
                     <div className="text-9xl font-bold flex justify-center">
                       11
                     </div>
 
-                    <div>Cентября</div>
+                    <div>
+                      Cентября
+                    </div>
+
                   </div>
 
-                  <div>
-                    <div className="ml-11 font-bold text-3xl">Заголовок</div>
-                    <div className="ml-11">
-<<<<<<< Updated upstream
-                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
-=======
-                      Ясность нашей позиции очевидна: сплочённость команды
-                      профессионалов играет определяющее значение для дальнейших
-                      направлений развития.{" "}
-                      <nob className="font-bold">Подробнее...</nob>
->>>>>>> Stashed changes
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
                     </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <span className="font-bold nobr">Подробнее...</span>
+                    </div>
+
                   </div>
+
                 </div>
+                
               </div>
+              
             </div>
+            
           </div>
         </div>
-        <div>Тех</div>
+        <div>
+                Тех
+              </div>
+
       </div>
     </main>
   );
