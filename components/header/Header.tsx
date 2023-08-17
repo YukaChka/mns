@@ -5,7 +5,7 @@ export default async function Header() {
   return (
     <header>
       <div>
-        <div className={style.container}>
+        <div className="h-56 grid grid-cols-6 gap-4 content-start ">
           <div className={style.container2}>
             <Image
               className={style.centerobgect}
@@ -14,13 +14,16 @@ export default async function Header() {
               height={25}
               width={25}
             />
-            <Image
+          </div>
+          <div>
+          <Image
               className={style.centerobgect}
               src="img/logo.svg"
               alt=""
               height={50}
               width={50}
             />
+
           </div>
 
           <div className={style.text}> Продукты </div>
