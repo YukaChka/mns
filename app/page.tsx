@@ -1,28 +1,28 @@
 "use client";
 
-import Image from "next/image";
-import QUERY_COUNTRIES from "./queryCountries.graphql";
-import { getAllPostsForHome } from "@/lib/api";
-import Link from "next/link";
 import useDownloader from "react-use-downloader";
+import { UploadForm } from "@/components/UploadForm";
 
 export default function Home() {
   const { download } = useDownloader();
 
-  const fileUrl =
-    "https://adminmegateltop.ru/wp-content/uploads/2023/08/test.pdf";
+  const fileUrl = "\\docs\\Phonex_8.0.pdf";
 
-  const filename = fileUrl.split("/").pop();
+  const filename = fileUrl.split("\\").pop();
 
   return (
     <main>
       <div>
-        <button onClick={() => download(fileUrl, filename as string)}>
+        <button
+          onClick={() => {
+            console.log(filename);
+            download(fileUrl, filename as string);
+          }}
+        >
           Скачать файл
         </button>
+        <UploadForm />
       </div>
-
-      <p>Body</p>
     </main>
   );
 }
