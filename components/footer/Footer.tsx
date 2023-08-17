@@ -5,7 +5,7 @@ export default async function Footer() {
   return (
     <footer>
       <div className={style.bg}>
-        <div className={style.container}>
+        <div className=" grid grid-cols-3 gap-4 content-center h-20">
           <div className={style.containervertical1}>
             <div className={style.text}>
             +7 (495) 223-89-86 <br />

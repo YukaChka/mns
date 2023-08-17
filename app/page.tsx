@@ -3,6 +3,7 @@ import Image from "next/image"
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 
+
 export default function Home() {
   const { download } = useDownloader();
 
@@ -14,8 +15,13 @@ export default function Home() {
     <main>
       <div>
         <div className="flex justify-center">
-        <Image className="w-72" src="img/logo.svg" alt="" height={50} width={50} />
-
+        <Image  src="img/megatelonlylogo.svg" alt="" height={307} width={200} />
+        </div>
+        <div className="textmegatel flex justify-center">
+          Мегатель
+        </div>
+        <div className="flex justify-center text-bolt font-bold">
+        Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
         </div>
       </div>
     </main>
