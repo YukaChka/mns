@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main>
       <div>
-        <div className="flex justify-center">
+        <div className="flex justify-center -mt-14">
           <Image
             src="img/megatelonlylogo.svg"
             alt=""
@@ -26,23 +26,23 @@ export default function Home() {
           Lorem Ipsum - это текст-"рыба", часто используемый в печати и
           вэб-дизайне.
         </div>
-        <div className="flex justify-center p-11">
+        <div className="flex justify-center p-11 ">
         <Image src="img/downarrow.svg" alt="" height={75} width={75} />
         </div>
-        <div className="bg-gradient-to-t from-slate-50 via-sky-500 to-sky-500">
-
-        <div>
-          <div className="mx-48">
+        <div className="bg-gradient-to-t striped">
+      <div className="flex justify-center">
+        <div className="max-w-6xl">
+          <div className="text-white text-6xl font-bold mt-10" >
           Наша компания
           </div>
-          <div className="mx-48">
+          <div className="text-white mt-10 text-2xl" >
           «Мегатель» — российская компания. Мы являемся специализированным поставщиком АСР «ФонексПро», работ по настройке, гарантийной и постгарантийной поддержке, адаптации, доработке и обучению пользователей — напрямую или при участии интеграторов
           </div>
-          <div className="mx-48">
+          <div className="flex justify-center mt-16">
           <Image src="/img/photo.jpg" alt="qe" height={11440} width={1741} />
           </div>
         </div>
-
+        </div>
         </div>
       </div>
     </main>

@@ -4,12 +4,12 @@ import Image from "next/image";
 export default async function Header() {
   return (
     <header>
-      <div>
-        <div className="h-56 grid grid-cols-6 gap-4 content-start ">
+      <div className="flex justify-center">
+        <div className="h-56 grid grid-cols-6 gap-4 content-start max-w-7xl">
           <div className={style.container2}>
             <Image
               className={style.centerobgect}
-              src="img/menu.svg"
+              src="/img/menu.svg"
               alt=""
               height={25}
               width={25}
@@ -18,7 +18,7 @@ export default async function Header() {
           <div>
           <Image
               className={style.centerobgect}
-              src="img/logo.svg"
+              src="/img/logo.svg"
               alt=""
               height={50}
               width={50}
