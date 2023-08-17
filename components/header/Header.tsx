@@ -16,14 +16,14 @@ export default async function Header() {
             />
           </div>
           <div>
-          <Image
+            <Image
               className={style.centerobgect}
               src="/img/logo.svg"
               alt=""
               height={50}
               width={50}
+              property="true"
             />
-
           </div>
 
           <div className={style.text}> Продукты </div>
