@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image"
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 
@@ -13,15 +13,10 @@ export default function Home() {
   return (
     <main>
       <div>
-        <button
-          onClick={() => {
-            console.log(filename);
-            download(fileUrl, filename as string);
-          }}
-        >
-          Скачать файл
-        </button>
-        <UploadForm />
+        <div className="flex justify-center">
+        <Image className="w-72" src="img/logo.svg" alt="" height={50} width={50} />
+
+        </div>
       </div>
     </main>
   );
