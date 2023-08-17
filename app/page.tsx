@@ -23,6 +23,9 @@ export default function Home() {
         <div className="flex justify-center text-bolt font-bold">
         Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
         </div>
+        <div className="flex justify-center p-11">
+        <Image src="img/downarrow.svg" alt="" height={75} width={75} />
+        </div>
       </div>
     </main>
   );
