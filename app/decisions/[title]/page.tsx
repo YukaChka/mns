@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 type DecisionProps = {
   params: {
     title: string;
