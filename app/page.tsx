@@ -52,6 +52,106 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="bg-gradient-to-t">
+          <div className="flex justify-center">
+            <div className="max-w-6xl">
+              <div className="text-6xl font-bold mt-10">
+                Партнёры
+              </div>
+              <div className=" flex justify-center grid grid-cols-5 gap-4 content-start mt-10">
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                /><Image
+                src="/img/i.png"
+                alt="qe"
+                height={11440}
+                width={1741}
+              />
+              <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+                <Image
+                  src="/img/i.png"
+                  alt="qe"
+                  height={11440}
+                  width={1741}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
