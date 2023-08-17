@@ -26,7 +26,7 @@ export default function NewPreview({ params }: NewPreviewProps) {
             {date[0]}
           </div>
 
-          <div className="justify-center">{date[1]}</div>
+          <div className="flex justify-center">{date[1]}</div>
         </div>
 
         <div>
