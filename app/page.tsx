@@ -2,6 +2,8 @@
 import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
+import NewPreview from "@/components/new-preview";
+import { title } from "process";
 
 export default function Home() {
   const { download } = useDownloader();
@@ -9,6 +11,29 @@ export default function Home() {
   const fileUrl = "\\docs\\Phonex_8.0.pdf";
 
   const filename = fileUrl.split("\\").pop();
+
+  const news = [
+    {
+      id: 1,
+      title: "Заголовок",
+      preview:
+        "Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития.",
+      date: "2023-09-12",
+    },
+    {
+      id: 2,
+      title: "Заголовок",
+      preview:
+        "Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития.",
+      date: "2023-09-11",
+    },
+    {
+      id: 3,
+      title: "День всех влюбленных",
+      preview: "Данный праздник трял ля ля ля ля",
+      date: "2023-05-5",
+    },
+  ];
 
   return (
     <main>
@@ -76,25 +101,9 @@ export default function Home() {
               <div className="text-white text-6xl font-bold mt-10">Новости</div>
               <div className="text-white mt-10 text-2xl">
                 <>
-                  <div className="containerNews mb-14">
-                    <div>
-                      <div className="text-9xl font-bold flex justify-center">
-                        11
-                      </div>
-
-                      <div>Cентября</div>
-                    </div>
-
-                    <div>
-                      <div className="ml-11 font-bold text-3xl">Заголовок</div>
-                      <div className="ml-11">
-                        Ясность нашей позиции очевидна: сплочённость команды
-                        профессионалов играет определяющее значение для
-                        дальнейших направлений развития.{" "}
-                        <span className="font-bold nobr">Подробнее...</span>
-                      </div>
-                    </div>
-                  </div>
+                  {news.map((item) => (
+                    <NewPreview key={item.id} params={item} />
+                  ))}
                 </>
               </div>
             </div>
