@@ -55,3 +55,11 @@
 .striped {
     background: linear-gradient(to bottom, #009CF3 80%, rgba(255, 255, 255, 0) 50%);
   }
+
+  .containerNews {
+    display: grid;
+    gap: 20px;
+  
+    /* ! */
+    grid-template-columns: 10% auto ;
+  }

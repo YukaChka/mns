@@ -152,6 +152,145 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <div className="bg-gradient-to-t bg-[#009CF3] mt-16">
+          <div className="flex justify-center">
+            <div className="max-w-6xl">
+              <div className="text-white text-6xl font-bold mt-10">
+                Новости
+              </div>
+              <div className="text-white mt-10 text-2xl">
+                <div className="containerNews mb-14">
+
+                  <div>
+                    <div className="text-9xl font-bold flex justify-center">
+                      11
+                    </div>
+
+                    <div>
+                      Cентября
+                    </div>
+
+                  </div>
+
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
+                    </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <nob className="font-bold">Подробнее...</nob>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div className="containerNews mb-14">
+
+                  <div>
+                    <div className="text-9xl font-bold flex justify-center">
+                      11
+                    </div>
+
+                    <div>
+                      Cентября
+                    </div>
+
+                  </div>
+
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
+                    </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <nob className="font-bold">Подробнее...</nob>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div className="containerNews mb-14">
+
+                  <div>
+                    <div className="text-9xl font-bold flex justify-center">
+                      11
+                    </div>
+
+                    <div>
+                      Cентября
+                    </div>
+
+                  </div>
+
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
+                    </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <nob className="font-bold">Подробнее...</nob>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div className="containerNews mb-14">
+
+                  <div>
+                    <div className="text-9xl font-bold flex justify-center">
+                      11
+                    </div>
+
+                    <div>
+                      Cентября
+                    </div>
+
+                  </div>
+
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
+                    </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <nob className="font-bold">Подробнее...</nob>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div className="containerNews mb-14">
+
+                  <div>
+                    <div className="text-9xl font-bold flex justify-center">
+                      11
+                    </div>
+
+                    <div>
+                      Cентября
+                    </div>
+
+                  </div>
+
+                  <div >
+                    <div className="ml-11 font-bold text-3xl">
+                    Заголовок
+                    </div>
+                    <div className="ml-11">
+                    Ясность нашей позиции очевидна: сплочённость команды профессионалов играет определяющее значение для дальнейших направлений развития. <nob className="font-bold">Подробнее...</nob>
+                    </div>
+
+                  </div>
+
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+        <div>
+                Тех
+              </div>
+
       </div>
     </main>
   );
