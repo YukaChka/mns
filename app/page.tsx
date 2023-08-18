@@ -3,7 +3,6 @@ import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 import NewPreview from "@/components/new-preview";
-import { title } from "process";
 
 export default function Home() {
   const { download } = useDownloader();
@@ -31,9 +30,13 @@ export default function Home() {
       id: 3,
       title: "День всех влюбленных",
       preview: "Данный праздник трял ля ля ля ля",
-      date: "2023-05-5",
+      date: "2023-10-17",
     },
   ];
+
+  const updateNew = news.sort((a, b) => {
+    return Date.parse(b.date) - Date.parse(a.date);
+  });
 
   return (
     <main>
