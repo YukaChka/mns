@@ -3,7 +3,6 @@ import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 import NewPreview from "@/components/new-preview";
-import { title } from "process";
 
 export default function Home() {
   const { download } = useDownloader();
