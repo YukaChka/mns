@@ -13,7 +13,7 @@ export async function Query(params: dbquery) {
     port:3306,
     user: "root1",
     password: "AdminMM!",
-    database: "testdb",
+    database: "megatel_db",
   })
   try {
     

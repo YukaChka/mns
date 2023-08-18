@@ -3,6 +3,7 @@ import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 import NewPreview from "@/components/new-preview";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { download } = useDownloader();
