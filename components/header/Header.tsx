@@ -17,10 +17,10 @@ export default function Header() {
   }, []);
 
   return (
-    <header >
-      <div className="flex justify-center">
+    <header>
+      <div className="flex justify-center" ref={myRef}>
         <div className="h-56 grid grid-cols-7 gap-4 content-start max-w-7xl">
-        <div className={style.container2}>
+          <div className={style.container2}>
             <Image
               className={style.centerobgect}
               src="/img/menu.svg"
@@ -29,7 +29,7 @@ export default function Header() {
               width={25}
             />
           </div>
-          
+
           <div className={style.container2}>
             <Image
               className={style.centerobgect}
