@@ -6,9 +6,15 @@ import { NextResponse } from "next/server"
 export default withAuth(
     function middleware(request: NextRequestWithAuth) {
         console.log(request.nextUrl.pathname)
-        console.log(request.nextauth.token)
+        //console.log(request.nextauth.token)
 
         if (request.nextUrl.pathname.startsWith("/admin")
+            && request.nextauth.token?.role !== "админ") {
+            return NextResponse.rewrite(
+                new URL("/", request.url)
+            )
+        }
+        if (request.nextUrl.pathname.startsWith("/api")
             && request.nextauth.token?.role !== "админ") {
             return NextResponse.rewrite(
                 new URL("/", request.url)
@@ -27,6 +33,6 @@ export default withAuth(
     )
     
 
-export const config = { matcher: ["/admin"] }
+export const config = { matcher: ["/admin", "/api"] }
 
 

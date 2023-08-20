@@ -1,7 +1,7 @@
-export default async function News() {
+export default async function Product() {
   return (
     <main>
-      <p>News</p>
+      <p>Product</p>
     </main>
   );
 }
