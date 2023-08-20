@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <main>
-      <div >
+      <div>
         <div className="flex justify-center -mt-14 ">
           <Image
             src="img/megatelonlylogo.svg"
@@ -60,7 +60,7 @@ export default function Home() {
           <Image src="img/downarrow.svg" alt="" height={75} width={75} />
         </div>
         <div className="bg-gradient-to-t striped">
-          <div className="flex container">
+          <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-white text-6xl font-bold mt-10">
                 Наша компания
@@ -83,7 +83,7 @@ export default function Home() {
           </div>
         </div>
         <div className="bg-gradient-to-t">
-          <div className="flex container">
+          <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-6xl font-bold mt-10">Партнёры</div>
               <div className=" flex justify-center grid grid-cols-5 gap-4 content-start mt-10">
@@ -114,7 +114,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex container w-full">
+        <div className="flex container  w-full">
           <SupportFotm />
         </div>
       </div>
