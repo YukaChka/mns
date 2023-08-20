@@ -101,7 +101,7 @@ export default function Home() {
         </div>
 
         <div className="bg-gradient-to-t bg-[#009CF3] mt-16">
-          <div className="flex container">
+          <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-white text-6xl font-bold mt-10">Новости</div>
               <div className="text-white mt-10 text-2xl">
@@ -114,7 +114,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex container  w-full">
+        <div className="flex container justify-center w-full">
           <SupportFotm />
         </div>
       </div>
