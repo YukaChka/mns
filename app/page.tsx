@@ -4,6 +4,7 @@ import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 import NewPreview from "@/components/new-preview";
 import { useSession } from "next-auth/react";
+import { SupportFotm } from "@/components/support";
 
 export default function Home() {
   const { download } = useDownloader();
@@ -113,7 +114,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div>Тех</div>
+        <div>
+          <SupportFotm />
+        </div>
       </div>
     </main>
   );
