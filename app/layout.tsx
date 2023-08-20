@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <Provider>
           <Header />
-          <main>{children}</main>
+          <main className="min-h-screen">{children}</main>
           <Footer />
         </Provider>
       </body>

@@ -4,33 +4,43 @@ import style from "./Footer.module.css";
 export default async function Footer() {
   return (
     <footer>
+  <div className="flex justify-center">
+        <div className=" grid grid-cols-3 gap-4 content-start max-w-7xl h-10">
+          <div >
+          Продукты
+          </div>
 
-<div className={style.bg}>
-      <div className="flex justify-center ">
-        <div className="">
+          <div >
+          Решения
+          </div>
+          <div>
+          О нас
+          </div>
 
-        <div className=" grid grid-cols-3 gap-4 content-center h-36">
-          <div className=" grid grid-cols-3 content-start max-w-7xl">
-            <div className={style.text}>
-            +7 (495) 223-89-86  <br />
-            phonex@megatel.ru
-            </div>
-            <div className={style.text}>
-            1992 - 2023 © Megatel
-            </div>
-          </div>
-          <div className={style.containervertical2}>
-            <div className={style.text}>Продукты </div> 
-            
-           <div className={style.text}>Решения</div> 
-            
-            <div className={style.text}>О нас</div> 
-          </div>
-          <div className={style.text}>
-            @Telegram
-          </div>
+
         </div>
       </div>
+      <div className="flex justify-center">
+        <div className="gap-4 content-start max-w-7xl">
+          
+        <div className={style.line}></div>
+      </div>
+      </div>
+      <div className="flex justify-center">
+        <div className=" grid grid-cols-3 gap-4 content-start max-w-7xl h-10">
+
+            <div className="">
+            © 1992 - 2023 Megatel
+            </div>
+            <div className="mx-36">
+            +7 (495) 223-89-86
+phonex@megatel.ru
+            </div>
+            <div className="">
+            @НАШ ЛИНК
+            </div>
+
+
       </div>
       </div>
     </footer>

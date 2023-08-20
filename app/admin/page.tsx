@@ -5,8 +5,10 @@ export default function AdminPage() {
 
   return (
     <main>
+
       <p>{session.data?.user.expires}</p>
       <p>{session.data?.user.role}</p>
+
     </main>
   );
 }
