@@ -57,7 +57,13 @@ export default function Home() {
           вэб-дизайне.
         </div>
         <div className="flex justify-center p-11 ">
-          <Image src="img/downarrow.svg" alt="" height={75} width={75} />
+          <Image
+            src="img/downarrow.svg"
+            alt=""
+            className="pointer-events-none"
+            height={75}
+            width={75}
+          />
         </div>
         <div className="bg-gradient-to-t striped">
           <div className="flex container justify-center">
@@ -75,6 +81,7 @@ export default function Home() {
                 <Image
                   src="/img/photo.jpg"
                   alt="qe"
+                  className="pointer-events-none"
                   height={11440}
                   width={1741}
                 />
