@@ -4,7 +4,7 @@ import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/UploadForm";
 import NewPreview from "@/components/new-preview";
 import { useSession } from "next-auth/react";
-import { SupportFotm } from "@/components/support";
+import { SupportForm } from "@/components/support";
 
 export default function Home() {
   const { download } = useDownloader();
@@ -93,7 +93,7 @@ export default function Home() {
           <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-6xl font-bold mt-10">Партнёры</div>
-              <div className=" flex justify-center grid grid-cols-5 gap-4 content-start mt-10">
+              <div className="  justify-center grid grid-cols-5 gap-4 content-start mt-10">
                 <>
                   <Image
                     src="/img/i.png"
@@ -107,7 +107,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-t bg-[#009CF3] mt-16">
+        <div className="bg-gradient-to-t bg-[#009CF3] mt-10 mb-16">
           <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-white text-6xl font-bold mt-10">Новости</div>
@@ -121,8 +121,18 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex container justify-center w-full">
-          <SupportFotm />
+        <div className="container justify-center w-full  ">
+          <div className="max-w-6xl">
+            <div className="text-black text-6xl font-bold mt-10 mb-16">
+              Техническая поддержка
+            </div>
+            <div className="text-black text-2xl font-medium mt-10 mb-3">
+              Появились вопросы? Напишите в поддержку
+            </div>
+            <div>
+              <SupportForm />
+            </div>
+          </div>
         </div>
       </div>
     </main>
