@@ -40,9 +40,5 @@ export default function Home() {
     return Date.parse(b.date) - Date.parse(a.date);
   });
 
-  return (
-    <main>
-      
-    </main>
-  );
+  return <main></main>;
 }

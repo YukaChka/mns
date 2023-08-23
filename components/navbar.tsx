@@ -13,38 +13,40 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+import Link from "next/link";
+import Image from "next/image";
+
 type NavbarProps = {
-  open: boolean;
+  width: number;
 };
 
-const Navbar = ({ open }: NavbarProps) => {
+export function Navbar({ width }: NavbarProps) {
   return (
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline">Open</Button>
+          <Image
+            className=""
+            src="/img/menu.svg"
+            alt=""
+            height={width < 900 ? 35 : 25}
+            width={width < 900 ? 35 : 25}
+          />
         </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
+        <SheetContent side="left" className="bg-[#009cf3]">
+          <SheetHeader className="justify-center">
+            <SheetTitle>
+              <Image
+                className=""
+                src="/img/logo.svg"
+                alt=""
+                height={width < 900 ? 75 : 150}
+                width={width < 900 ? 75 : 150}
+                property="true"
+              />
+            </SheetTitle>
           </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input id="username" value="@peduarte" className="col-span-3" />
-            </div>
-          </div>
+          <div className="grid gap-4 py-4"></div>
           <SheetFooter>
             <SheetClose asChild>
               <Button type="submit">Save changes</Button>
@@ -54,6 +56,4 @@ const Navbar = ({ open }: NavbarProps) => {
       </Sheet>
     </>
   );
-};
-
-export default Navbar;
+}
