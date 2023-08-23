@@ -17,8 +17,6 @@ const HeaderV2 = () => {
               className=""
               src="/img/menu.svg"
               alt=""
-              height={width < 900 ? 40 : 25}
-              width={width < 900 ? 40 : 25}
               height={width < 900 ? 35 : 25}
               width={width < 900 ? 35 : 25}
             />
