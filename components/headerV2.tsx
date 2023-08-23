@@ -1,14 +1,20 @@
 "use client";
-
+import { Navbar } from "./navbar";
 import { useWindowSize } from "@/hooks/useWindowSize";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { time } from "console";
 const HeaderV2 = () => {
   const { width, height } = useWindowSize();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(()=>{
+
+    setTimeout(()=>(setOpen(true)), 10)
+
+  }, [])
 
   return (
     <header>
@@ -75,10 +81,20 @@ const HeaderV2 = () => {
         </ul>
       </div>
 
+
       <div>{width}</div>
 
+{!open &&(
+  <div className="items-center  bg-white absolute w-[100%] h-[100%] top-0 left-0 --">
 
-      <span className="loader"></span>
+    <div className="flex justify-center my-[20%]">
+      <div className="animate-ping absolute inline-flex h-5 w-5  rounded-full bg-sky-400 opacity-75">
+        <span className="sr-only">Loading...</span>
+      </div>
+
+    </div>
+  </div>)}
+
 
     </header>
   );
