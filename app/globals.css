@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .textmegatel {
-  font-size: 100px;
+
   font-weight: bold;
   color: #ffffff;
   text-shadow: -0 -4px 0 #007cc2, 0 -4px 0 #007cc2, -0 4px 0 #007cc2,
