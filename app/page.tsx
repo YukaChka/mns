@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <main>
-             <div className="flex justify-center">
+             <div className="flex justify-center mt-12">
           <Image
             src="img/megatelonlylogo.svg"
             alt=""
@@ -51,7 +51,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="textmegatel flex justify-center text-[40px] md:text-[100px] ">Мегатель</div>
+        <div className="textmegatel flex justify-center text-[40px] md:text-[100px]  ">Мегатель</div>
         <div className="flex justify-center text-bolt font-bold text-center">
           Lorem Ipsum - это текст-рыба, часто используемый в печати и
           вэб-дизайне.

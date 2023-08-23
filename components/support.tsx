@@ -138,7 +138,7 @@ export function SupportForm() {
           <Button
             variant="outline"
             type="submit"
-            className="bg-white border-solid border-2 w-full  col-span-2 text-black hover:bg-[#009cf3] hover:text-white"
+            className="bg-white border-solid border-2 w-full text-[25px] font-bold  col-span-2 text-black hover:bg-[#009cf3] hover:text-white"
           >
             Отправить
           </Button>
