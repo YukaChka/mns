@@ -19,6 +19,8 @@ const HeaderV2 = () => {
               alt=""
               height={width < 900 ? 40 : 25}
               width={width < 900 ? 40 : 25}
+              height={width < 900 ? 35 : 25}
+              width={width < 900 ? 35 : 25}
             />
           </li>
           <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
