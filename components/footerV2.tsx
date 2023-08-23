@@ -6,12 +6,13 @@ export const FooterV2 = () => {
   const { width, height } = useWindowSize();
   return (
     <footer className="bg-[#009cf3] w-full ">
-      <div>{width}</div>
 
-      <li className="container items-center flex gap-[5%] justify-center">
+      <li className="flex container justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[0%] md:gap-[21%] place-items-center m-5 ">
         <ul className="text-white text-[15px] sm:text-[21px] ">Продукты</ul>
         <ul className="text-white text-[15px] sm:text-[21px] ">Решения</ul>
         <ul className="text-white text-[15px] sm:text-[21px] ">О нас</ul>
+        </div>
       </li>
 
       <div className="flex container justify-center">
