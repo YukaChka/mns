@@ -42,14 +42,16 @@ const HeaderV2 = () => {
             </Button>
           </li>
           ) : 
+
           <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
           <Button
             variant="default"
-            className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             data-ripple-light="true"
           >
             купить
           </Button>
+
         </li>
           }
           
