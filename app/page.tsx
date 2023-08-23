@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <main>
       <div>
-        <div className="flex justify-center -mt-14 ">
+        <div className="flex justify-center">
           <Image
             src="img/megatelonlylogo.svg"
             alt=""

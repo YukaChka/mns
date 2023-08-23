@@ -13,50 +13,28 @@ export default function Header() {
 
       setVisibleHeader(entry.isIntersecting);
     });
-    observer.observe(myRef.current);
+   // observer.observe(myRef.current);
   }, []);
 
   return (
     <header>
-      <div className="flex justify-center" ref={myRef}>
-        <div className="h-56 grid grid-cols-7 gap-4 content-start max-w-7xl">
-          <div className={style.container2}>
-            <Image
-              className={style.centerobgect}
-              src="/img/menu.svg"
-              alt=""
-              height={25}
-              width={25}
-            />
-          </div>
-
-          <div className={style.container2}>
-            <Image
-              className={style.centerobgect}
-              src="/img/menu.svg"
-              alt=""
-              height={25}
-              width={25}
-            />
-          </div>
-          <div>
-            <Image
-              className={style.centerobgect}
-              src="/img/logo.svg"
-              alt=""
-              height={50}
-              width={50}
-              property="true"
-            />
-          </div>
-
-          <div className={style.text}> Продукты </div>
-          <div className={style.text}> Решения </div>
-          <div className={style.text}> О нас </div>
-          <div className={style.textphonemaill}>
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        <Image
+                className=""
+                src="/img/menu.svg"
+                alt=""
+                height={25}
+                width={25}
+              />
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+  Button
+</button>
+        <div className={style.text}> Продукты </div>
+        <div className={style.text}> Решения </div>
+        <div className={style.text}> О нас </div>
+        <div className={style.textphonemaill}>
             +7 (495) 223-89-86 <br />
             phonex@megatel.ru
-          </div>
         </div>
       </div>
     </header>
