@@ -14,8 +14,8 @@ import { Label } from "@/components/ui/label";
 export function LoginToast() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+      <DialogTrigger asChild className="">
+        <div className="hover:cursor-pointer ">Войти</div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

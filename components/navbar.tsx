@@ -16,8 +16,9 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { LogIn } from "lucide-react";
+
 import { useState } from "react";
+import { LoginToast } from "./login";
 
 type NavbarProps = {
   width: number;
@@ -54,29 +55,29 @@ export function Navbar({ width }: NavbarProps) {
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-1">
               <div>
-              <Link href="/news">Новости</Link>
+                <Link href="/news">Новости</Link>
               </div>
               <div>
-              <Link href="/product">Продукты</Link>
+                <Link href="/product">Продукты</Link>
               </div>
               <div>
-              <Link href="/decisions">Решения</Link>
+                <Link href="/decisions">Решения</Link>
               </div>
               <div>
-              <Link href="/education">Обучение</Link>
+                <Link href="/education">Обучение</Link>
               </div>
               <div>
-              <Link href="/education">Дополнительные услуги</Link>
+                <Link href="/education">Дополнительные услуги</Link>
               </div>
               <div>
-              <Link href="/support">Поддержка</Link>
+                <Link href="/support">Поддержка</Link>
               </div>
               <div>
-              {session ? (
-                <Link href="/account">Личный кабинет</Link>
-              ) : (
-                <Link href="/signin">Войти</Link>
-              )}
+                {session ? (
+                  <Link href="/account">Личный кабинет</Link>
+                ) : (
+                  <LoginToast />
+                )}
               </div>
             </div>
           </div>
