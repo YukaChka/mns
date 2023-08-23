@@ -10,16 +10,12 @@ const HeaderV2 = () => {
   const { width, height } = useWindowSize();
   const [open, setOpen] = useState(false);
 
-  useEffect(()=>{
-
-    setTimeout(()=>(setOpen(true)), 10)
-
-  }, [])
+  useEffect(() => {
+    setTimeout(() => setOpen(true), 10);
+  }, []);
 
   return (
     <header>
-
-
       <div className="container w-full mt-8">
         <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
           <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
@@ -81,21 +77,17 @@ const HeaderV2 = () => {
         </ul>
       </div>
 
-
       <div>{width}</div>
 
-{!open &&(
-  <div className="items-center  bg-white absolute w-[100%] h-[100%] top-0 left-0 --">
-
-    <div className="flex justify-center my-[20%]">
-      <div className="animate-ping absolute inline-flex h-5 w-5  rounded-full bg-sky-400 opacity-75">
-        <span className="sr-only">Loading...</span>
-      </div>
-
-    </div>
-  </div>)}
-
-
+      {!open && (
+        <div className="items-center  bg-white absolute w-[100%] h-[100%] top-0 left-0 --">
+          <div className="flex justify-center my-[20%]">
+            <div className="animate-ping absolute inline-flex h-5 w-5  rounded-full bg-sky-400 opacity-75">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

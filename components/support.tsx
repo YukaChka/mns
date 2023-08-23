@@ -39,9 +39,7 @@ export function SupportForm() {
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    console.log("yes");
-  };
+  const onSubmit = (values: z.infer<typeof FormSchema>) => {};
 
   return (
     <>
