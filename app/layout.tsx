@@ -5,6 +5,7 @@ import Footer from "@/components/footer/Footer";
 import { Montserrat } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { Provider } from "@/components/providers";
+import HeaderV2 from "@/components/headerV2";
 export const metadata: Metadata = {
   title: "Megatel",
 };
@@ -23,9 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={montserrat.className}>
         <Provider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <HeaderV2 />
+
+          <main className="min-h-screen min-w-full">{children}</main>
         </Provider>
       </body>
     </html>
