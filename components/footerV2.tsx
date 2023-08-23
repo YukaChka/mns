@@ -31,7 +31,7 @@ export const FooterV2 = () => {
           <ul className="text-[21px] text-white">© 1992 - 2023 Megatel</ul>
         ) : null}
 
-        <ul className="text-white text-[15px] sm:text-[17px]">
+        <ul className="text-white text-[14px] sm:text-[15px]">
           +7 (495) 223-89-86 phonex@megatel.ru
         </ul>
         {width > 970 ? (
