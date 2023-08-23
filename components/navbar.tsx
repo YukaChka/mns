@@ -52,38 +52,38 @@ export function Navbar({ width }: NavbarProps) {
               />
             </SheetTitle>
           </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-1 gap-5">
-              <div className="text-white text-xl">
-                <Link href="/news">Новости</Link>
-              </div>
-              <div className="text-white text-xl">
-                <Link href="/product">Продукты</Link>
-              </div>
-              <div className="text-white text-xl">
-                <Link href="/decisions">Решения</Link>
-              </div>
-              <div className="text-white text-xl">
-                <Link href="/education">Обучение</Link>
-              </div>
-              <div className="text-white text-xl">
-                <Link href="/education">Дополнительные услуги</Link>
-              </div>
-              <div className="text-white text-xl">
-                <Link href="/support">Поддержка</Link>
-              </div>
-              <div className="mr-auto text-white text-xl">
-                {session ? (
-                  <Link href="/account">Личный кабинет</Link>
-                ) : (
-                  <LoginToast />
-                )}
-              </div>
-            </div>
-          </div>
+
           <SheetFooter>
             <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-1 gap-5">
+                  <div className="text-white text-xl">
+                    <Link href="/news">Новости</Link>
+                  </div>
+                  <div className="text-white text-xl">
+                    <Link href="/product">Продукты</Link>
+                  </div>
+                  <div className="text-white text-xl">
+                    <Link href="/decisions">Решения</Link>
+                  </div>
+                  <div className="text-white text-xl">
+                    <Link href="/education">Обучение</Link>
+                  </div>
+                  <div className="text-white text-xl">
+                    <Link href="/education">Дополнительные услуги</Link>
+                  </div>
+                  <div className="text-white text-xl">
+                    <Link href="/support">Поддержка</Link>
+                  </div>
+                  <div className="mr-auto text-white text-xl">
+                    {session ? (
+                      <Link href="/account">Личный кабинет</Link>
+                    ) : (
+                      <LoginToast />
+                    )}
+                  </div>
+                </div>
+              </div>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
