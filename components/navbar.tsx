@@ -43,7 +43,7 @@ export function Navbar({ width }: NavbarProps) {
           <SheetHeader className="justify-center">
             <SheetTitle>
               <Image
-                className=""
+                className="mx-auto mb-[10%]"
                 src="/img/logo.svg"
                 alt=""
                 height={width < 900 ? 75 : 150}
@@ -53,26 +53,26 @@ export function Navbar({ width }: NavbarProps) {
             </SheetTitle>
           </SheetHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-1">
-              <div>
+            <div className="grid grid-cols-1 gap-5">
+              <div className="text-white text-xl">
                 <Link href="/news">Новости</Link>
               </div>
-              <div>
+              <div className="text-white text-xl">
                 <Link href="/product">Продукты</Link>
               </div>
-              <div>
+              <div className="text-white text-xl">
                 <Link href="/decisions">Решения</Link>
               </div>
-              <div>
+              <div className="text-white text-xl">
                 <Link href="/education">Обучение</Link>
               </div>
-              <div>
+              <div className="text-white text-xl">
                 <Link href="/education">Дополнительные услуги</Link>
               </div>
-              <div>
+              <div className="text-white text-xl">
                 <Link href="/support">Поддержка</Link>
               </div>
-              <div>
+              <div className="mr-auto text-white text-xl">
                 {session ? (
                   <Link href="/account">Личный кабинет</Link>
                 ) : (
