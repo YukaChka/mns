@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 place-items-center">
         <Image className="" src="/img/menu.svg" alt="" height={25} width={25} />
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
           Button
