@@ -52,19 +52,32 @@ export function Navbar({ width }: NavbarProps) {
             </SheetTitle>
           </SheetHeader>
           <div className="grid gap-4 py-4">
-            <div>
+            <div className="grid grid-cols-1">
+              <div>
               <Link href="/news">Новости</Link>
+              </div>
+              <div>
               <Link href="/product">Продукты</Link>
+              </div>
+              <div>
               <Link href="/decisions">Решения</Link>
+              </div>
+              <div>
               <Link href="/education">Обучение</Link>
+              </div>
+              <div>
               <Link href="/education">Дополнительные услуги</Link>
+              </div>
+              <div>
               <Link href="/support">Поддержка</Link>
-
+              </div>
+              <div>
               {session ? (
                 <Link href="/account">Личный кабинет</Link>
               ) : (
                 <Link href="/signin">Войти</Link>
               )}
+              </div>
             </div>
           </div>
           <SheetFooter>
