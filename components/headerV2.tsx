@@ -12,7 +12,7 @@ const HeaderV2 = () => {
     <header>
       <div className="container w-full mt-8">
         <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
-          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
             <Image
               className=""
               src="/img/menu.svg"
@@ -21,16 +21,6 @@ const HeaderV2 = () => {
               width={width < 900 ? 40 : 25}
             />
           </li>
-
-          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-            <Button
-              variant="default"
-              className="bg-[#009cf3] hover:bg-[#009cf3]"
-            >
-              приобрести
-            </Button>
-          </li>
-
           <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
             <Image
               className=""
@@ -41,7 +31,14 @@ const HeaderV2 = () => {
               property="true"
             />
           </li>
-         
+          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+            <Button
+              variant="default"
+              className="bg-[#009cf3] hover:bg-[#009cf3]"
+            >
+              приобрести
+            </Button>
+          </li>
           {width > 800 ? (
             <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
               <Link href="/product">Продукты</Link>
