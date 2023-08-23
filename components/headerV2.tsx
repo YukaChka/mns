@@ -5,11 +5,14 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { time } from "console";
 const HeaderV2 = () => {
   const { width, height } = useWindowSize();
 
   return (
     <header>
+
+
       <div className="container w-full mt-8">
         <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
           <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
@@ -81,6 +84,10 @@ const HeaderV2 = () => {
       </div>
 
       <div>{width}</div>
+
+
+      <span className="loader"></span>
+
     </header>
   );
 };
