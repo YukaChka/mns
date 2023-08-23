@@ -11,7 +11,7 @@ const HeaderV2 = () => {
   return (
     <header>
       <div className="container w-full mt-8">
-        <ul className="md:h-auto  justify-center  md:flex  mr-auto">
+        <ul className="md:h-auto  justify-center  flex  mr-auto">
           <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
             <Image
               className=""
