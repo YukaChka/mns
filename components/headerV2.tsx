@@ -21,6 +21,16 @@ const HeaderV2 = () => {
               width={width < 900 ? 40 : 25}
             />
           </li>
+
+          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+            <Button
+              variant="default"
+              className="bg-[#009cf3] hover:bg-[#009cf3]"
+            >
+              приобрести
+            </Button>
+          </li>
+
           <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
             <Image
               className=""
@@ -31,14 +41,7 @@ const HeaderV2 = () => {
               property="true"
             />
           </li>
-          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-            <Button
-              variant="default"
-              className="bg-[#009cf3] hover:bg-[#009cf3]"
-            >
-              приобрести
-            </Button>
-          </li>
+         
           {width > 800 ? (
             <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
               <Link href="/product">Продукты</Link>
