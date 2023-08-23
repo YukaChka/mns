@@ -90,7 +90,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-t">
+        <div className="">
           <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-[40px] md:text-[80px] font-bold mt-10">Партнёры</div>
@@ -109,10 +109,10 @@ export default function Home() {
         </div>
 
 
-        <div className=" bg-[#009CF3] mt-10 mb-16">
+        <div className=" bg-[#009CF3] mt-10 mb-1 md:mb-16">
           <div className="flex container justify-center">
             <div className="max-w-6xl">
-              <div className="text-white  text-[40px] lg:text-[80px] font-bold mt-10">Новости</div>
+              <div className="text-white  text-[40px] lg:text-[80px] font-bold mt-8">Новости</div>
               <div className="text-white mt-10 text-2xl ">
                 <>
                   {news.map((item) => (
@@ -123,13 +123,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <div className="container justify-center w-full  ">
-          <div className="max-w-6xl">
-            <div className="text-black text-3xl md:text-6xl font-bold mt-10 mb-16">
+      <div className="container max-w-[1210px]">
+        <div className="flex justify-center">
+          <div className=" w-full">
+            <div className="text-black text-3xl md:text-6xl font-bold mt-10">
               Техническая поддержка
             </div>
-            <div className="text-black text-lg md:text-2xl font-medium mt-10 mb-3">
+            <div className="text-black text-lg md:text-2xl font-medium mt-2 md:mt-10  mb-3">
               Появились вопросы? Напишите в поддержку
             </div>
             <div>
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+        </div>
     </main>
   );
 }
