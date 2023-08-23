@@ -31,14 +31,29 @@ const HeaderV2 = () => {
               property="true"
             />
           </li>
+          {width > 800 ? (
           <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
             <Button
               variant="default"
-              className="bg-[#009cf3] hover:bg-[#009cf3]"
+              className="bg-[#009cf3] hover:bg-[#009cf3] text-sm  "
+              data-ripple-light="true"
             >
               приобрести
             </Button>
           </li>
+          ) : 
+          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+          <Button
+            variant="default"
+            className="bg-[#009cf3] hover:bg-[#009cf3] text-sm  "
+            data-ripple-light="true"
+          >
+            купить
+          </Button>
+        </li>
+          }
+          
+
           {width > 800 ? (
             <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
               <Link href="/product">Продукты</Link>
