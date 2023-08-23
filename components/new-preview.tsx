@@ -21,20 +21,20 @@ export default function NewPreview({ params }: NewPreviewProps) {
   return (
     <>
       <div className="containerNews mb-14">
-        <div>
-          <div className="text-9xl font-bold flex justify-center">
+        <div className="">
+          <div className=" text-6xl lg:text-9xl font-bold container flex justify-center">
             {date[0]}
           </div>
 
-          <div>{date[1]}</div>
+          <div className="text-lg lg:text-3xl mx-auto">{date[1]}</div>
         </div>
 
         <div>
-          <div className="ml-11 font-bold text-3xl">{params.title}</div>
-          <div className="ml-11">
+          <div className="ml-11 font-bold text-[20px] lg:text-[30px] ">{params.title}</div>
+          <div className="ml-11 text-[15px] lg:text-[20px] ">
             {params.preview}
-            <span className="font-bold nobr">
-              <Link href={ROUTE_POST_ID}> Подробнее...</Link>
+            <span className="font-bold nobr text-[15px] lg:text-[20px]">
+              <Link  href={ROUTE_POST_ID}> Подробнее...</Link>
             </span>
           </div>
         </div>

@@ -48,7 +48,7 @@ export function SupportForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="grid  grid-cols-2 grid-rows-5 gap-5 w-full max-w-6xl  "
+          className="grid  grid-cols-2 grid-rows-5 gap-5 w-full max-w-6xl mb-[100px] "
         >
           <div className="row-start-1">
             <FormField

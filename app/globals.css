@@ -24,7 +24,7 @@
 .striped {
   background: linear-gradient(
     to bottom,
-    #009cf3 80%,
+    #009cf3 90%,
     rgba(255, 255, 255, 0) 50%
   );
 }

@@ -61,10 +61,83 @@ export default function Home() {
             src="img/downarrow.svg"
             alt=""
             className="pointer-events-none"
-            height={75}
-            width={75}
+            height={60}
+            width={60}
           />
         </div>
+        <div className="bg-gradient-to-t striped">
+          <div className="flex container justify-center">
+            <div className="max-w-6xl">
+              <div className="text-white text-6xl font-bold mt-10">
+                Наша компания
+              </div>
+              <div className="text-white mt-10 text-2xl">
+                «Мегатель» — российская компания. Мы являемся специализированным
+                поставщиком АСР «ФонексПро», работ по настройке, гарантийной и
+                постгарантийной поддержке, адаптации, доработке и обучению
+                пользователей — напрямую или при участии интеграторов
+              </div>
+              <div className="flex justify-center mt-16">
+                <Image
+                  src="/img/photo.jpg"
+                  alt="qe"
+                  className="pointer-events-none"
+                  height={11440}
+                  width={1741}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-t">
+          <div className="flex container justify-center">
+            <div className="max-w-6xl">
+              <div className="text-[40px] md:text-[80px] font-bold mt-10">Партнёры</div>
+              <div className="  justify-center grid grid-cols-5 gap-4 content-start mt-10">
+                <>
+                  <Image
+                    src="/img/i.png"
+                    alt="qe"
+                    height={11440}
+                    width={1741}
+                  />
+                </>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div className=" bg-[#009CF3] mt-10 mb-16">
+          <div className="flex container justify-center">
+            <div className="max-w-6xl">
+              <div className="text-white  text-[40px] lg:text-[80px] font-bold mt-10">Новости</div>
+              <div className="text-white mt-10 text-2xl ">
+                <>
+                  {news.map((item) => (
+                    <NewPreview key={item.id} params={item} />
+                  ))}
+                </>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container justify-center w-full  ">
+          <div className="max-w-6xl">
+            <div className="text-black text-3xl md:text-6xl font-bold mt-10 mb-16">
+              Техническая поддержка
+            </div>
+            <div className="text-black text-lg md:text-2xl font-medium mt-10 mb-3">
+              Появились вопросы? Напишите в поддержку
+            </div>
+            <div>
+              <SupportForm />
+            </div>
+          </div>
+        </div>
+
     </main>
   );
 }
