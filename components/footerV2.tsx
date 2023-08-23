@@ -8,10 +8,10 @@ export const FooterV2 = () => {
     <footer className="bg-[#009cf3] w-full ">
 
       <li className="flex container justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[0%] md:gap-[21%] place-items-center m-5 ">
-        <ul className="text-white text-[15px] sm:text-[21px] ">Продукты</ul>
-        <ul className="text-white text-[15px] sm:text-[21px] ">Решения</ul>
-        <ul className="text-white text-[15px] sm:text-[21px] ">О нас</ul>
+        <div className="grid grid-cols-1 md:grid-cols-10  place-items-center m-5 ">
+        <ul className="text-white text-[15px] md:text-[21px] col-start-1 md:col-start-2 col-end-6 ">Продукты</ul>
+        <ul className="text-white text-[15px] md:text-[21px]  col-start-1 md:col-start-6 col-end-7 ">Решения</ul>
+        <ul className="text-white text-[15px] md:text-[21px]  col-start-1 md:col-start-7 col-end-10">О&nbsp;нас</ul>
         </div>
       </li>
 
