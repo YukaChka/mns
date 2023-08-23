@@ -26,10 +26,11 @@ type NavbarProps = {
 
 export function Navbar({ width }: NavbarProps) {
   const { data: session, status } = useSession();
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Image
             className=""
@@ -42,50 +43,61 @@ export function Navbar({ width }: NavbarProps) {
         <SheetContent side="left" className="bg-[#009cf3]">
           <SheetHeader className="justify-center">
             <SheetTitle>
-              <Image
-                className="mx-auto mb-[10%]"
-                src="/img/logo.svg"
-                alt=""
-                height={width < 900 ? 75 : 150}
-                width={width < 900 ? 75 : 150}
-                property="true"
-              />
+              <Link href="/" onClick={() => setOpen(false)}>
+                <Image
+                  className="mx-auto mb-[10%]"
+                  src="/img/logo.svg"
+                  alt=""
+                  height={width < 900 ? 75 : 150}
+                  width={width < 900 ? 75 : 150}
+                  property="true"
+                />
+              </Link>
             </SheetTitle>
           </SheetHeader>
-
-          <SheetFooter>
-            <SheetClose asChild>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-1 gap-5">
-                  <div className="text-white text-xl">
-                    <Link href="/news">Новости</Link>
-                  </div>
-                  <div className="text-white text-xl">
-                    <Link href="/product">Продукты</Link>
-                  </div>
-                  <div className="text-white text-xl">
-                    <Link href="/decisions">Решения</Link>
-                  </div>
-                  <div className="text-white text-xl">
-                    <Link href="/education">Обучение</Link>
-                  </div>
-                  <div className="text-white text-xl">
-                    <Link href="/education">Дополнительные услуги</Link>
-                  </div>
-                  <div className="text-white text-xl">
-                    <Link href="/support">Поддержка</Link>
-                  </div>
-                  <div className="mr-auto text-white text-xl">
-                    {session ? (
-                      <Link href="/account">Личный кабинет</Link>
-                    ) : (
-                      <LoginToast />
-                    )}
-                  </div>
-                </div>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-1 gap-5">
+              <div className="text-white text-xl">
+                <Link href="/news" onClick={() => setOpen(false)}>
+                  Новости
+                </Link>
               </div>
-            </SheetClose>
-          </SheetFooter>
+              <div className="text-white text-xl">
+                <Link href="/product" onClick={() => setOpen(false)}>
+                  Продукты
+                </Link>
+              </div>
+              <div className="text-white text-xl">
+                <Link href="/decisions" onClick={() => setOpen(false)}>
+                  Решения
+                </Link>
+              </div>
+              <div className="text-white text-xl">
+                <Link href="/education" onClick={() => setOpen(false)}>
+                  Обучение
+                </Link>
+              </div>
+              <div className="text-white text-xl">
+                <Link href="/education" onClick={() => setOpen(false)}>
+                  Дополнительные услуги
+                </Link>
+              </div>
+              <div className="text-white text-xl">
+                <Link href="/support" onClick={() => setOpen(false)}>
+                  Поддержка
+                </Link>
+              </div>
+              <div className="mr-auto text-white text-xl">
+                {session ? (
+                  <Link href="/account" onClick={() => setOpen(false)}>
+                    Личный кабинет
+                  </Link>
+                ) : (
+                  <LoginToast />
+                )}
+              </div>
+            </div>
+          </div>
         </SheetContent>
       </Sheet>
     </>
