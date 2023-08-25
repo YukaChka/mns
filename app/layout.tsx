@@ -5,6 +5,7 @@ import { Montserrat } from "next/font/google";
 import { Provider } from "@/components/providers";
 import HeaderV2 from "@/components/headerV2";
 import { FooterV2 } from "@/components/footerV2";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Megatel",

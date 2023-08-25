@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/router";
-
 type NewProps = {
   params: {
     id: number;

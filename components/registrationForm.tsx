@@ -14,12 +14,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
+import { Dispatch, SetStateAction } from "react";
 
 const FormSchema = z.object({
-  email: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string().min(2, {
+  username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
 });
@@ -33,17 +31,20 @@ async function ClickSignIn(email: string, password: string) {
   return status;
 }
 
-export function LoginForm() {
+interface RegistrationProps {
+  isLogin: boolean;
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
+}
+
+export function RegistrationForm({ isLogin, setIsLogin }: RegistrationProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      username: "",
     },
   });
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const response = await ClickSignIn(data.email, data.password);
-    console.log(response);
+    console.log(data);
   }
 
   return (
@@ -51,32 +52,28 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" type="email" {...field} />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button
+          type="submit"
+          onClick={() => {
+            setIsLogin(true);
+          }}
+        >
+          Зарегистрироваться
+        </Button>
       </form>
     </Form>
   );

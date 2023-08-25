@@ -17,8 +17,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
-import { useState } from "react";
-import { LoginToast } from "./login";
+import { useEffect, useState } from "react";
+
+import { LoginForm } from "@/components/loginForm";
+import { LoginAndRegistrationToast } from "@/components/LoginAndRegistrationToast";
+import { usePathname, useRouter } from "next/navigation";
 
 type NavbarProps = {
   width: number;
@@ -27,23 +30,31 @@ type NavbarProps = {
 export function Navbar({ width }: NavbarProps) {
   const { data: session, status } = useSession();
   const [open, setOpen] = useState(false);
+  const path = usePathname();
+
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Image
-            className=""
+            className="hover:cursor-pointer"
             src="/img/menu.svg"
             alt=""
-            height={width < 900 ? 35 : 25}
-            width={width < 900 ? 35 : 25}
+            height={width < 900 ? 40 : 35}
+            width={width < 900 ? 40 : 35}
           />
         </SheetTrigger>
         <SheetContent side="left" className="bg-[#009cf3]">
           <SheetHeader className="justify-center">
             <SheetTitle>
-              <Link href="/" onClick={() => setOpen(false)}>
+              <Link
+                href="/"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
                 <Image
                   className="mx-auto mb-[10%]"
                   src="/img/logo.svg"
@@ -58,7 +69,13 @@ export function Navbar({ width }: NavbarProps) {
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-1 gap-5">
               <div className="text-white text-xl">
-                <Link href="/news" onClick={() => setOpen(false)}>
+                <Link
+                  href="/news"
+                  onClick={() => {
+                    setIsLogin(true);
+                    setOpen(false);
+                  }}
+                >
                   Новости
                 </Link>
               </div>
@@ -93,7 +110,9 @@ export function Navbar({ width }: NavbarProps) {
                     Личный кабинет
                   </Link>
                 ) : (
-                  <LoginToast />
+                  <Link href={{ pathname: "/signin", query: { path } }}>
+                    Войти
+                  </Link>
                 )}
               </div>
             </div>
