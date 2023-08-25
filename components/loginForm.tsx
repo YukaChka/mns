@@ -24,15 +24,6 @@ const FormSchema = z.object({
   }),
 });
 
-async function ClickSignIn(email: string, password: string) {
-  const status = await signIn("Credentials", {
-    redirect: false,
-    email: email,
-    password: password,
-  });
-  return status;
-}
-
 export function LoginForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -42,8 +33,14 @@ export function LoginForm() {
     },
   });
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const response = await ClickSignIn(data.email, data.password);
-    console.log(response);
+    console.log(data);
+    const response = await signIn("Credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+
+    console.log(response?.status);
   }
 
   return (
@@ -56,9 +53,8 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" type="email" {...field} />
+                <Input placeholder="Почта" type="email" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -70,13 +66,13 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Пароль" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Войти</Button>
       </form>
     </Form>
   );
