@@ -27,7 +27,7 @@ export default function AdminPage() {
               <div className=" mt-10">
                 <Button
                   variant="default"
-                  className="middle none center rounded-lg bg-[#ffff] hover:bg-[#ffff] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black shadow-md shadow-gray transition-all hover:shadow-md hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none outline"
+                  className="middle none center  bg-[#ffff] hover:bg-[#ffff] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black shadow-md shadow-gray transition-all hover:shadow-md  focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none rounded-md border"
                   data-ripple-light="true"
                 >
                   Добавить
@@ -63,8 +63,10 @@ export default function AdminPage() {
                 </div>
               </div>
             </div>
-            <div className=" mt-10 outline">
-            апцйа
+            <div className=" mt-10 rounded-md border px-3 py-2 ">
+              <div>
+
+              </div>
             </div>
           </div>
         </div>
