@@ -7,7 +7,7 @@ export default function AdminPage() {
   const session = useSession();
 
   return (
-    <main>
+    <div>
       <div className="">
         <div className="flex container justify-center">
           <div className="max-w-6xl">
@@ -65,75 +65,71 @@ export default function AdminPage() {
             </div>
             <div className=" mt-10 rounded-md border px-3 py-2 ">
               <div>
-              <a className="font-semibold pr-2">Название</a> <a className="font-normal">11.09.2023</a>
+                <a className="font-semibold pr-2">Название</a>{" "}
+                <a className="font-normal">11.09.2023</a>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div>
-              С 20 марта 2017 года при покупке версий 7.0.4 и 7.0.6 бесплатно проводим удаленное внедрение АСР Фонекс Про. Во внедрение входит:
-
-1. Установка компонентов АСР на оборудование Заказчика
-2. Написание драйвера для одной АТС
-3. Заведение клиентов, аппаратов, ip-адресов, иных ключей
-4. Заведение одного тарифного плана.
-5. Обучение специалистов заказчика по телефону.
-
-Для внедрения необходимо предоставить удаленный доступ.
+                  С 20 марта 2017 года при покупке версий 7.0.4 и 7.0.6
+                  бесплатно проводим удаленное внедрение АСР Фонекс Про. Во
+                  внедрение входит: 1. Установка компонентов АСР на оборудование
+                  Заказчика 2. Написание драйвера для одной АТС 3. Заведение
+                  клиентов, аппаратов, ip-адресов, иных ключей 4. Заведение
+                  одного тарифного плана. 5. Обучение специалистов заказчика по
+                  телефону. Для внедрения необходимо предоставить удаленный
+                  доступ.
                 </div>
                 <div className="flex justify-center p-5 ">
-                <Image
-                  src="/img/zat.png"
-                  alt="qe"
-                  className="pointer-events-none p-1"
-                  height={100}
-                  width={100}
-                />
-                <Image
-                  src="/img/zat.png"
-                  alt="qe"
-                  className="pointer-events-none p-1"
-                  height={100}
-                  width={100}
-                />
+                  <Image
+                    src="/img/zat.png"
+                    alt="qe"
+                    className="pointer-events-none p-1"
+                    height={100}
+                    width={100}
+                  />
+                  <Image
+                    src="/img/zat.png"
+                    alt="qe"
+                    className="pointer-events-none p-1"
+                    height={100}
+                    width={100}
+                  />
                 </div>
               </div>
               <div className="mt-5 flex ">
-
-              <Button
-                variant="default"
-                className="mr-5 middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:shadow-none"
-                data-ripple-light="true"
-              >
-                <Image
-                  src="/img/Pen.svg"
-                  alt="qe"
-                  className="pointer-events-none p-1"
-                  height={25}
-                  width={25}
-                />
-                Редактировать
-              </Button>
-              <Button
-              
-                variant="default"
-                className="mr-5 middle none center rounded-lg bg-[#d9d9d9] hover:bg-[#ea4646] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black hover:text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true"
-              >
-                <Image
-                  src="/img/Delet.svg"
-                  alt="qe"
-                  className="pointer-events-none p-1"
-                  height={30}
-                  width={30}
-                />
-                Удалить
-              </Button>
-
+                <Button
+                  variant="default"
+                  className="mr-5 middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:shadow-none"
+                  data-ripple-light="true"
+                >
+                  <Image
+                    src="/img/Pen.svg"
+                    alt="qe"
+                    className="pointer-events-none p-1"
+                    height={25}
+                    width={25}
+                  />
+                  Редактировать
+                </Button>
+                <Button
+                  variant="default"
+                  className="mr-5 middle none center rounded-lg bg-[#d9d9d9] hover:bg-[#ea4646] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black hover:text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  data-ripple-light="true"
+                >
+                  <Image
+                    src="/img/Delet.svg"
+                    alt="qe"
+                    className="pointer-events-none p-1"
+                    height={30}
+                    width={30}
+                  />
+                  Удалить
+                </Button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
