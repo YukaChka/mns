@@ -37,7 +37,7 @@ export function LoginAndRegistrationToast() {
 
   useEffect(() => {
     if (!open) {
-      router.push(redirect);
+      //router.push(redirect);
       setTimeout(() => {
         setIsLogin(true);
       }, 300);

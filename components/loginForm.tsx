@@ -34,13 +34,11 @@ export function LoginForm() {
   });
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    const response = await signIn("Credentials", {
-      redirect: false,
-      email: data.email,
-      password: data.password,
+    const response = signIn("Credentials", {
+      callbackUrl: "http://localhost:3000/api/auth/signin",
     });
 
-    console.log(response?.status);
+    console.log(response);
   }
 
   return (

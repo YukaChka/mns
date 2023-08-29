@@ -20,8 +20,21 @@ export const authConfig:AuthOptions ={
                 // This is where you need to retrieve user data 
                 // to verify with credentials
                 // Docs: https://next-auth.js.org/configuration/providers/credentials
-                const user  = await (await fetch(`http://localhost:3000/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
+                //const user  = await (await fetch(`http://localhost:3000/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
+                const user = {
+                    "email": "admin@mail.ru",
+                    "password": "root",
+                    "firstname": "Администратор",
+                    "lastname": "нема",
+                    "role": "админ"
+                }
                 let CurrentUser = user as UserProps;
+                if(credentials?.email === user.email && credentials?.password === user.password){
+                    return user
+                }
+                else{
+                    return null
+                }
                 if (credentials?.email === CurrentUser.email && credentials?.password === CurrentUser.password) {
                     console.log(CurrentUser)
                     return CurrentUser as any
@@ -32,22 +45,23 @@ export const authConfig:AuthOptions ={
         })
     ],
     callbacks: {
-        // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
+        //Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user }) {
-            if (user) token.role = user.role
+            if (user){
+
+            token.role = user.role
+            }
             return token
         },
         // If you want to use the role in client components
         async session({ session, token }) {
             if (session?.user) session.user.role = token.role
             return session
-        },
-        async redirect({url,baseUrl}){
-            return "/"
         }
+        
     },
     pages:{
-        signIn:"/signin"
+        //signIn:"/signin"
     }
 
     
