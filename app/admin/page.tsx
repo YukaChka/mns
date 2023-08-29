@@ -65,7 +65,7 @@ export default function AdminPage() {
             </div>
             <div className=" mt-10 rounded-md border px-3 py-2 ">
               <div>
-
+              <a>Название</a> <a>11.09.2023</a>
               </div>
             </div>
           </div>
