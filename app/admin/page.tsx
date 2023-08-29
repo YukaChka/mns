@@ -16,13 +16,7 @@ export default function AdminPage() {
                 Панель Администратора
               </div>
               <div className=" text-end   text-sm md:text-xl">
-              <Image
-                    src="/img/left.svg"
-                    alt=""
-                    className="pointer-events-none p-1"
-                    height={200}
-                    width={200}
-                  />
+
                 Вернуться обратно
               </div>
             </div>
