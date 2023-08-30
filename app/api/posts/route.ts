@@ -14,11 +14,4 @@ export async function POST(req: Request) {
   }
 }
 
-export async function PUT(req: Request) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const idq = searchParams.get("id");
-  } catch (error) {
-    return NextResponse.json(error);
-  }
-}
+

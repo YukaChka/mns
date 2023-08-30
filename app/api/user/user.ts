@@ -12,9 +12,9 @@ export async function GetUsers() {
     //console.log(users)
     
 }
-export type UserProps=
+export interface UserProps
     {
-    id:number;
+    id:string;
     email: string;
     password: string;
     firstname: string;

@@ -11,83 +11,77 @@ const HeaderV2 = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setOpen(true), 10);
+    setTimeout(() => setOpen(true));
   }, []);
 
   return (
     <header>
-      <div className="container w-full mt-8">
-        <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
-          <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
-            <Navbar width={width} />
-          </li>
-          <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
-            <Image
-              className=""
-              src="/img/logo.svg"
-              alt=""
-              height={width < 900 ? 75 : 50}
-              width={width < 900 ? 75 : 50}
-              property="true"
-            />
-          </li>
-          {width > 800 ? (
-            <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-              <Button
-                variant="default"
-                className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true"
-              >
-                приобрести
-              </Button>
-            </li>
-          ) : (
-            <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-              <Button
-                variant="default"
-                className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true"
-              >
-                купить
-              </Button>
-            </li>
+      <div>
+        <div className="container w-full mt-8">
+          {open && (
+            <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
+              <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
+                <Navbar width={width} />
+              </li>
+              <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
+                <Image
+                  className=""
+                  src="/img/logo.svg"
+                  alt=""
+                  height={width < 900 ? 75 : 50}
+                  width={width < 900 ? 75 : 50}
+                  property="true"
+                />
+              </li>
+              {width > 800 ? (
+                <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+                  <Button
+                    variant="default"
+                    className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true"
+                  >
+                    приобрести
+                  </Button>
+                </li>
+              ) : (
+                <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+                  <Button
+                    variant="default"
+                    className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true"
+                  >
+                    купить
+                  </Button>
+                </li>
+              )}
+
+              {width > 800 ? (
+                <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+                  <Link href="/product">Продукты</Link>
+                </li>
+              ) : null}
+              {width >= 950 ? (
+                <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+                  <Link href="/decisions">Решения</Link>
+                </li>
+              ) : null}
+              {width > 1080 ? (
+                <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
+                  <Link href="/about">О нас</Link>
+                </li>
+              ) : null}
+              {width > 1440 ? (
+                <li className="font-normal text-base  mr-auto ml-auto ">
+                  +7 (495) 223-89-86 <br />
+                  phonex@megatel.ru
+                </li>
+              ) : null}
+            </ul>
           )}
-
-          {width > 800 ? (
-            <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-              <Link href="/product">Продукты</Link>
-            </li>
-          ) : null}
-          {width >= 950 ? (
-            <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-              <Link href="/decisions">Решения</Link>
-            </li>
-          ) : null}
-          {width > 1080 ? (
-            <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-              <Link href="/about">О нас</Link>
-            </li>
-          ) : null}
-          {width > 1440 ? (
-            <li className="font-normal text-base  mr-auto ml-auto ">
-              +7 (495) 223-89-86 <br />
-              phonex@megatel.ru
-            </li>
-          ) : null}
-        </ul>
-      </div>
-
-      <div>{width}</div>
-
-      {!open && (
-        <div className="items-center  bg-white absolute w-[100%] h-[100%] top-0 left-0 --">
-          <div className="flex justify-center my-[20%]">
-            <div className="animate-ping absolute inline-flex h-5 w-5  rounded-full bg-sky-400 opacity-75">
-              <span className="sr-only">Loading...</span>
-            </div>
-          </div>
         </div>
-      )}
+
+        <div>{width}</div>
+      </div>
     </header>
   );
 };
