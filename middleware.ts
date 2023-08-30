@@ -9,7 +9,7 @@ export default withAuth(
 
         
         if (request.nextUrl.pathname.startsWith("/admin/new")){
-            if(request.nextauth.token?.role!== "админ")
+            if(request.nextauth.token?.user.role!== "админ")
                 return NextResponse.rewrite(new URL("/signin", request.url)
             )
         }
