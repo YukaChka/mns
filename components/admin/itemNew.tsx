@@ -1,5 +1,6 @@
 "use client";
 
+import { ItemNewImagesProps } from "@/app/api/posts/posts";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
@@ -8,7 +9,7 @@ interface ItemNewProps {
   title: string;
   datapublic: string;
   description: string;
-  imgpaths: Array<string>;
+  imgpaths: Array<ItemNewImagesProps>;
 }
 
 export default function ItemNew({
@@ -25,20 +26,23 @@ export default function ItemNew({
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
-
+  for (var i = 0; i < imgpaths.length; i++) {
+    imgpaths[i].path = imgpaths[i].path.replace(/\\/g, "/");
+    console.log(imgpaths[i].path);
+  }
   return (
     <div className=" mt-10 rounded-md border px-3 py-2 ">
       <div>
         <a className="font-semibold pr-2">{title}</a>
-        <a className="font-normal">{date[0] + "." + date[1] + "." + date[2]}</a>
+        <a className="font-normal">{date[0]}</a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>{description}</div>
         <div className="flex justify-center p-5 ">
           {imgpaths[0] && (
             <Image
-              src="/img/zat.png"
-              alt="qe"
+              src={imgpaths[0].path}
+              alt=""
               className="pointer-events-none p-1"
               height={100}
               width={100}
@@ -46,7 +50,7 @@ export default function ItemNew({
           )}
           {imgpaths[1] && (
             <Image
-              src={imgpaths[1]}
+              src={imgpaths[1].path}
               alt="qe"
               className="pointer-events-none p-1"
               height={100}

@@ -15,20 +15,22 @@ export interface ItemNewImagesProps  {
 
 export async function GetPosts() {
     const data= await Query<Array<ItemNewProps>>({
-        query:`SELECT DISTINCT  p.id, p.title, p.description, p.datapublic FROM megatel_db.post p  JOIN megatel_db.postimg p2 ON p.id =p2.postid`,
+        query:`SELECT DISTINCT  p.id, p.title, p.description, p.datapublic FROM megatel_db.post p`,
         values:[],
     }) as Array<ItemNewProps>;
-    console.log(data);
     
-    data.map(async (post)=> {
-        const data= await Query<Array<ItemNewImagesProps>>({
-            query:`SELECT DISTINCT i.title, i.path FROM megatel_db.image i JOIN megatel_db.postimg p ON p.imgid =i.id WHERE p.postid = ${post.id}`,
+    
+    for(var i=0; i<data.length; i++){
+        const img= await Query<Array<ItemNewImagesProps>>({
+            query:`SELECT DISTINCT i.title, i.path FROM megatel_db.image i JOIN megatel_db.postimg p ON p.imgid =i.id WHERE p.postid = ${i}`,
             values:[],
         }) as Array<ItemNewImagesProps>;
-        
-        console.log(data)
-    })
-    console.log(data)
+        data[i].imgpaths=img
+       }
+
+
+    
+    
     return data;
     
     //console.log(users)

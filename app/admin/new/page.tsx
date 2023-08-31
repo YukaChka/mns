@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import TableNews from "@/components/admin/tableNews";
 
 export default function AdminPage() {
   return (
@@ -45,7 +46,9 @@ export default function AdminPage() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+        <TableNews></TableNews>
+      </div>
     </div>
   );
 }
