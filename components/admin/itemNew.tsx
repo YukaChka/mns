@@ -3,13 +3,13 @@
 import { Button } from "../ui/button";
 import Image from "next/image";
 
-type ItemNewProps = {
+interface ItemNewProps {
   id: number;
   title: string;
   datapublic: string;
   description: string;
   imgpaths: Array<string>;
-};
+}
 
 export default function ItemNew({
   id,
