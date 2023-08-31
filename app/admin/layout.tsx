@@ -1,13 +1,20 @@
 import { LoadingSkeleton } from "@/components/loader";
 import { Suspense, type PropsWithChildren } from "react";
 import Loading from "../loading";
+import { AdminHeader } from "@/components/admin/header";
+import { AdminNavbar } from "@/components/admin/navbar";
 
 export default function AdminLayout({ children }: PropsWithChildren<unknown>) {
   return (
-    <div>
-      <div>Панель администратора</div>
-      <div>header для навигации</div>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+    <div className="">
+      <div className="flex container justify-center">
+        <div className="max-w-6xl">
+          <AdminHeader />
+          <AdminNavbar />
+
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </div>
+      </div>
     </div>
   );
 }
