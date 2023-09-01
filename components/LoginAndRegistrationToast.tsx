@@ -30,18 +30,14 @@ export function LoginAndRegistrationToast() {
   const [redirect, setRedirect] = useState("/");
   useEffect(() => {
     try {
-      const params = useSearchParams();
-      const path = params.get("path")?.toString();
     } catch (error) {
       setRedirect("/");
     }
   }, [redirect]);
 
-  console.log(redirect);
-
   useEffect(() => {
     if (!open) {
-      router.push(redirect);
+      //router.push(redirect);
       setTimeout(() => {
         setIsLogin(true);
       }, 300);

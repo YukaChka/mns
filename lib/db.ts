@@ -1,12 +1,12 @@
-import mysql from "mysql2/promise.js";
+import mysql, { RowDataPacket } from "mysql2/promise.js";
 
-type dbquery={
+interface dbquery<T>{
     query: string;
-    values: Array<any>;
+    values: Array<T>;
     
 }
 
-export async function Query(params: dbquery) {
+export async function Query<T>(params: dbquery<T>) {
   const dbconn = await 
   mysql.createConnection({
     host: "46.161.48.157",
@@ -17,10 +17,11 @@ export async function Query(params: dbquery) {
   })
   try {
     
-    const [results] = await dbconn.execute(params.query, params.values);
+    const [results] = await dbconn.query<T & RowDataPacket[]>(params.query, params.values);
     //console.log(results)
     dbconn.end();
-    return results;
+    
+    return results as T;
   } catch (error) {
     
     return error;

@@ -33,7 +33,7 @@ export function Navbar({ width }: NavbarProps) {
   const path = usePathname();
 
   const [isLogin, setIsLogin] = useState(false);
-
+  console.log(path);
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
@@ -110,9 +110,7 @@ export function Navbar({ width }: NavbarProps) {
                     Личный кабинет
                   </Link>
                 ) : (
-                  <Link href={{ pathname: "/signin", query: { path } }}>
-                    Войти
-                  </Link>
+                  <Link href="/signin">Войти</Link>
                 )}
               </div>
             </div>

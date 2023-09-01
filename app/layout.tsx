@@ -5,7 +5,10 @@ import { Montserrat } from "next/font/google";
 import { Provider } from "@/components/providers";
 import HeaderV2 from "@/components/headerV2";
 import { FooterV2 } from "@/components/footerV2";
-import Head from "next/head";
+
+import { Suspense } from "react";
+import { LoadingSkeleton } from "@/components/loader";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Megatel",
@@ -25,10 +28,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={montserrat.className}>
         <Provider>
-          <HeaderV2 />
+          <Suspense fallback={<LoadingSkeleton />}>
+            <HeaderV2 />
 
-          <main className="min-h-screen min-w-full">{children}</main>
-          <FooterV2 />
+            <main className="min-h-screen min-w-full">{children}</main>
+            <FooterV2 />
+          </Suspense>
         </Provider>
       </body>
     </html>

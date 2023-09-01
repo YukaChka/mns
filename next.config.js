@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-module.exports = {
+const nextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
@@ -9,5 +8,7 @@ module.exports = {
     });
     return config;
   },
+  poweredByHeader: false,
 };
-//module.exports = nextConfig;
+
+module.exports = nextConfig;

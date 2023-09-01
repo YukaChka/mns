@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -25,6 +27,9 @@ const FormSchema = z.object({
 });
 
 export function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/account";
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -33,14 +38,15 @@ export function LoginForm() {
     },
   });
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-    const response = await signIn("Credentials", {
-      redirect: false,
+    const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
+      redirect: false,
+      callbackUrl,
     });
-
-    console.log(response?.status);
+    if (!res?.error) {
+      router.push(callbackUrl);
+    }
   }
 
   return (
