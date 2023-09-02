@@ -1,10 +1,16 @@
-import { GetPosts, ItemNewProps } from "@/app/api/posts/posts";
+import { ItemNewProps } from "@/app/api/posts/posts";
 import ItemNew from "./itemNew";
 import { useEffect } from "react";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
+async function GetData() {
+  const res = await fetch("http://localhost:3000/api/posts");
+
+  return res.json();
+}
+
 export default async function TableNews() {
-  const posts = await GetPosts();
+  const posts = await GetData();
   return (
     <div>
       {posts.map((post: ItemNewProps) => (

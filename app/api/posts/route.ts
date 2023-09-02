@@ -8,7 +8,7 @@ export async function GET(req: Request) {
     const idq = searchParams.get("id");
 
     const posts = await GetPosts()
-    let CurrentPost:ItemNewProps | undefined | ItemNewProps[]
+    let CurrentPost:ItemNewProps | undefined | ItemNewProps[] | []
 
     
 

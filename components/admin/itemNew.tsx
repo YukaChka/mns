@@ -26,6 +26,7 @@ export default function ItemNew({
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
+
   for (var i = 0; i < imgpaths.length; i++) {
     imgpaths[i].path = imgpaths[i].path.replace(/\\/g, "/");
     console.log(imgpaths[i].path);
