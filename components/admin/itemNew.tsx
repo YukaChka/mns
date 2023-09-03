@@ -32,21 +32,22 @@ export default function ItemNew({
     console.log(imgpaths[i].path);
   }
   return (
-    <div className=" mt-10 rounded-md border px-3 py-2 ">
+    <div className="rounded-md border px-3 py-2 h-[100%] ">
+      <div className="">
       <div>
         <a className="font-semibold pr-2">{title}</a>
         <a className="font-normal">{date[0]}</a>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="  md:grid-cols-2">
         <div>{description}</div>
         <div className="flex justify-center p-5 ">
           {imgpaths[0] && (
             <Image
               src={imgpaths[0].path}
               alt=""
-              className="pointer-events-none p-1"
-              height={100}
-              width={100}
+              className="pointer-events-none p-1 "
+              height={150}
+              width={150}
             />
           )}
           {imgpaths[1] && (
@@ -54,8 +55,8 @@ export default function ItemNew({
               src={imgpaths[1].path}
               alt="qe"
               className="pointer-events-none p-1"
-              height={100}
-              width={100}
+              height={150}
+              width={150}
             />
           )}
         </div>
@@ -65,7 +66,7 @@ export default function ItemNew({
           variant="default"
           size="sm"
           //className="mr-5 middle none  rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:shadow-none"
-          className="bg-[#009cf3] mr-3  hover:shadow-[inset_0_-2px_4px_rgba(0,0.5,0.5,0.5)] hover:bg-[#009cf3] transition delay-[50] ease-in-out"
+          className=" bg-[#009cf3] mr-3  hover:shadow-[inset_0_-2px_4px_rgba(0,0.5,0.5,0.5)] hover:bg-[#009cf3] transition delay-[50] ease-in-out"
           data-ripple-light="true"
         >
           <Image
@@ -91,6 +92,7 @@ export default function ItemNew({
           Удалить
         </Button>
       </div>
+    </div>
     </div>
   );
 }
