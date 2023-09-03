@@ -22,8 +22,10 @@ export  const authConfig:AuthOptions ={
                 // This is where you need to retrieve user data 
                 // to verify with credentials
                 // Docs: https://next-auth.js.org/configuration/providers/credentials
+
+                const url = process.env.NEXTAUTH_URL
                 console.log(credentials?.email)
-                const user  = await (await fetch(`http://localhost:3000/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
+                const user  = await (await fetch(`${url}/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
                 let CurrentUser = user as UserProps;
                 
