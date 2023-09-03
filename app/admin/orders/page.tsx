@@ -1,5 +1,5 @@
 "use client";
 
-export default function OrdersPage() {
+export default function AdminOrdersPage() {
   return <div>Order page</div>;
 }

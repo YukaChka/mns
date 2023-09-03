@@ -6,7 +6,6 @@ export function AdminHeader() {
       <div className=" text-md md:text-4xl font-bold  ">
         Панель Администратора
       </div>
-      <div className=" text-end   text-sm md:text-xl">Вернуться обратно</div>
     </div>
   );
 }

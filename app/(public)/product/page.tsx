@@ -1,4 +1,4 @@
-export default async function Product() {
+export default async function ProductPage() {
   return (
     <main>
       <p>Product</p>

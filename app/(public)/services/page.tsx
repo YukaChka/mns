@@ -1,7 +1,7 @@
-export default async function AboutPage() {
+export default async function ServicesPage() {
   return (
     <main>
-      <p>AboutPage</p>
+      <p>ServicesPage</p>
     </main>
   );
 }

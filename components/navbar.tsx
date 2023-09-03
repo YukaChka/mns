@@ -33,7 +33,7 @@ export function Navbar({ width }: NavbarProps) {
   const path = usePathname();
 
   const [isLogin, setIsLogin] = useState(false);
-  console.log(path);
+
   return (
     <>
       <Sheet open={open} onOpenChange={setOpen}>
@@ -56,7 +56,7 @@ export function Navbar({ width }: NavbarProps) {
                 }}
               >
                 <Image
-                  className="mx-auto mb-[10%]"
+                  className="mx-auto mb-[7%]"
                   src="/img/logo.svg"
                   alt=""
                   height={width < 900 ? 75 : 150}
@@ -68,43 +68,47 @@ export function Navbar({ width }: NavbarProps) {
           </SheetHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-1 gap-5">
-              <div className="text-white text-xl">
+              <div className="text-white text-[17px]  md:text-xl">
+                <Link href="/" onClick={() => setOpen(false)}>
+                  На главную
+                </Link>
+              </div>
+              <div className="text-white text-[17px]  md:text-xl">
                 <Link
                   href="/news"
                   onClick={() => {
-                    setIsLogin(true);
                     setOpen(false);
                   }}
                 >
                   Новости
                 </Link>
               </div>
-              <div className="text-white text-xl">
+              <div className="text-white text-[17px]  md:text-xl">
                 <Link href="/product" onClick={() => setOpen(false)}>
                   Продукты
                 </Link>
               </div>
-              <div className="text-white text-xl">
+              <div className="text-white text-[17px]  md:text-xl">
                 <Link href="/decisions" onClick={() => setOpen(false)}>
                   Решения
                 </Link>
               </div>
-              <div className="text-white text-xl">
+              <div className="text-white text-[17px]  md:text-xl">
                 <Link href="/education" onClick={() => setOpen(false)}>
                   Обучение
                 </Link>
               </div>
-              <div className="text-white text-xl">
+              <div className="text-white text-[17px]  md:text-xl">
                 <Link href="/education" onClick={() => setOpen(false)}>
                   Дополнительные услуги
                 </Link>
               </div>
-              <div className="text-white text-xl">
+              <div className="text-white text-[17px]  md:text-xl">
                 <Link href="/support" onClick={() => setOpen(false)}>
                   Поддержка
                 </Link>
               </div>
-              <div className="mr-auto text-white text-xl">
+              <div className="mr-auto text-white text-[17px]  md:text-xl">
                 {session ? (
                   <Link href="/account" onClick={() => setOpen(false)}>
                     Личный кабинет

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import TableNews from "@/components/admin/tableNews";
 
-export default async function AdminPage() {
+export default async function AdminNewsPage() {
   return (
     <div>
       <div>
