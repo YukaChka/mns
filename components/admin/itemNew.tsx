@@ -32,14 +32,14 @@ export default function ItemNew({
     console.log(imgpaths[i].path);
   }
   return (
-    <div className="rounded-md border px-3 py-2 h-[100%] ">
+    <section className="rounded-md border px-3 py-2 h-[100%] ">
       <div className="">
       <div>
         <a className="font-semibold pr-2">{title}</a>
         <a className="font-normal">{date[0]}</a>
       </div>
       <div className="  md:grid-cols-2">
-        <div>{description}</div>
+        <div className="h-[100%]">{description}</div>
         <div className="flex justify-center p-5 ">
           {imgpaths[0] && (
             <Image
@@ -93,6 +93,6 @@ export default function ItemNew({
         </Button>
       </div>
     </div>
-    </div>
+    </section>
   );
 }
