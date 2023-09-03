@@ -13,7 +13,7 @@ async function GetData() {
 export default async function TableNews() {
   const posts = await GetData();
   return (
-    <div className="grid grid-cols-2  mb-8  place-items-stretch">
+    <div className="">
       {posts.map((post: ItemNewProps) => (
         <div key={post.id} className="p-1">          
         <ItemNew

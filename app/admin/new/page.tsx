@@ -7,43 +7,59 @@ export default async function AdminNewsPage() {
   return (
     <div>
       <div>
-        <div className=" mt-10">
-          <Button
-            variant="default"
-            className="middle none center  bg-[#ffff] hover:bg-[#ffff] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black shadow-md shadow-gray transition-all hover:shadow-md  focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none rounded-md border"
-            data-ripple-light="true"
-          >
-            Добавить
-          </Button>
-        </div>
+        
 
         <div className="mb-3 mt-10">
           <div className=" mb-4 flex w-full flex-wrap ">
-            <span
-              className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
-              id="basic-addon2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-            <Input
-              type="search"
-              className="relative m-0 block w-[1px] min-w-0 flex-auto rounded  border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out   "
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
+            
+             <Input 
+             type="search" 
+             id="default-search" 
+             className="relative m-0 block w-[1px] min-w-0 flex-auto rounded  border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out   " 
+             placeholder="Поиск"
+             aria-label="Search"
+             aria-describedby="button-addon2"
+             required>
+
+
+             </Input>
+             <Button
+          variant="default"
+          size="sm"
+          //className="mr-5 middle none  rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:shadow-none"
+          className="bg-[##FFFFFF00] mr-3  hover:shadow-[)] hover:bg-[##FFFFFF00] transition delay-[50] ease-in-out"
+          data-ripple-light="true"
+        >
+
+          <Image
+            src="/img/lupa.svg"
+            alt="qe"
+            className="pointer-events-none p-1"
+            height={23}
+            width={23}
+          />
+        </Button>
+            
           </div>
+          <div className=" flex p-1">
+        <Button
+          variant="default"
+          size="sm"
+          //className="mr-5 middle none  rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-sm shadow-sky-100 transition-all hover:shadow-sm hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:shadow-none"
+          className=" bg-[#009cf3] mr-3  hover:shadow-[inset_0_-2px_4px_rgba(0,0.5,0.5,0.5)] hover:bg-[#009cf3] transition delay-[50] ease-in-out"
+          data-ripple-light="true"
+        >
+
+          Редактировать новость
+          <Image
+            src="/img/addnews.svg"
+            alt="qe"
+            className="pointer-events-none p-1"
+            height={23}
+            width={23}
+          />
+        </Button>
+      </div>
         </div>
       </div>
       <div>

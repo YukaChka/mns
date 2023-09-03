@@ -32,14 +32,14 @@ export default function ItemNew({
     console.log(imgpaths[i].path);
   }
   return (
-    <section className="rounded-md border px-3 py-2 h-[100%] ">
+    <section className="rounded-md border px-3 py-2 ">
       <div className="">
       <div>
         <a className="font-semibold pr-2">{title}</a>
         <a className="font-normal">{date[0]}</a>
       </div>
       <div className="  md:grid-cols-2">
-        <div className="h-[100%]">{description}</div>
+        <div>{description}</div>
         <div className="flex justify-center p-5 ">
           {imgpaths[0] && (
             <Image
@@ -61,7 +61,9 @@ export default function ItemNew({
           )}
         </div>
       </div>
-      <div className="mt-5 flex ">
+     
+    </div>
+    <div className=" flex ">
         <Button
           variant="default"
           size="sm"
@@ -69,6 +71,9 @@ export default function ItemNew({
           className=" bg-[#009cf3] mr-3  hover:shadow-[inset_0_-2px_4px_rgba(0,0.5,0.5,0.5)] hover:bg-[#009cf3] transition delay-[50] ease-in-out"
           data-ripple-light="true"
         >
+          
+          Редактировать
+
           <Image
             src="/img/Pen.svg"
             alt="qe"
@@ -76,23 +81,23 @@ export default function ItemNew({
             height={23}
             width={23}
           />
-          Редактировать
         </Button>
         <Button
           size="sm"
           className="bg-[#d9d9d9] text-black hover:bg-red-600 hover:text-white transition delay-[1] ease-in-out "
         >
+
+          Удалить
+
           <Image
             src="/img/Delet.svg"
             alt="qe"
             className="pointer-events-none p-1"
-            height={27}
-            width={27}
+            height={25}
+            width={25}
           />
-          Удалить
         </Button>
       </div>
-    </div>
     </section>
   );
 }
