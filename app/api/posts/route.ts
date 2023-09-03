@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Query } from "@/lib/db";
 import { GetPosts, ItemNewProps } from "./posts";
+export const dynamic = 'force-dynamic' 
 export async function GET(req: Request) {
   try {
 

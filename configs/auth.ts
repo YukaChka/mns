@@ -22,11 +22,13 @@ export  const authConfig:AuthOptions ={
                 // This is where you need to retrieve user data 
                 // to verify with credentials
                 // Docs: https://next-auth.js.org/configuration/providers/credentials
-                console.log(credentials?.email)
-                const user  = await (await fetch(`http://localhost:3000/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
+
+                const url = process.env.NEXTAUTH_URL
+                
+                const user  = await (await fetch(`${url}/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
                 let CurrentUser = user as UserProps;
-                
+                console.log(user)
                 if (credentials?.email === CurrentUser.email && credentials?.password === CurrentUser.password) {
                     
                     const person:User ={
@@ -36,12 +38,11 @@ export  const authConfig:AuthOptions ={
                         lastname:CurrentUser.lastname,
                         role:CurrentUser.role,
                         password:CurrentUser.password
-                        
                     } 
                     
 
                     
-
+                    console.log(person)
                     return person
                 } else {
                     return null
@@ -49,7 +50,7 @@ export  const authConfig:AuthOptions ={
             }
         })
     ],
-    
+    secret:`${process.env.NEXTAUTH_SECRET}`,
     events: {
         async signIn(message) { /* on successful sign in */ },
         async signOut(message) { /* on signout */ },
@@ -65,7 +66,7 @@ export  const authConfig:AuthOptions ={
           
         async redirect({ url, baseUrl }) {
             
-            return "http://localhost:3000"
+            return `${process.env.NEXTAUTH_URL}`
           },
         //Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user, session, trigger }) {

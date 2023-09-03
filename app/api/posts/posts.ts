@@ -12,7 +12,8 @@ export interface ItemNewImagesProps  {
     title: string;
     path:string
   };
-
+  
+export const dynamic = 'force-dynamic' 
 export async function GetPosts() {
     const data= await Query<Array<ItemNewProps>>({
         query:`SELECT DISTINCT  p.id, p.title, p.description, p.datapublic FROM megatel_db.post p`,
