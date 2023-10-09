@@ -4,8 +4,9 @@ import { useEffect } from "react";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 async function GetData() {
-  const url = process.env.NEXTAUTH_URL;
-  const res = await fetch(`${url}/api/posts`);
+  const url = process.env.NEXTAUTH_URL_PUBLIC;
+
+  const res = await fetch(`/api/posts/`);
 
   return res.json();
 }
