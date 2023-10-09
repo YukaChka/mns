@@ -3,9 +3,9 @@ import ItemNew from "./itemNew";
 import { useEffect } from "react";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
-
 async function GetData() {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const url = process.env.NEXTAUTH_URL;
+  const res = await fetch(`http://${url}/api/posts`);
 
   return res.json();
 }
@@ -15,16 +15,14 @@ export default async function TableNews() {
   return (
     <div className="">
       {posts.map((post: ItemNewProps) => (
-        <div key={post.id} className="p-1">          
-        <ItemNew
-            
+        <div key={post.id} className="p-1">
+          <ItemNew
             id={post.id}
             description={post.description}
             datapublic={post.datapublic}
             imgpaths={post.imgpaths}
             title={post.title}
           />
-
         </div>
       ))}
     </div>
