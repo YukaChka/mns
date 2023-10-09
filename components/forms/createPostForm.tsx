@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { Textarea } from "../ui/textarea";
 
 const FormSchema = z.object({
   datapublic: z.string().min(2, {
@@ -69,6 +70,15 @@ export function CreatePostForm() {
             </FormItem>
           )}
         />
+        <div>
+
+              <FormLabel>Текст</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Введите Текст" />
+              </FormControl>
+              <FormMessage />
+
+        </div>
         <Button type="submit">Опубликовать</Button>
       </form>
     </Form>
