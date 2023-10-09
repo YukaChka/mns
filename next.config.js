@@ -8,6 +8,11 @@ const nextConfig = {
     });
     return config;
   },
+  reactStrictMode: true,
+  env: {
+    BASE_URL: process.env.NEXT_PUBLIC,
+  },
+
   poweredByHeader: false,
 };
 
