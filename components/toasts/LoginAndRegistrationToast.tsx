@@ -9,9 +9,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import { LoginForm } from "@/components/loginForm";
+import { LoginForm } from "@/components/forms/loginForm";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { RegistrationForm } from "@/components/registrationForm";
+import { RegistrationForm } from "@/components/forms/registrationForm";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface ToastProps {
@@ -37,7 +37,7 @@ export function LoginAndRegistrationToast() {
 
   useEffect(() => {
     if (!open) {
-      //router.push(redirect);
+      router.push(redirect);
       setTimeout(() => {
         setIsLogin(true);
       }, 300);
@@ -64,7 +64,6 @@ export function LoginAndRegistrationToast() {
         </div>
 
         <DialogFooter>
-          <div></div>
           <div>
             {isLogin && (
               <Button

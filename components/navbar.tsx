@@ -19,8 +19,8 @@ import { useSession } from "next-auth/react";
 
 import { useEffect, useState } from "react";
 
-import { LoginForm } from "@/components/loginForm";
-import { LoginAndRegistrationToast } from "@/components/LoginAndRegistrationToast";
+import { LoginForm } from "@/components/forms/loginForm";
+import { LoginAndRegistrationToast } from "@/components/toasts/LoginAndRegistrationToast";
 import { usePathname, useRouter } from "next/navigation";
 
 type NavbarProps = {

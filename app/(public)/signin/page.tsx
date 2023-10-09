@@ -1,7 +1,7 @@
 "use client";
 
-import { LoginAndRegistrationToast } from "@/components/LoginAndRegistrationToast";
-import { LoginForm } from "@/components/loginForm";
+import { LoginAndRegistrationToast } from "@/components/toasts/LoginAndRegistrationToast";
+import { LoginForm } from "@/components/forms/loginForm";
 import { GetServerSidePropsContext } from "next";
 import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";

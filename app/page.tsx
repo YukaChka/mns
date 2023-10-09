@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import useDownloader from "react-use-downloader";
-import { UploadForm } from "@/components/UploadForm";
+import { UploadForm } from "@/components/forms/UploadForm";
 import NewPreview from "@/components/new-preview";
 
 import { SupportForm } from "@/components/support";
