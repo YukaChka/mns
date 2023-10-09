@@ -5,7 +5,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 async function GetData() {
   const url = process.env.NEXTAUTH_URL;
-  const res = await fetch(`http://${url}/api/posts`);
+  const res = await fetch(`${url}/api/posts`);
 
   return res.json();
 }
