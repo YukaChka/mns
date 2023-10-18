@@ -66,7 +66,7 @@ export  const authConfig:AuthOptions ={
           
         async redirect({ url, baseUrl }) {
             
-            return `${process.env.NEXTAUTH_URL}`
+            return `/`
           },
         //Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user, session, trigger }) {
