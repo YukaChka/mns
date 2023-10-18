@@ -3,22 +3,14 @@ import ItemNew from "./itemNew";
 import { useEffect } from "react";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
-async function GetData(url: any) {
+async function GetData(url: string) {
   const res = await fetch(url);
 
   return res.json();
 }
 
 export default async function TableNews() {
-  const state = process.env.NODE_ENV;
-  let url;
-  if (state === "production") {
-    url = "https://megatelnextjs.ru/api/posts";
-  } else {
-    url = "http://localhost:3000/api/posts";
-  }
-
-  const posts = await GetData(url);
+  const posts = await GetData("/api/posts");
   return (
     <div className="">
       {posts.map((post: ItemNewProps) => (
