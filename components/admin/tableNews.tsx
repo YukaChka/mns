@@ -10,7 +10,8 @@ async function GetData(url: any) {
 }
 
 export default async function TableNews() {
-  const url = `${process.env.NEXT_PUBLIC_API}/posts`;
+  const url = `${process.env.NEXT_PUBLIC_API}posts`;
+  console.log(url);
   const posts = await GetData(url);
   return (
     <div className="">
