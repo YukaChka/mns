@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { UploadForm } from "./UploadForm";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -71,13 +72,18 @@ export function CreatePostForm() {
           )}
         />
         <div>
-
-              <FormLabel>Текст</FormLabel>
-              <FormControl>
-                <Textarea placeholder="Введите Текст" />
-              </FormControl>
-              <FormMessage />
-
+          <FormLabel>Описание</FormLabel>
+          <FormControl>
+            <Textarea placeholder="Введите Текст" className="max-h-96" />
+          </FormControl>
+          <FormMessage />
+        </div>
+        <div>
+          <FormLabel>Загрузить фото</FormLabel>
+          <FormControl>
+            <UploadForm />
+          </FormControl>
+          <FormMessage />
         </div>
         <Button type="submit">Опубликовать</Button>
       </form>

@@ -8,10 +8,8 @@ async function GetData(url: any) {
 
   return res.json();
 }
-
+const url = `http://localhost:3000/api/posts`;
 export default async function TableNews() {
-  const url = `${process.env.NEXT_PUBLIC}/api/posts`;
-  console.log(url);
   const posts = await GetData(url);
   return (
     <div className="">

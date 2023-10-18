@@ -1,6 +1,7 @@
 "use client";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
+import Link from "next/link";
 
 export const FooterV2 = () => {
   const { width, height } = useWindowSize();
@@ -9,13 +10,13 @@ export const FooterV2 = () => {
       <li className="flex container justify-center">
         <div className="grid grid-cols-1 md:grid-cols-10  place-items-center m-3 ">
           <ul className="text-white text-[20px] sm:text-[21px]  col-start-1 md:col-start-2 col-end-6 ">
-            Продукты
+            <Link href="/product">Продукты</Link>
           </ul>
           <ul className="text-white text-[20px] sm:text-[21px]  col-start-1 md:col-start-6 col-end-7 ">
-            Решения
+            <Link href="/decisions">Решения</Link>
           </ul>
           <ul className="text-white text-[20px] sm:text-[21px]  col-start-1 md:col-start-7 col-end-10">
-            О&nbsp;нас
+            <Link href="/about">О&nbsp;нас</Link>
           </ul>
         </div>
       </li>

@@ -56,7 +56,7 @@ export function EditPostForm({
             <FormItem>
               <FormLabel>Дата</FormLabel>
               <FormControl>
-                <Input placeholder="Дата публикации" type="date" {...field} />
+                <Input placeholder="Дата публикации" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -80,34 +80,40 @@ export function EditPostForm({
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Дата</FormLabel>
+              <FormLabel>Описание</FormLabel>
               <FormControl>
-                <Textarea placeholder="Введите Текст" {...field} />
+                <Textarea
+                  placeholder="Введите Текст"
+                  className="min-w-min max-h-96"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="flex justify-center p-5 ">
-          {imgpaths[0] && (
-            <Image
-              src={imgpaths[0].path}
-              alt=""
-              className="pointer-events-none p-1 "
-              height={150}
-              width={150}
-            />
-          )}
-          {imgpaths[1] && (
-            <Image
-              src={imgpaths[1].path}
-              alt="qe"
-              className="pointer-events-none p-1"
-              height={150}
-              width={150}
-            />
-          )}
-        </div>
+        {imgpaths && (
+          <div className="flex justify-center p-5 ">
+            {imgpaths[0] && (
+              <Image
+                src={imgpaths[0].path}
+                alt=""
+                className="pointer-events-none p-1 "
+                height={100}
+                width={100}
+              />
+            )}
+            {imgpaths[1] && (
+              <Image
+                src={imgpaths[1].path}
+                alt="qe"
+                className="pointer-events-none p-1"
+                height={100}
+                width={100}
+              />
+            )}
+          </div>
+        )}
         <Button type="submit">Опубликовать</Button>
       </form>
     </Form>
