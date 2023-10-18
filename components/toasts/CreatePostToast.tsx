@@ -14,7 +14,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { ItemNewProps } from "@/app/api/posts/posts";
 import { Dispatch, SetStateAction, useState } from "react";
-import { CreatePostForm, EditPostForm } from "../forms/createPostForm";
+import { CreatePostForm } from "../forms/createPostForm";
 import Image from "next/image";
 
 export async function CreatePostToast() {
