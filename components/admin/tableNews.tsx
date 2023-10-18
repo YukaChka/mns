@@ -8,7 +8,7 @@ async function GetData(url: any) {
 
   return res.json();
 }
-const url = `http://localhost:3000/api/posts`;
+const url = `${process.env.NEXT_PUBLIC_API}/posts`;
 export default async function TableNews() {
   const posts = await GetData(url);
   return (
