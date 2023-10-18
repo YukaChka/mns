@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +7,6 @@ import { useState } from "react";
 import { CreatePostToast } from "@/components/toasts/CreatePostToast";
 
 export default function AdminNewsPage() {
-  const [id, setId] = useState(null);
   return (
     <div>
       <div>
@@ -39,7 +36,7 @@ export default function AdminNewsPage() {
         </div>
       </div>
       <div>
-        <TableNews></TableNews>
+        <TableNews />
       </div>
     </div>
   );
