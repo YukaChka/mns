@@ -42,7 +42,7 @@ export async function CreatePostToast() {
             </div>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="">
           <DialogHeader>
             <DialogTitle>
               <div>Добавить новость</div>

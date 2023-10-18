@@ -5,7 +5,7 @@ import { useState } from "react";
 export function UploadForm() {
   const [file, setFile] = useState<File>();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!file) return;
 
@@ -23,7 +23,7 @@ export function UploadForm() {
       // Handle errors here
       console.error(e);
     }
-  };
+  }
 
   return (
     <form onSubmit={onSubmit}>

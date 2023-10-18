@@ -10,6 +10,10 @@ const nextConfig = {
   },
 
   poweredByHeader: false,
+  reactStrictMode: true,
+  images: {
+    domains: ["localhost"],
+  },
   async headers() {
     return [
       {

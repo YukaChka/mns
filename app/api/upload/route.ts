@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
   
   const path = `public/docs/${file.name}`
   await writeFile(path, buffer)
-  console.log(`open ${path} to see the uploaded file`)
+  //console.log(`open ${path} to see the uploaded file`)
 
-  return NextResponse.json({ success: true })
+  return NextResponse.json({ success: true, path:path })
 }
