@@ -8,12 +8,7 @@ const nextConfig = {
     });
     return config;
   },
-  env: {
-    NEXT_PUBLIC_API: "https://megatelnextjs.ru/api/",
-    NEXTAUTH_SECRET: "pv6WqkDprZKjNigl4CcjQ5lVJRLboheWnluNKPDGIe8=",
-    NEXTAUTH_URL: "https://megatelnextjs.ru",
-    NEXT_PUBLIC: "https://megatelnextjs.ru",
-  },
+
   poweredByHeader: false,
   async headers() {
     return [

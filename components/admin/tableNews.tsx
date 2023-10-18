@@ -10,8 +10,14 @@ async function GetData(url: any) {
 }
 
 export default async function TableNews() {
-  const url = `${process.env.NEXT_PUBLIC_API}posts`;
-  console.log(url);
+  const state = process.env.NODE_ENV;
+  let url;
+  if (state === "production") {
+    url = "http://megatelnextjs.ru/api/posts";
+  } else {
+    url = "http://localhost:3000/api/posts";
+  }
+
   const posts = await GetData(url);
   return (
     <div className="">
