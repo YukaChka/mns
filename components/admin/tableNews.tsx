@@ -13,7 +13,7 @@ export default async function TableNews() {
   const state = process.env.NODE_ENV;
   let url;
   if (state === "production") {
-    url = "http://megatelnextjs.ru/api/posts";
+    url = "https://megatelnextjs.ru/api/posts";
   } else {
     url = "http://localhost:3000/api/posts";
   }
