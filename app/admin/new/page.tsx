@@ -5,8 +5,17 @@ import TableNews from "@/components/admin/tableNews";
 import Link from "next/link";
 import { useState } from "react";
 import { CreatePostToast } from "@/components/toasts/CreatePostToast";
+import { ItemNewProps } from "@/app/api/posts/posts";
+import ItemNew from "@/components/admin/itemNew";
 
-export default function AdminNewsPage() {
+async function GetData(url: any) {
+  const res = await fetch(url);
+
+  return res.json();
+}
+
+export default async function AdminNewsPage() {
+  const posts = await GetData(`${process.env.NEXTAUTH_URL}/api/posts`);
   return (
     <div>
       <div>
@@ -36,7 +45,17 @@ export default function AdminNewsPage() {
         </div>
       </div>
       <div>
-        <TableNews />
+        {posts.map((post: ItemNewProps) => (
+          <div key={post.id} className="p-1">
+            <ItemNew
+              id={post.id}
+              description={post.description}
+              datapublic={post.datapublic}
+              imgpaths={post.imgpaths}
+              title={post.title}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
