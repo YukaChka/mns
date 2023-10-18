@@ -15,7 +15,7 @@ async function GetData(url: any) {
 }
 
 export default async function AdminNewsPage() {
-  const posts = await GetData(`${process.env.NEXTAUTH_URL}/api/posts`);
+  const posts = await GetData(`${process.env.NEXT_PUBLIC}/api/posts`);
   return (
     <div>
       <div>
