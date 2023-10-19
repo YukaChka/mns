@@ -99,7 +99,7 @@ const HeaderV2 = () => {
                 <>
                   {width > 400 ? (
                     <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
-                      <Link href="/admin/new">Панель админа</Link>
+                      <Link href="/posts">Панель админа</Link>
                     </li>
                   ) : null}
 

@@ -22,6 +22,7 @@ export default function ItemNew({
   description,
   imgpaths,
 }: ItemNewProps) {
+  console.log(datapublic);
   const CurrentDate = new Date(datapublic);
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     year: "numeric",

@@ -8,7 +8,7 @@ export default withAuth(
         console.log(request.nextUrl.pathname)
 
         
-        if (request.nextUrl.pathname.startsWith("/admin/new")){
+        if (request.nextUrl.pathname.startsWith("/posts")){
             if(request.nextauth.token?.user.role!== "админ")
                 return NextResponse.rewrite(new URL("/signin", request.url)
             )
@@ -27,6 +27,6 @@ export default withAuth(
     )
     
 
-export const config = { matcher: ["/admin/new"] }
+export const config = { matcher: ["/posts"] }
 
 
