@@ -11,22 +11,19 @@ export default async function AboutPage() {
     <main>
       <div>
         <div className="relative">
-
-        <div className="">
-        <Image
-                  src="/img/photo12.jpg"
-                  alt="qe"
-                  className="pointer-events-none"
-                  height={11440}
-                  width={1741}
-                />
+          <div className="">
+            <Image
+              src="/img/about.png"
+              alt="qe"
+              className="pointer-events-none h-[372px] object-cover bg-no-repeat brightness-50"
+              height={11440}
+              width={1741}
+            />
+          </div>
+          <div className="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+            qwefwefwegfefg
+          </div>
         </div>
-        <div className="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
-        qwefwefwegfefg
-        </div>
-        </div>
-
-
       </div>
     </main>
   );
