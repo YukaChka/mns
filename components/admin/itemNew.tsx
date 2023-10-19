@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 
 import { EditPostToast } from "../toasts/EditPostToast";
+import { AlertDialogDelete } from "../toasts/deletePostToast";
 
 interface ItemNewProps {
   id: number;
@@ -72,19 +73,7 @@ export default function ItemNew({
           datapublic={date[0]}
           imgpaths={imgpaths}
         />
-        <Button
-          size="sm"
-          className="bg-[#d9d9d9] text-black hover:bg-red-600 hover:text-white transition delay-[1] ease-in-out "
-        >
-          Удалить
-          <Image
-            src="/img/Delet.svg"
-            alt="qe"
-            className="pointer-events-none p-1"
-            height={25}
-            width={25}
-          />
-        </Button>
+        <AlertDialogDelete />
       </div>
     </section>
   );
