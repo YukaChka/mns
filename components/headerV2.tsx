@@ -103,8 +103,12 @@ const HeaderV2 = () => {
                     </li>
                   ) : null}
 
-                  <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                    <Button variant="link" onClick={() => signOut()}>
+                  <li className="font-semibold text-[#009cf3] text-base mr-auto ml-auto lg:text-sm">
+                    <Button
+                      variant="link"
+                      onClick={() => signOut()}
+                      className="text-[#009cf3]"
+                    >
                       Выйти
                     </Button>
                   </li>

@@ -1,5 +1,11 @@
 "use client";
 
+import { OrderTable } from "@/components/admin/OrderTable";
+
 export default function AdminOrdersPage() {
-  return <div>Order page</div>;
+  return (
+    <div>
+      <OrderTable />
+    </div>
+  );
 }

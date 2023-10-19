@@ -1,3 +1,4 @@
+import { ItemNewProps } from "@/app/api/posts/posts";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export function AlertDialogDelete() {
+export function AlertDialogDelete({ id }: { id: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -33,13 +34,13 @@ export function AlertDialogDelete() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Вы хотите удалить новость?</AlertDialogTitle>
-          <AlertDialogDescription></AlertDialogDescription>
+          <AlertDialogDescription>{id}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="hover:bg-red-600 hover:text-white">
+          <AlertDialogCancel className="hover:bg-black hover:text-white">
             Отмена
           </AlertDialogCancel>
-          <AlertDialogAction className="hover:bg-green-600 hover:text-white">
+          <AlertDialogAction className=" hover:bg-red-600 hover:text-white">
             Подтвердить
           </AlertDialogAction>
         </AlertDialogFooter>

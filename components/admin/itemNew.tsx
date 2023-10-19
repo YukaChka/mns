@@ -73,7 +73,7 @@ export default function ItemNew({
           datapublic={date[0]}
           imgpaths={imgpaths}
         />
-        <AlertDialogDelete />
+        <AlertDialogDelete id={id} />
       </div>
     </section>
   );
