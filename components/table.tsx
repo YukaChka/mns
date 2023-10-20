@@ -95,7 +95,7 @@ export const columns: ColumnDef<OrderProps>[] = [
 
       return (
         <div>
-          <EditOrderToast />
+          <EditOrderToast order={order} />
         </div>
       );
     },
