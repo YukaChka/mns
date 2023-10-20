@@ -11,7 +11,7 @@ import {
 
 import { LoginForm } from "@/components/forms/loginForm";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { RegistrationForm } from "@/components/forms/registrationForm";
+
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface ToastProps {
