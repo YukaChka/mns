@@ -19,16 +19,13 @@ export  const authConfig:AuthOptions ={
                 }
             },
             async authorize(credentials) {
-                // This is where you need to retrieve user data 
-                // to verify with credentials
-                // Docs: https://next-auth.js.org/configuration/providers/credentials
 
                 const url = process.env.NEXTAUTH_URL
                 
                 const user  = await (await fetch(`${url}/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
                 let CurrentUser = user as UserProps;
-                console.log(user)
+                
                 if (credentials?.email === CurrentUser.email && credentials?.password === CurrentUser.password) {
                     
                     const person:User ={
@@ -42,7 +39,8 @@ export  const authConfig:AuthOptions ={
                     
 
                     
-                    console.log(person)
+                    
+                    
                     return person
                 } else {
                     return null
@@ -66,7 +64,7 @@ export  const authConfig:AuthOptions ={
           
         async redirect({ url, baseUrl }) {
             
-            return `${process.env.NEXTAUTH_URL}`
+            return baseUrl
           },
         //Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user, session, trigger }) {
@@ -75,7 +73,7 @@ export  const authConfig:AuthOptions ={
             if (user){
             token.user=user
             
-            console.log(token.user)
+            
 
             //token.role = user.role
             
@@ -99,6 +97,6 @@ export  const authConfig:AuthOptions ={
         }
     },
     pages:{
-        signIn:"/api/auth/signin"
+        signIn:"/signin"
     }
 }
