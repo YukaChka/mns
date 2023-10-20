@@ -44,7 +44,7 @@ export  const authConfig:AuthOptions ={
             }
         })
     ],
-    secret:`${process.env.NEXTAUTH_SECRET}`|| "1234",
+    secret:`${process.env.NEXTAUTH_SECRET}`,
     events: {
         async signIn(message) { /* on successful sign in */ },
         async signOut(message) { /* on signout */ },
