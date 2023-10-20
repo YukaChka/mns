@@ -39,7 +39,7 @@ import Image from "next/image";
 
 const data: Order[] = [
   {
-    id: 1,
+    id_order: 1,
     data_delivery: new Date("12-22-2021"),
     quantity_ports: 242,
     module: "Модули расширения",
@@ -49,7 +49,7 @@ const data: Order[] = [
 ];
 
 export type Order = {
-  id: number;
+  id_order: number;
   data_delivery: Date | number;
   quantity_ports: number;
   module: string;

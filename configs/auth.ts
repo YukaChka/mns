@@ -37,10 +37,6 @@ export  const authConfig:AuthOptions ={
                         password:CurrentUser.password
                     } 
                     
-
-                    
-                    
-                    
                     return person
                 } else {
                     return null
@@ -48,7 +44,7 @@ export  const authConfig:AuthOptions ={
             }
         })
     ],
-    secret:`${process.env.NEXTAUTH_SECRET}`,
+    secret:`${process.env.NEXTAUTH_SECRET}`|| "1234",
     events: {
         async signIn(message) { /* on successful sign in */ },
         async signOut(message) { /* on signout */ },
