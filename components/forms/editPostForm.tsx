@@ -114,7 +114,9 @@ export function EditPostForm({
             )}
           </div>
         )}
-        <Button type="submit">Опубликовать</Button>
+        <Button type="submit" className="hover:bg-green-500">
+          Опубликовать
+        </Button>
       </form>
     </Form>
   );

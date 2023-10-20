@@ -2,7 +2,7 @@ import { Query } from "@/lib/db";
 
 export async function GetOrders() {
   const Orders = await Query({
-    query: `SELECT * FROM  megatel_db.order Order BY data_delivery`,
+    query: `SELECT * FROM  megatel_db.order Order BY data_delivery DESC`,
     values: [],
   });
   return Orders;

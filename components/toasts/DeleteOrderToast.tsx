@@ -29,7 +29,7 @@ export function OrderDialogDelete({ id }: { id: number }) {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Вы хотите удалить новость?</AlertDialogTitle>
+          <AlertDialogTitle>Вы хотите удалить заказ?</AlertDialogTitle>
           <AlertDialogDescription>{id}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

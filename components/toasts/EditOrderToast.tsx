@@ -16,8 +16,9 @@ import { ItemNewProps } from "@/app/api/posts/posts";
 import Image from "next/image";
 import { EditPostForm } from "../forms/editPostForm";
 import { OrderProps } from "@/app/api/order/order";
+import { EditOrderForm } from "@/components/forms/editOrderForm";
 
-export async function EditOrderToast() {
+export async function EditOrderToast({ order }: { order: OrderProps }) {
   return (
     <div>
       <Dialog>
@@ -35,10 +36,12 @@ export async function EditOrderToast() {
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>
-              <div>Редактировать новость</div>
+              <div>Редактировать заказ</div>
             </DialogTitle>
           </DialogHeader>
-          <div></div>
+          <div>
+            <EditOrderForm order={order} />
+          </div>
         </DialogContent>
       </Dialog>
     </div>
