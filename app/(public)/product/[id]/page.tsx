@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 
 type ProductProps = {
   params: {
-    Id: string;
+    id: string;
   };
 };
 
-export default async function Decision({ params: { Id } }: ProductProps) {
+export default async function Decision({ params: { id } }: ProductProps) {
   return (
     <main>
-      <p>Product 1 {Id}</p>
+      <p className="text-[10px]">Product {id}</p>
     </main>
   );
 }
