@@ -2,11 +2,9 @@ export default async function DecisionPage() {
   return (
     <main>
       <div className="grid md:grid-cols-2">
-          <div className="flex container justify-center">
-            <div className="max-w-6xl">
-            <div className="mt-10 text-4xl font-bold">
-            Решения
-              </div>
+          <div className="">
+            <div className="">
+
               <div className="mt-10 text-3xl font-bold">
               APM модули
               </div>
@@ -20,12 +18,13 @@ export default async function DecisionPage() {
               Службы
               </div>
               <div className=" mt-10 text-xl">
-              В данном разделе представлены программные продукты и решения, предлагаемые нашей компанией.
-              Перед покупкой или эксплуатацией наших программных продуктов Вам необходимо ознакомиться с Лицензионным соглашением, которое является неотъемлемой частью программного продукта.
-              Выберите соответствующий раздел для получения более подробной информации по интересующему Вас продукту.
+                <p className="pb-5">• APM директор</p>
+                <p className="pb-5">• APM директор</p>
+                <p className="pb-5">• APM директор</p>
+                <p className="pb-5">• APM директор</p>
               </div>
               <div className="mt-10 text-3xl font-bold text-[#009CF3]">
-              Сертификаты
+              Веб-модули
               </div>
               <div className=" mt-10 text-xl">
                 <p className="pb-5">• Сертификат соответствия на ФонексПро 8.0</p>
@@ -35,8 +34,8 @@ export default async function DecisionPage() {
               </div>
             </div>
           </div>
-          <div className="flex container justify-center">
-            <div className="max-w-6xl">
+          <div className="">
+            <div className="">
             <div className="mt-10 text-4xl font-bold">
             Продукты
               </div>
