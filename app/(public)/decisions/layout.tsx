@@ -7,19 +7,13 @@ export default function DecisionLayout({
     <section>
       <main>
         <div className=" flex container justify-start">
-        <div className="max-w-6xl ">
-          <div className="mt-10 text-4xl font-bold">
-          Решения
+          <div className="flex container ">
+            <div className="max-w-6xl ">
+              <div>{children}</div>
+            </div>
           </div>
-        
-  
-        
-        <div>
-        {children}
         </div>
-        </div>
-        </div>
-        </main>
+      </main>
     </section>
   );
 }
