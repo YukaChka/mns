@@ -37,7 +37,7 @@ export function AlertDialogDelete({ id }: { id: number }) {
           <AlertDialogDescription>{id}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="hover:bg-black hover:text-white">
+          <AlertDialogCancel className=" hover:text-black">
             Отмена
           </AlertDialogCancel>
           <AlertDialogAction className=" hover:bg-red-600 hover:text-white">
