@@ -8,22 +8,27 @@ import { NextResponse } from "next/server"
 export default withAuth(
     function middleware(request: NextRequestWithAuth) {
         
-        console.log(request.nextUrl.pathname)
-        console.log(request.url)
         
         if (request.nextUrl.pathname.startsWith("/posts")){
             if(request.nextauth.token?.user.role!== "админ"){
                 
                 return NextResponse.rewrite(new URL("/404", request.url))
-            }}
-                
-                
-            
-        
-        
-        
+            }
+        }
 
+        if (request.nextUrl.pathname.startsWith("/orders")){
+            if(request.nextauth.token?.user.role!== "админ"){        
+            
+                return NextResponse.rewrite(new URL("/404", request.url))
+            }
+        }
         
+        if (request.nextUrl.pathname.startsWith("/account")){
+            if(!request.nextauth.token?.user){            
+
+                return NextResponse.rewrite(new URL("/signin", request.url))
+            }
+        }                 
     },
     {
         callbacks: {
