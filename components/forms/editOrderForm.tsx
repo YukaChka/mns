@@ -108,7 +108,7 @@ export function EditOrderForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-3/4` grid  space-y-6"
+        className=" grid grid-cols-2 gap-4"
       >
         <FormField
           control={form.control}
@@ -136,23 +136,25 @@ export function EditOrderForm({
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="module"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Модули</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Введите Модули"
-                  className="min-w-min max-h-40"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="col-span-2">
+          <FormField
+            control={form.control}
+            name="module"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Модули</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Введите Модули"
+                    className="min-w-min max-h-40"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="station"
@@ -187,10 +189,11 @@ export function EditOrderForm({
             </FormItem>
           )}
         />
-        <div>
-          <FormLabel>Загрузить Документ</FormLabel>
+        <div className="col-span-2">
+          <FormLabel>Загрузить Документы</FormLabel>
           <FormControl>
             <Input
+              className="hover:cursor-pointer"
               type="file"
               onChange={(e) => {
                 setFile(e.target.files?.[0]);
@@ -199,10 +202,26 @@ export function EditOrderForm({
           </FormControl>
           <FormMessage />
         </div>
-
-        <Button type="submit" className="hover:bg-green-500">
-          Редактировать
-        </Button>
+        <div className="col-span-2">
+          {images && (
+            <div className="flex justify-start ">
+              {images.map((img) => (
+                <Image
+                  src={img.path}
+                  alt={img.title}
+                  className="p-1 hover:bg-no-repeat hover:brightness-200 hover:cursor-pointer"
+                  height={100}
+                  width={100}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="col-span-2">
+          <Button type="submit" className="hover:bg-green-500">
+            Редактировать
+          </Button>
+        </div>
       </form>
     </Form>
   );

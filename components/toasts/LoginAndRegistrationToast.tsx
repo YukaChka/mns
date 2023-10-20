@@ -51,33 +51,13 @@ export function LoginAndRegistrationToast() {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
-            <div>{isLogin ? "Вход в личный кабинет" : "Регистрация"}</div>
+            <div>Вход в личный кабинет</div>
           </DialogTitle>
         </DialogHeader>
 
         <div>
-          {isLogin ? (
-            <LoginForm />
-          ) : (
-            <RegistrationForm setIsLogin={setIsLogin} isLogin={isLogin} />
-          )}
+          <LoginForm />
         </div>
-
-        <DialogFooter>
-          <div>
-            {isLogin && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setIsLogin(false);
-                }}
-              >
-                Зарегистрироваться
-              </Button>
-            )}
-          </div>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

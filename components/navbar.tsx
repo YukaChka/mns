@@ -114,7 +114,9 @@ export function Navbar({ width }: NavbarProps) {
                     Личный кабинет
                   </Link>
                 ) : (
-                  <Link href="/signin">Войти</Link>
+                  <Link href="/signin" onClick={() => setOpen(false)}>
+                    Войти
+                  </Link>
                 )}
               </div>
             </div>
