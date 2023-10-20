@@ -8,10 +8,10 @@ export async function GetOrders() {
   return Orders;
 }
 export type OrderProps = {
-  id: string;
-  email: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  role: string;
+  id_order: number;
+  data_delivery: Date | number;
+  quantity_ports: number;
+  module: string;
+  station: string | null;
+  delivery_type: string;
 };

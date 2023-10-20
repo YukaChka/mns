@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 
 import { EditPostToast } from "../toasts/EditPostToast";
-import { AlertDialogDelete } from "../toasts/deletePostToast";
+import { PostDialogDelete } from "../toasts/DeletePostToast";
 
 interface ItemNewProps {
   id: number;
@@ -74,7 +74,7 @@ export default function ItemNew({
           datapublic={date[0]}
           imgpaths={imgpaths}
         />
-        <AlertDialogDelete id={id} />
+        <PostDialogDelete id={id} />
       </div>
     </section>
   );

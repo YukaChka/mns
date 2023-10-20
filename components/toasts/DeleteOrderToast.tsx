@@ -13,23 +13,19 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export function PostDialogDelete({ id }: { id: number }) {
+export function OrderDialogDelete({ id }: { id: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          size="sm"
-          className="bg-[#d9d9d9] text-black hover:bg-red-600 hover:text-white transition delay-[1] ease-in-out "
-        >
-          Удалить
+        <div className="hover:cursor-pointer ">
           <Image
-            src="/img/Delet.svg"
+            src="/img/trash.png"
             alt="qe"
-            className="pointer-events-none p-1"
-            height={25}
-            width={25}
+            className="pointer-events-none p-1 "
+            height={23}
+            width={23}
           />
-        </Button>
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
