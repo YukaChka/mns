@@ -40,6 +40,6 @@ export default withAuth(
     )
     
 
-export const config = { matcher: [] }
+export const config = { matcher: ["/account", "/orders", "/posts"] }
 
 
