@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
 import { ItemNewProps } from "@/app/api/posts/posts";
+import { useEffect, useState } from "react";
 
 const FormSchema = z.object({
   datapublic: z.string().min(2, {
@@ -29,6 +30,11 @@ const FormSchema = z.object({
   }),
 });
 
+type ImageProps = {
+  path: string;
+  title: string;
+};
+
 export function EditPostForm({
   id,
   title,
@@ -36,6 +42,8 @@ export function EditPostForm({
   description,
   imgpaths,
 }: ItemNewProps) {
+  const [file, setFile] = useState<File>();
+  const [images, setImages] = useState(Array<ImageProps>);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -45,6 +53,45 @@ export function EditPostForm({
     },
   });
   async function onSubmit(data: z.infer<typeof FormSchema>) {}
+
+  async function Upload(file: any) {
+    if (!file) return;
+
+    try {
+      const data = new FormData();
+      data.set("file", file);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: data,
+      });
+
+      // handle the error
+      if (!res.ok) throw new Error(await res.text());
+
+      return res.json();
+    } catch (e: any) {
+      // Handle errors here
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    const getPath = async () => {
+      const path = await Upload(file);
+      if (path) {
+        let url = path.path.replace(
+          "public",
+          `${process.env.NEXT_PUBLIC_BASE_URL}`
+        );
+        let name = path.path.split("/")[2];
+        let [domen, dosc] = path.path.split("/");
+
+        setImages([...images, { path: `/${dosc}/${name}`, title: name }]);
+      }
+    };
+    getPath();
+  }, [file]);
 
   return (
     <Form {...form}>
@@ -92,6 +139,19 @@ export function EditPostForm({
             </FormItem>
           )}
         />
+
+        <div>
+          <FormLabel>Загрузить фото</FormLabel>
+          <FormControl>
+            <Input
+              type="file"
+              onChange={(e) => {
+                setFile(e.target.files?.[0]);
+              }}
+            />
+          </FormControl>
+          <FormMessage />
+        </div>
         {imgpaths && (
           <div className="flex justify-center p-5 ">
             {imgpaths[0] && (

@@ -28,14 +28,6 @@ type ImageProps = {
   title: string;
 };
 
-function removeItem<T>(arr: Array<T>, value: T): Array<T> {
-  const index = arr.indexOf(value);
-  if (index > -1) {
-    arr.splice(index, 1);
-  }
-  return arr;
-}
-
 export function CreatePostForm() {
   const [file, setFile] = useState<File>();
   const [images, setImages] = useState(Array<ImageProps>);
