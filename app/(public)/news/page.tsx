@@ -11,7 +11,7 @@ import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 async function GetPost() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
-    url = "http://megatelnextjs.ru/api/posts";
+    url = "https://megatelnextjs.ru/api/posts";
   } else {
     url = `${url}/api/posts`;
   }
@@ -28,12 +28,8 @@ export default async function NewsPage() {
           <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className=" md:flex md:justify-start">
-                <div className="text-6xl">
-                Новости
-                </div>
-                 <div>
-                  Все
-                 </div>
+                <div className="text-6xl">Новости</div>
+                <div>Все</div>
               </div>
               <div className=" text-2xl  mt-8">
                 {posts.map((post: ItemNewProps) => (
@@ -44,7 +40,7 @@ export default async function NewsPage() {
           </div>
         </div>
         <div></div>
-    </div>
+      </div>
     </main>
   );
 }
