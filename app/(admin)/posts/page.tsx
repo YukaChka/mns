@@ -17,7 +17,7 @@ async function GetData() {
   }
   const res = await fetch(url);
 
-  return res.json();
+  return res.json() as Promise<ItemNewProps[]>;
 }
 
 export default async function AdminNewsPage() {

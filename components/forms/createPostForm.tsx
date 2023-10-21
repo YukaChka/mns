@@ -17,7 +17,6 @@ import { Textarea } from "../ui/textarea";
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
 
 const FormSchema = z.object({
   datapublic: z.string(),
