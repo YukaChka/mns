@@ -110,7 +110,7 @@ export default async function Home() {
               <div className="text-white mt-10 text-2xl ">
                 <>
                   {news.map((post) => (
-                    <NewPreview params={post} />
+                    <NewPreview key={post.id} params={post} />
                   ))}
                 </>
               </div>
