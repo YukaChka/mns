@@ -2,16 +2,19 @@ import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/forms/UploadForm";
 import NewPreview from "@/components/new-preview";
-
+import Link from "next/link"
 import { SupportForm } from "@/components/support";
 import { useEffect, useState } from "react";
 
 export default async function SupportPage() {
   return (
     <main>
-      <div className="">
+      <div className="mt-10 ">
           <div className="flex container justify-center">
             <div className="max-w-6xl">
+            <Link href="/product" className="text-2xl ">
+            {"<"} Продукты
+              </Link>
             <div className="mt-10 text-4xl font-bold">
             Поддержка
               </div>

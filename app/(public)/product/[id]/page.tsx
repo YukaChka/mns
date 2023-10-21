@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type ProductProps = {
   params: {
@@ -11,12 +12,12 @@ type ProductProps = {
 export default async function Decision({ params: { id } }: ProductProps) {
   return (
     <main>
-      <div className="">
+      <div className="mt-10">
           <div className="flex container justify-center">
             <div className="max-w-6xl">
-            <div className="mt-10 text-2xl ">
+            <Link href="/product" className=" text-2xl ">
             {"<"} Продукты
-              </div>
+              </Link>
             <div className="mt-10 text-4xl font-bold">
             Линейка ФонексПро
               </div>

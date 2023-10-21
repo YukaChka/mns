@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default async function ProductPage() {
   return (
     <main>
@@ -11,10 +13,10 @@ export default async function ProductPage() {
               ФонексПро 
               </div>
               <div className=" mt-10 text-xl">
-                <p className="pb-5">• ФонексПро 8.0</p>
-                <p className="pb-5">• ФонексПро 7.0.6</p>
-                <p className="pb-5">• Обновления</p>
-                <p className="pb-5">• Поддержка</p>
+                <p className="pb-5"><Link href="/product/1" className="pb-5">• ФонексПро 8.0</Link></p>
+                <p className="pb-5"><Link href="/product/2" className="pb-5">• ФонексПро 7.0.6</Link></p>
+                <p className="pb-5"><Link href="/product/update" className="pb-5">• Обновления</Link></p>
+                <p className="pb-5"><Link href="/product/support" className="pb-5">• Поддержка</Link></p>
               </div>
               <div className="mt-10 text-3xl font-bold text-[#009CF3]">
               ФонексПро 
@@ -28,10 +30,10 @@ export default async function ProductPage() {
               Сертификаты
               </div>
               <div className=" mt-10 text-xl">
-                <p className="pb-5">• Сертификат соответствия на ФонексПро 8.0</p>
-                <p className="pb-5">• Сертификат соответствия на ФонексПро 8.0</p>
-                <p className="pb-5">• Сертификат соответствия на ФонексПро 8.0</p>
-                <p className="pb-5">• Сертификат соответствия на ФонексПро 8.0</p>
+                <p className="pb-5"><Link href="/product/certificates" className="pb-5">• Сертификат соответствия на ФонексПро 8.0</Link></p>
+                <p className="pb-5"><Link href="/product/certificates" className="pb-5">• Сертификат соответствия на ФонексПро 8.0</Link></p>
+                <p className="pb-5"><Link href="/product/certificates" className="pb-5">• Сертификат соответствия на ФонексПро 8.0</Link></p>
+                <p className="pb-5"><Link href="/product/certificates" className="pb-5">• Сертификат соответствия на ФонексПро 8.0</Link></p>
               </div>
             </div>
           </div>

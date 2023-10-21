@@ -104,7 +104,7 @@ export function Navbar({ width }: NavbarProps) {
                 </Link>
               </div>
               <div className="text-white text-[17px]  md:text-xl">
-                <Link href="/support" onClick={() => setOpen(false)}>
+                <Link href="/product/support" onClick={() => setOpen(false)}>
                   Поддержка
                 </Link>
               </div>
