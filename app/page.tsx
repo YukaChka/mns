@@ -6,14 +6,28 @@ import NewPreview from "@/components/new-preview";
 
 import { SupportForm } from "@/components/support";
 import { useEffect, useState } from "react";
+import { ItemNewProps } from "@/app/api/posts/posts";
 
-export default function Home() {
-  const { download } = useDownloader();
+async function GetPost() {
+  let url = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!url) {
+    url = "http://megatelnextjs.ru/api/posts";
+  } else {
+    url = `${url}/api/posts`;
+  }
+  const res = await fetch(url);
 
-  const fileUrl = "\\docs\\Phonex_8.0.pdf";
+  return res.json() as Promise<ItemNewProps[]>;
+}
+export default async function Home() {
+  //const { download } = useDownloader();
 
-  const filename = fileUrl.split("\\").pop();
+  //const fileUrl = "\\docs\\Phonex_8.0.pdf";
 
+  //const filename = fileUrl.split("\\").pop();
+
+  const [first, second, three, ...posts] = await GetPost();
+  const news = [first, second, three];
   return (
     <main>
       <div>
@@ -94,7 +108,11 @@ export default function Home() {
                 Новости
               </div>
               <div className="text-white mt-10 text-2xl ">
-                <>{/*Здесь последние новости*/}</>
+                <>
+                  {news.map((post) => (
+                    <NewPreview params={post} />
+                  ))}
+                </>
               </div>
             </div>
           </div>
