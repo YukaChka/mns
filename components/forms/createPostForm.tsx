@@ -84,8 +84,9 @@ export function CreatePostForm() {
           `${process.env.NEXT_PUBLIC_BASE_URL}`
         );
         let name = path.path.split("/")[2];
+        let [domen, dosc] = path.path.split("/");
 
-        setImages([...images, { path: url, title: name }]);
+        setImages([...images, { path: `/${dosc}/${name}`, title: name }]);
       }
     };
     getPath();
@@ -143,17 +144,21 @@ export function CreatePostForm() {
         <div>
           {images && (
             <div className="flex justify-center ">
-              {images.map((img) => (
-                <>
-                  <Image
-                    src={img.path}
-                    alt={img.title}
-                    className="pointer-events-none p-1   text-white"
-                    height={100}
-                    width={100}
-                  />
-                </>
-              ))}
+              {images.map((img) => {
+                console.log(img.path);
+                return (
+                  <>
+                    <Image
+                      key={img.path}
+                      src={img.path}
+                      alt={img.title}
+                      className="pointer-events-none p-1   text-white"
+                      height={100}
+                      width={100}
+                    />
+                  </>
+                );
+              })}
             </div>
           )}
         </div>
