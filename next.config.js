@@ -12,7 +12,7 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "megatelnextjs.ru"],
   },
   async headers() {
     return [
