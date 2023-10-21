@@ -15,6 +15,7 @@ async function GetData() {
   } else {
     url = `${url}/api/posts`;
   }
+  console.log(url);
   const res = await fetch(url);
 
   return res.json() as Promise<ItemNewProps[]>;
