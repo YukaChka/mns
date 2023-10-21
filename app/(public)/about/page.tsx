@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default async function AboutPage() {
   return (
     <main>
-      <div>
+      <div className="mt-20">
         <div className="relative">
         <div className="">
         <Image
