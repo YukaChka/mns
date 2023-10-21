@@ -42,7 +42,10 @@ import { OrderDialogDelete } from "../toasts/DeleteOrderToast";
 import { OrderTablePro } from "@/components/table";
 
 async function GetOrders() {
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
+  let url = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!url) {
+    url = "http://megatelnextjs.ru";
+  }
   const responce = await fetch(`${url}/api/order`);
 
   return responce.json() as Promise<OrderProps[]>;
