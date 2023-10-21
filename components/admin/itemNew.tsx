@@ -29,11 +29,7 @@ export default function ItemNew({
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
-
-  for (var i = 0; i < imgpaths.length; i++) {
-    imgpaths[i].path = imgpaths[i].path.replace(/\/+/g, "/");
-  }
-
+  console.log(imgpaths);
   return (
     <section className="rounded-md border px-3 py-2 ">
       <div className="">
@@ -46,7 +42,7 @@ export default function ItemNew({
           <div className="flex justify-center p-5 ">
             {imgpaths[0] && (
               <Image
-                src={imgpaths[0].path}
+                src={"/docs/" + imgpaths[0].title + ".jpg"}
                 alt=""
                 className="pointer-events-none p-1 "
                 height={150}
@@ -55,7 +51,7 @@ export default function ItemNew({
             )}
             {imgpaths[1] && (
               <Image
-                src={imgpaths[1].path}
+                src={"/docs/" + imgpaths[1].title + ".jpg"}
                 alt="qe"
                 className="pointer-events-none p-1"
                 height={150}
