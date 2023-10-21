@@ -7,6 +7,12 @@ export async function GetOrders() {
   });
   return Orders;
 }
+
+export type DocsProps = {
+  id_docs: number;
+  title_docs: string;
+  path_docs: string;
+};
 export type OrderProps = {
   id_order: number;
   data_delivery: Date | number;
@@ -14,4 +20,5 @@ export type OrderProps = {
   module: string;
   station: string | null;
   delivery_type: string;
+  docspath: Array<DocsProps>;
 };
