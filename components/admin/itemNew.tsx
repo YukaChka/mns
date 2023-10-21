@@ -42,7 +42,7 @@ export default function ItemNew({
           <div className="flex justify-center p-5 ">
             {imgpaths[0] && (
               <Image
-                src={"/docs/" + imgpaths[0].title + ".jpg"}
+                src={imgpaths[0].path}
                 alt=""
                 className="pointer-events-none p-1 "
                 height={150}
@@ -51,7 +51,7 @@ export default function ItemNew({
             )}
             {imgpaths[1] && (
               <Image
-                src={"/docs/" + imgpaths[1].title + ".jpg"}
+                src={imgpaths[1].path}
                 alt="qe"
                 className="pointer-events-none p-1"
                 height={150}
