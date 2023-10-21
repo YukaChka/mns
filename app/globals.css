@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 .textmegatel {
-
   font-weight: bold;
   color: #ffffff;
   text-shadow: -0 -4px 0 #007cc2, 0 -4px 0 #007cc2, -0 4px 0 #007cc2,
@@ -110,7 +109,6 @@
   }
 }
 
-
 .loader {
   background-color: #ffffff;
   width: 100%;
@@ -122,7 +120,7 @@
 }
 .loader::after,
 .loader::before {
-  content: '';  
+  content: "";
 
   width: 48px;
   height: 48px;
@@ -145,8 +143,19 @@
   100% {
     transform: scale(1);
     opacity: 0;
-
   }
 }
-    
 
+header {
+  transform: translateY(-150%);
+  animation: ani 5s forwards;
+}
+
+@keyframes ani {
+  0% {
+    transform: translateY(-150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

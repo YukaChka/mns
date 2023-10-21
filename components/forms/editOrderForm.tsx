@@ -206,13 +206,15 @@ export function EditOrderForm({
           {images && (
             <div className="flex justify-start ">
               {images.map((img) => (
-                <Image
-                  src={img.path}
-                  alt={img.title}
-                  className="p-1 hover:bg-no-repeat hover:brightness-200 hover:cursor-pointer"
-                  height={100}
-                  width={100}
-                />
+                <div key={img.title}>
+                  <Image
+                    src={img.path}
+                    alt={img.title}
+                    className="p-1 hover:bg-no-repeat hover:brightness-200 hover:cursor-pointer"
+                    height={100}
+                    width={100}
+                  />
+                </div>
               ))}
             </div>
           )}

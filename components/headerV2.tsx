@@ -11,21 +11,15 @@ import { usePathname } from "next/navigation";
 
 const HeaderV2 = () => {
   const { width, height } = useWindowSize();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const session = useSession();
   const router = usePathname();
-
-  useEffect(() => {
-    if (session) {
-      setTimeout(() => setOpen(true), 200);
-    }
-  }, []);
 
   return (
     <header>
       <div>
-        <div className="container w-full mt-8">
-          {open && (
+        <div className="container w-full mt-8 mb-[5px]">
+          {width != 0 && session ? (
             <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
               <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
                 <Navbar width={width} />
@@ -115,10 +109,10 @@ const HeaderV2 = () => {
                 </>
               ) : null}
             </ul>
+          ) : (
+            <div className="h-[40px]"></div>
           )}
         </div>
-
-        <div>{width}</div>
       </div>
     </header>
   );
