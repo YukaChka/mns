@@ -4,7 +4,7 @@ import { OrderTablePro } from "@/components/table";
 async function GetOrders() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
-    url = "http://megatelnextjs.ru/api/order";
+    url = "https://megatelnextjs.ru/api/order";
   } else {
     url = `${url}/api/order`;
   }
