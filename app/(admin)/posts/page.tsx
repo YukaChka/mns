@@ -9,7 +9,7 @@ import { ItemNewProps } from "@/app/api/posts/posts";
 import ItemNew from "@/components/admin/itemNew";
 
 async function GetData() {
-  let url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`;
+  let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
     url = "http://megatelnextjs.ru/api/posts";
   }
