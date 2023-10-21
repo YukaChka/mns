@@ -27,16 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <Provider>
-          <Suspense fallback={<LoadingSkeleton />}>
-            <Suspense fallback={<LoadingSkeleton />}>
-              <HeaderV2 />
-            </Suspense>
-
+        <Suspense fallback={<LoadingSkeleton />}>
+          <Provider>
+            <HeaderV2 />
             <main className="min-h-screen min-w-full">{children}</main>
             <FooterV2 />
-          </Suspense>
-        </Provider>
+          </Provider>
+        </Suspense>
       </body>
     </html>
   );
