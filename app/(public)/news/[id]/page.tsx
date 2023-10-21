@@ -32,6 +32,9 @@ export default async function New({ params }: NewProps) {
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
+
+  let text = post.description.split("\n");
+
   return (
     <main>
       <div className="mt-20">
@@ -48,7 +51,9 @@ export default async function New({ params }: NewProps) {
                 {post.title}
               </div>
               <div className=" text-xl mt-8 text-center md:text-start">
-                {post.description}
+                {text.map((str) => (
+                  <>{str}</>
+                ))}
               </div>
               <div className="flex justify-center p-9">
                 {post.imgpaths.map((img) => (
