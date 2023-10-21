@@ -8,14 +8,18 @@ import { CreatePostToast } from "@/components/toasts/CreatePostToast";
 import { ItemNewProps } from "@/app/api/posts/posts";
 import ItemNew from "@/components/admin/itemNew";
 
-async function GetData(url: any) {
+async function GetData() {
+  let url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`;
+  if (!url) {
+    url = "http://megatelnextjs.ru/api/posts";
+  }
   const res = await fetch(url);
 
   return res.json();
 }
 
 export default async function AdminNewsPage() {
-  const posts = await GetData(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+  const posts = await GetData();
   return (
     <div>
       <div>
