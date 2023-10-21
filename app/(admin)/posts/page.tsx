@@ -11,7 +11,7 @@ import ItemNew from "@/components/admin/itemNew";
 async function GetData() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
-    url = "http://megatelnextjs.ru/api/posts";
+    url = "https://megatelnextjs.ru/api/posts";
   } else {
     url = `${url}/api/posts`;
   }
