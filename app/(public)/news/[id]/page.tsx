@@ -25,9 +25,6 @@ async function GetPost(id: string) {
 export default async function New({ params }: NewProps) {
   const post = await GetPost(params.id);
 
-  for (var i = 0; i < post.imgpaths.length; i++) {
-    post.imgpaths[i].path = post.imgpaths[i].path.replace(/\/+/g, "/");
-  }
   const CurrentDate = new Date(post.datapublic);
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     year: "numeric",
