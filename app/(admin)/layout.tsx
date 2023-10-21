@@ -7,7 +7,7 @@ import { AdminNavbar } from "@/components/admin/navbar";
 export default function AdminLayout({ children }: PropsWithChildren<unknown>) {
   return (
     <div className="">
-      <div className="flex container justify-center">
+      <div className="container">
         <div className="max-w-6xl">
           <AdminHeader />
           <AdminNavbar />

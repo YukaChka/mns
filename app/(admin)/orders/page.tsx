@@ -15,7 +15,7 @@ async function GetOrders() {
 export default async function AdminOrdersPage() {
   const data = await GetOrders();
   return (
-    <div>
+    <div className="">
       <OrderTablePro data={data} />
     </div>
   );

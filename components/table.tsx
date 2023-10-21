@@ -145,7 +145,7 @@ export function OrderTablePro({ data }: { data: OrderProps[] }) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
