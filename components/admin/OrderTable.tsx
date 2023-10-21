@@ -44,9 +44,11 @@ import { OrderTablePro } from "@/components/table";
 async function GetOrders() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
-    url = "http://megatelnextjs.ru";
+    url = "http://megatelnextjs.ru/api/order";
+  } else {
+    url = `${url}/api/order`;
   }
-  const responce = await fetch(`${url}/api/order`);
+  const responce = await fetch(url);
 
   return responce.json() as Promise<OrderProps[]>;
 }
