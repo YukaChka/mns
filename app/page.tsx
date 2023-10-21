@@ -8,7 +8,7 @@ import { SupportForm } from "@/components/support";
 import { useEffect, useState } from "react";
 import { ItemNewProps } from "@/app/api/posts/posts";
 
-async function GetPost() {
+async function GetData() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
     url = "http://megatelnextjs.ru/api/posts";
@@ -26,7 +26,7 @@ export default async function Home() {
 
   //const filename = fileUrl.split("\\").pop();
 
-  const [first, second, three, ...posts] = await GetPost();
+  const [first, second, three, ...posts] = await GetData();
   const news = [first, second, three];
   return (
     <main>
