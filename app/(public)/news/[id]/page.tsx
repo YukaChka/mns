@@ -1,6 +1,7 @@
 "use client";
 
 import { ItemNewProps } from "@/app/api/posts/posts";
+import Link from "next/link";
 import Image from "next/image";
 type NewProps = {
   params: {
@@ -27,16 +28,51 @@ export default async function New({ params }: NewProps) {
   for (var i = 0; i < post.imgpaths.length; i++) {
     post.imgpaths[i].path = post.imgpaths[i].path.replace(/\/+/g, "/");
   }
-
+  const CurrentDate = new Date(post.datapublic);
+  const formatter = new Intl.DateTimeFormat("ru-RU", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+  const date = formatter.format(CurrentDate).split(" ");
   return (
-    <>
-      <p>
-        {post.imgpaths.map((img) => (
+    <main>
+      <div className="mt-20">
+        <div className="mb-5 ">
+          <div className="flex container justify-center">
+            <div className="max-w-6xl">
+              <div className=" ">
+                <Link href="/news" className="text-xl">
+                {"<"} Новости
+                
+                </Link>
+                 <div className="font-bold mt-2">
+                  {date[0]}
+                 </div>
+              </div>
+              <div className="font-bold text-2xl mt-2 text-center md:text-start">
+                {post.title}
+              </div>
+              <div className=" text-xl mt-8 text-center md:text-start">
+                {post.description}
+              </div>
+              <div className="flex justify-center p-9">
+              {post.imgpaths.map((img) => (
           <div key={img.id}>
-            <Image height={100} width={100} alt={img.title} src={img.path} />
+            <Image height={1000} width={1000} alt={img.title} src={img.path} />
           </div>
-        ))}
-      </p>
-    </>
+             ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+    </div>
+
+
+      
+
+
+    </main>
   );
 }
