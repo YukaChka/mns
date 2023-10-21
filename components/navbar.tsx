@@ -99,7 +99,7 @@ export function Navbar({ width }: NavbarProps) {
                 </Link>
               </div>
               <div className="text-white text-[17px]  md:text-xl">
-                <Link href="/education" onClick={() => setOpen(false)}>
+                <Link href="/services" onClick={() => setOpen(false)}>
                   Дополнительные услуги
                 </Link>
               </div>
