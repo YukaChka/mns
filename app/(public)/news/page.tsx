@@ -7,6 +7,7 @@ import { ItemNewProps } from "@/app/api/posts/posts";
 import { SupportForm } from "@/components/support";
 import { useEffect, useState } from "react";
 import { isAsync } from "zod";
+import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 async function GetPost() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
@@ -26,6 +27,14 @@ export default async function NewsPage() {
         <div className="mb-5 ">
           <div className="flex container justify-center">
             <div className="max-w-6xl">
+              <div className=" md:flex md:justify-start">
+                <div className="text-6xl">
+                Новости
+                </div>
+                 <div>
+                  Все
+                 </div>
+              </div>
               <div className=" text-2xl  mt-8">
                 {posts.map((post: ItemNewProps) => (
                   <NewPreview key={post.id} params={post} />
@@ -35,7 +44,7 @@ export default async function NewsPage() {
           </div>
         </div>
         <div></div>
-      </div>
+    </div>
     </main>
   );
 }

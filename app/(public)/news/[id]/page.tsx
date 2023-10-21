@@ -2,12 +2,10 @@
 
 type NewProps = {
   params: {
-    id: number;
-    date: string;
-    title: string;
-    description: string;
+    id: string;
   };
 };
+
 
 export default function New({ params }: NewProps) {
   return (

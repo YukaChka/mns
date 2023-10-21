@@ -15,7 +15,7 @@ export default function NewPreview({ params }: { params: ItemNewProps }) {
     <>
       <div className="containerNews mb-14">
         <div className="">
-          <div className=" text-6xl lg:text-9xl font-bold container flex justify-center">
+          <div className=" text-6xl lg:text-9xl font-bold  container flex justify-center">
             {date[0]}
           </div>
 
