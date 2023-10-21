@@ -1,7 +1,7 @@
 "use client";
 
 import { ItemNewProps } from "@/app/api/posts/posts";
-
+import Image from "next/image";
 type NewProps = {
   params: {
     id: string;
@@ -24,10 +24,19 @@ async function GetPost(id: string) {
 export default async function New({ params }: NewProps) {
   const post = await GetPost(params.id);
 
-  console.log(post);
+  for (var i = 0; i < post.imgpaths.length; i++) {
+    post.imgpaths[i].path = post.imgpaths[i].path.replace(/\/+/g, "/");
+  }
+
   return (
     <>
-      <p>{params.id}</p>
+      <p>
+        {post.imgpaths.map((img) => (
+          <div key={img.id}>
+            <Image height={100} width={100} alt={img.title} src={img.path} />
+          </div>
+        ))}
+      </p>
     </>
   );
 }
