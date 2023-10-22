@@ -11,14 +11,12 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 
-import { ItemNewProps } from "@/app/api/posts/posts";
-
 import Image from "next/image";
-import { EditPostForm } from "../forms/editPostForm";
+
 import { OrderProps } from "@/app/api/order/order";
 import { EditOrderForm } from "@/components/forms/editOrderForm";
 
-export async function EditOrderToast({ order }: { order: OrderProps }) {
+export function EditOrderToast({ order }: { order: OrderProps }) {
   return (
     <div>
       <Dialog>

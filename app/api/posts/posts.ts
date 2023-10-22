@@ -1,13 +1,23 @@
 import {Query } from "@/lib/db"
 
-export interface ItemNewProps  {
+export interface PostProps  {
+    id: number;
+    title: string;
+    datapublic: string;
+    description: string[];
+    imgpaths: Array<PostImagesProps>;
+  };
+
+  
+export interface PostModel  {
     id: number;
     title: string;
     datapublic: string;
     description: string;
-    imgpaths: Array<ItemNewImagesProps>;
+    imgpaths: Array<PostImagesProps>;
   };
-export interface ItemNewImagesProps  {
+  
+export interface PostImagesProps  {
     id: number;
     title: string;
     path:string
@@ -15,25 +25,25 @@ export interface ItemNewImagesProps  {
   
 export const dynamic = 'force-dynamic' 
 export async function GetPosts() {
-    const data= await Query<Array<ItemNewProps>>({
+    const posts= await Query<Array<PostModel>>({
         query:`SELECT DISTINCT  p.id, p.title, p.description, p.datapublic FROM megatel_db.post p`,
         values:[],
-    }) as Array<ItemNewProps>;
+    }) as Array<PostModel>;
     
-    
-    for(var i=0; i<data.length; i++){
-        const img= await Query<Array<ItemNewImagesProps>>({
-            query:`SELECT DISTINCT i.title, i.path FROM megatel_db.image i JOIN megatel_db.postimg p ON p.imgid =i.id WHERE p.postid = ${i}`,
+    let res:PostProps[]=new Array<PostProps>
+    for(var i=0; i<posts.length; i++){
+        const img= await Query<Array<PostImagesProps>>({
+            query:`SELECT DISTINCT i.id, i.title, i.path FROM megatel_db.image i JOIN megatel_db.postimg p ON p.imgid =i.id WHERE p.postid = ${i}`,
             values:[],
-        }) as Array<ItemNewImagesProps>;
-        data[i].imgpaths=img
+        }) as Array<PostImagesProps>;
+        //data[i].imgpaths=img
+        let text=posts[i].description.split("\\n")
+        res.push({id:posts[i].id, datapublic:posts[i].datapublic, description:text, title:posts[i].title, imgpaths:img})
+        
        }
 
-
+    return res;
     
     
-    return data;
-    
-    //console.log(users)
     
 }

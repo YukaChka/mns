@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import { OrderProps } from "@/app/api/order/order";
 import { useEffect, useState } from "react";
 

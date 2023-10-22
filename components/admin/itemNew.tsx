@@ -1,19 +1,11 @@
 "use client";
 
-import { ItemNewImagesProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
 import { EditPostToast } from "../toasts/EditPostToast";
 import { PostDialogDelete } from "../toasts/DeletePostToast";
-
-interface ItemNewProps {
-  id: number;
-  title: string;
-  datapublic: string;
-  description: string;
-  imgpaths: Array<ItemNewImagesProps>;
-}
 
 export default function ItemNew({
   id,
@@ -21,7 +13,7 @@ export default function ItemNew({
   datapublic,
   description,
   imgpaths,
-}: ItemNewProps) {
+}: PostProps) {
   const CurrentDate = new Date(datapublic);
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     year: "numeric",
@@ -29,7 +21,7 @@ export default function ItemNew({
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
-  console.log(imgpaths);
+
   return (
     <section className="rounded-md border px-3 py-2 ">
       <div className="">

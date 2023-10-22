@@ -12,7 +12,7 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CreatePostForm } from "../forms/createPostForm";
 import Image from "next/image";

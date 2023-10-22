@@ -1,3 +1,4 @@
+
 import mysql, { RowDataPacket } from "mysql2/promise.js";
 
 interface dbquery<T>{
@@ -5,6 +6,8 @@ interface dbquery<T>{
     values: Array<T>;
     
 }
+
+
 
 export async function Query<T>(params: dbquery<T>) {
   const dbconn = await 
@@ -18,7 +21,7 @@ export async function Query<T>(params: dbquery<T>) {
   try {
     
     const [results] = await dbconn.query<T & RowDataPacket[]>(params.query, params.values);
-    //console.log(results)
+    
     dbconn.end();
     
     return results as T;

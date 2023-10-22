@@ -70,10 +70,6 @@ export function CreatePostForm() {
     const getPath = async () => {
       const path = await Upload(file);
       if (path) {
-        let url = path.path.replace(
-          "public",
-          `${process.env.NEXT_PUBLIC_BASE_URL}`
-        );
         let name = path.path.split("/")[2];
         let [domen, dosc] = path.path.split("/");
 

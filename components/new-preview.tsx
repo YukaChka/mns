@@ -1,8 +1,8 @@
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import { da } from "date-fns/locale";
 import Link from "next/link";
 
-export default function NewPreview({ params }: { params: ItemNewProps }) {
+export default function NewPreview({ params }: { params: PostProps }) {
   const ROUTE_POST_ID = `news/${params.id}`;
 
   const CurrentDate = new Date(params.datapublic);
@@ -27,7 +27,7 @@ export default function NewPreview({ params }: { params: ItemNewProps }) {
             {params.title}
           </div>
           <div className="ml-11 text-[15px] lg:text-[20px] ">
-            {params.description}
+            {params.description[0]}
             <span className="font-bold nobr text-[15px] lg:text-[20px]">
               <Link href={ROUTE_POST_ID}> Подробнее...</Link>
             </span>

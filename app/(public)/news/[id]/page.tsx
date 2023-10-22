@@ -1,8 +1,9 @@
 "use client";
 
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import Link from "next/link";
 import Image from "next/image";
+
 type NewProps = {
   params: {
     id: string;
@@ -17,9 +18,9 @@ async function GetPost(id: string) {
     url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`;
   }
 
-  const responce = await fetch(url);
+  const res = await fetch(url);
 
-  return responce.json() as Promise<ItemNewProps>;
+  return res.json() as Promise<PostProps>;
 }
 
 export default async function New({ params }: NewProps) {
@@ -32,11 +33,6 @@ export default async function New({ params }: NewProps) {
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
-  for (var i = 0; i < post.imgpaths.length; i++) {
-    post.imgpaths[i].path = post.imgpaths[i].path.replace(/\/+/g, "/");
-  }
-
-  let text = post.description.split("\\n");
 
   return (
     <main>
@@ -54,7 +50,7 @@ export default async function New({ params }: NewProps) {
                 {post.title}
               </div>
               <div className=" text-xl mt-8 text-center md:text-start">
-                {text.map((str) => (
+                {post.description.map((str) => (
                   <p className="mt-5" key={str}>
                     {str}
                   </p>

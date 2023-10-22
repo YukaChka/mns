@@ -5,6 +5,7 @@ export async function GetOrders() {
     query: `SELECT * FROM  megatel_db.order Order BY data_delivery DESC`,
     values: [],
   });
+
   return Orders;
 }
 
@@ -20,5 +21,4 @@ export type OrderProps = {
   module: string;
   station: string | null;
   delivery_type: string;
-  docspath: Array<DocsProps>;
 };

@@ -1,4 +1,4 @@
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import {
   AlertDialog,
   AlertDialogAction,
