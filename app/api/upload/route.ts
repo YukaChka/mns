@@ -1,6 +1,6 @@
 import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
-
+export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
   const data = await request.formData()
   const file: File | null = data.get('file') as unknown as File
