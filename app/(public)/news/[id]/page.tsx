@@ -32,8 +32,11 @@ export default async function New({ params }: NewProps) {
     day: "numeric",
   });
   const date = formatter.format(CurrentDate).split(" ");
+  for (var i = 0; i < post.imgpaths.length; i++) {
+    post.imgpaths[i].path = post.imgpaths[i].path.replace(/\/+/g, "/");
+  }
 
-  let text = post.description.split("\n");
+  let text = post.description.split("\\n");
 
   return (
     <main>
@@ -52,7 +55,9 @@ export default async function New({ params }: NewProps) {
               </div>
               <div className=" text-xl mt-8 text-center md:text-start">
                 {text.map((str) => (
-                  <>{str}</>
+                  <p className="mt-5" key={str}>
+                    {str}
+                  </p>
                 ))}
               </div>
               <div className="flex justify-center p-9">
