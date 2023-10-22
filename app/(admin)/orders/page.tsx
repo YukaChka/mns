@@ -8,12 +8,14 @@ async function GetOrders() {
   } else {
     url = `${url}/api/order`;
   }
-  const responce = await fetch(url);
 
-  return responce.json() as Promise<OrderProps[]>;
+  const res = await fetch(url);
+
+  return res.json() as Promise<OrderProps[]>;
 }
 export default async function AdminOrdersPage() {
   const data = await GetOrders();
+
   return (
     <div className="">
       <OrderTablePro data={data} />

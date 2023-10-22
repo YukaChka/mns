@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Query } from "@/lib/db";
-import { GetPosts, ItemNewProps } from "./posts";
+import { GetPosts, PostProps } from "./posts";
 export const dynamic = 'force-dynamic' 
 export async function GET(req: Request) {
   try {
@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     const idq = searchParams.get("id");
 
     const posts = await GetPosts()
-    let CurrentPost:ItemNewProps | undefined | ItemNewProps[] | []
+    let CurrentPost:PostProps | undefined | PostProps[] | []
 
     
 

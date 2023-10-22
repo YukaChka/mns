@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import { useEffect, useState } from "react";
 
 const FormSchema = z.object({
@@ -25,7 +25,7 @@ const FormSchema = z.object({
   title: z.string().min(2, {
     message: "must be at least 2 characters.",
   }),
-  description: z.string().min(2, {
+  description: z.string().array().min(2, {
     message: "must be at least 2 characters.",
   }),
 });
@@ -41,9 +41,10 @@ export function EditPostForm({
   datapublic,
   description,
   imgpaths,
-}: ItemNewProps) {
+}: PostProps) {
   const [file, setFile] = useState<File>();
   const [images, setImages] = useState(Array<ImageProps>);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -95,7 +96,7 @@ export function EditPostForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-3/4` space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
         <FormField
           control={form.control}
           name="datapublic"
@@ -131,7 +132,7 @@ export function EditPostForm({
               <FormControl>
                 <Textarea
                   placeholder="Введите Текст"
-                  className="min-w-min max-h-96"
+                  className="min-h-[150px] max-h-[230px] "
                   {...field}
                 />
               </FormControl>
@@ -153,25 +154,22 @@ export function EditPostForm({
           <FormMessage />
         </div>
         {imgpaths && (
-          <div className="flex justify-center p-5 ">
-            {imgpaths[0] && (
-              <Image
-                src={imgpaths[0].path}
-                alt=""
-                className="pointer-events-none p-1 "
-                height={100}
-                width={100}
-              />
-            )}
-            {imgpaths[1] && (
-              <Image
-                src={imgpaths[1].path}
-                alt="qe"
-                className="pointer-events-none p-1"
-                height={100}
-                width={100}
-              />
-            )}
+          <div className="flex justify-start   p-5 ">
+            {images.map((img) => (
+              <div
+                key={img.path}
+                className=" mr-4 hover:bg-no-repeat hover:brightness-50"
+              >
+                <Image
+                  className="justify-center"
+                  src={img.path}
+                  alt={img.title}
+                  height={70}
+                  width={70}
+                />
+                {img.title}
+              </div>
+            ))}
           </div>
         )}
         <Button type="submit" className="hover:bg-green-500">

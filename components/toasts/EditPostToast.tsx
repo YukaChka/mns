@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 
 import Image from "next/image";
 import { EditPostForm } from "../forms/editPostForm";
@@ -22,7 +22,7 @@ export async function EditPostToast({
   datapublic,
   description,
   imgpaths,
-}: ItemNewProps) {
+}: PostProps) {
   return (
     <div>
       <Dialog>
@@ -46,7 +46,7 @@ export async function EditPostToast({
             </Button>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[825px]">
           <DialogHeader>
             <DialogTitle>
               <div>Редактировать новость</div>

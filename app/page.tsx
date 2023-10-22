@@ -6,7 +6,9 @@ import NewPreview from "@/components/new-preview";
 
 import { SupportForm } from "@/components/support";
 import { useEffect, useState } from "react";
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
+
+import Link from "next/link";
 
 async function GetData() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -18,7 +20,7 @@ async function GetData() {
 
   const res = await fetch(url);
 
-  return res.json() as Promise<ItemNewProps[]>;
+  return res.json() as Promise<PostProps[]>;
 }
 export default async function Home() {
   //const { download } = useDownloader();
@@ -106,7 +108,7 @@ export default async function Home() {
           <div className="flex container justify-center">
             <div className="max-w-6xl">
               <div className="text-white  text-[40px] lg:text-[80px] font-bold mt-8">
-                Новости
+                <Link href="/news">Новости</Link>
               </div>
               <div className="text-white mt-10 text-2xl ">
                 <>{/*Новости*/}</>

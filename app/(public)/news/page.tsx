@@ -3,11 +3,12 @@ import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/forms/UploadForm";
 import NewPreview from "@/components/new-preview";
-import { ItemNewProps } from "@/app/api/posts/posts";
+import { PostProps } from "@/app/api/posts/posts";
 import { SupportForm } from "@/components/support";
 import { useEffect, useState } from "react";
 import { isAsync } from "zod";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+
 async function GetPost() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
@@ -15,9 +16,10 @@ async function GetPost() {
   } else {
     url = `${url}/api/posts`;
   }
+  console.log(url);
   const res = await fetch(url);
 
-  return res.json() as Promise<ItemNewProps[]>;
+  return res.json() as Promise<PostProps[]>;
 }
 export default async function NewsPage() {
   const posts = await GetPost();
@@ -32,7 +34,7 @@ export default async function NewsPage() {
                 <div>Все</div>
               </div>
               <div className=" text-2xl  mt-8">
-                {posts.map((post: ItemNewProps) => (
+                {posts.map((post: PostProps) => (
                   <NewPreview key={post.id} params={post} />
                 ))}
               </div>
