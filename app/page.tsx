@@ -27,8 +27,8 @@ export default async function Home() {
 
   //const filename = fileUrl.split("\\").pop();
 
-  const [first, second, three, ...posts] = await GetData();
-  const news = [first, second, three];
+  //const [first, second, three, ...posts] = await GetData();
+  //const news = [first, second, three];
   return (
     <main>
       <div>
@@ -109,11 +109,7 @@ export default async function Home() {
                 Новости
               </div>
               <div className="text-white mt-10 text-2xl ">
-                <>
-                  {news.map((post) => (
-                    <NewPreview key={post.id} params={post} />
-                  ))}
-                </>
+                <>{/*Новости*/}</>
               </div>
             </div>
           </div>
