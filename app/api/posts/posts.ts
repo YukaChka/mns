@@ -47,3 +47,26 @@ export async function GetPosts() {
     
     
 }
+
+
+export async function СreatePost(post:PostProps) {
+  
+  const imgpaths = post.imgpaths
+  
+  let arrayImage:PostImagesProps[]=new Array<PostImagesProps>()
+
+  for(var i=0; i<imgpaths.length; i++){
+      let img:PostImagesProps[] = await Query<PostImagesProps[]>({
+        query:`SELECT i.id, i.title, i.path FROM megatel_db.image i WHERE i.title='${imgpaths[i].title}' AND i.path='${imgpaths[i].path}'`,
+        values:[]
+      }) as PostImagesProps[]
+      console.log(img)
+      arrayImage.push(img[0])
+      
+  }  
+  return arrayImage
+  
+  
+  
+  
+}

@@ -1,8 +1,11 @@
+import { Query } from '@/lib/db';
 import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
+import {PostImagesProps} from "@/app/api/posts/posts"
 export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
   const data = await request.formData()
+  
   const file: File | null = data.get('file') as unknown as File
 
   if (!file) {
@@ -16,8 +19,14 @@ export async function POST(request: NextRequest) {
   // For this, we'll just write it to the filesystem in a new location
   
   const path = `public/docs/${file.name}`
-  await writeFile(path, buffer)
-  //console.log(`open ${path} to see the uploaded file`)
+  const url =`/docs/${file.name}`
+  await writeFile(path, buffer).finally(async ()=>{
+     await Query<PostImagesProps>({
+      query:`INSERT INTO megatel_db.image(title, path)  VALUES ('${file.name}','${url}');`,
+      values:[]
+    }) 
+  })
+  
 
   return NextResponse.json({ success: true, path:path })
 }

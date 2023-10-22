@@ -1,6 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Query } from "@/lib/db";
-import { GetPosts, PostProps } from "./posts";
+import { GetPosts, PostProps, СreatePost } from "./posts";
+
 export const dynamic = 'force-dynamic' 
 export async function GET(req: Request) {
   try {
@@ -27,9 +28,17 @@ export async function GET(req: Request) {
   }
 }
 
-export async function POST(req: Request) {
+
+
+export async function POST(request: Request) {
+  const post:Promise<PostProps>  =await request.json()
+
   try {
     
+    console.log(post)
+    const res = await СreatePost(await post)
+
+    return NextResponse.json(res);  
   } catch (error) {
     return NextResponse.json(error);
   }
