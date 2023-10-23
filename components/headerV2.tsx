@@ -20,7 +20,7 @@ const HeaderV2 = () => {
       <div>
         <div className="container w-full mt-8 mb-[5px]">
           {width != 0 && session ? (
-            <ul className="md:h-auto  justify-center  flex items-center  mr-auto">
+            <ul className="md:h-auto  justify-center ml-3 flex items-center  mr-auto">
               <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
                 <Navbar width={width} />
               </li>
@@ -84,7 +84,7 @@ const HeaderV2 = () => {
               ) : null}
 
               {width > 1440 && session.data?.user.role !== "админ" ? (
-                <li className="font-normal text-base  mr-auto ml-auto ">
+                <li className="font-normal text-base text-[#009cf3] mr-auto ml-auto ">
                   +7 (495) 223-89-86 <br />
                   phonex@megatel.ru
                 </li>

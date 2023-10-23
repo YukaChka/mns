@@ -3,9 +3,9 @@ export default async function DecisionPage() {
     <main>
       <div className="flex container justify-center">
         <div className="max-w-6xl">
-          <div className="mt-10 text-4xl font-bold">Решения</div>
+          <div className="mt-20 text-4xl font-bold">Решения</div>
           <div>
-            <div className="mt-10 text-3xl font-bold text-[#009CF3]">
+            <div className="mt-5 text-3xl font-bold text-[#009CF3]">
               APM модули
             </div>
             <div className=" mt-10 text-xl">

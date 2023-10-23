@@ -64,7 +64,10 @@ export async function СreatePost(post:PostProps) {
       arrayImage.push(img[0])
       
   }  
-  return arrayImage
+
+  
+
+  return 
   
   
   

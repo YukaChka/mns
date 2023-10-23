@@ -5,7 +5,15 @@ export default function ProductLayout({
 }) {
   return (
     <section>
-      <main>{children}</main>
+      <main>
+        <div className=" flex container justify-start">
+          <div className="flex container ">
+            <div className="max-w-6xl ">
+              <div>{children}</div>
+            </div>
+          </div>
+        </div>
+      </main>
     </section>
   );
 }
