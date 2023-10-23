@@ -13,22 +13,22 @@ export default async function ProductPage() {
             <div className=" mt-10 text-xl">
               <p className="pb-5">
                 <Link href="/product/1" className="pb-5">
-                  • ФонексПро 8.0
+                  <mark>• </mark> ФонексПро 8.0
                 </Link>
               </p>
               <p className="pb-5">
                 <Link href="/product/2" className="pb-5">
-                  • ФонексПро 7.0.6
+                <mark>• </mark> ФонексПро 7.0.6
                 </Link>
               </p>
               <p className="pb-5">
                 <Link href="/product/update" className="pb-5">
-                  • Обновления
+                <mark>• </mark> Обновления
                 </Link>
               </p>
               <p className="pb-5">
                 <Link href="/product/support" className="pb-5">
-                  • Поддержка
+                <mark>• </mark> Поддержка
                 </Link>
               </p>
             </div>

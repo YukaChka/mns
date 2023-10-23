@@ -69,7 +69,7 @@ export default async function Decision({ params: { id } }: ProductProps) {
                       </Button>
                 <div className=" mt-10 text-xl">
                   <p className="pb-5">
-                    • Модульная автоматизированная система расчетов для
+                    <mark>• </mark> Модульная автоматизированная система расчетов для
                     специальных конфигураций, многопользовательской работы или
                     больших сетей связи.
                   </p>
