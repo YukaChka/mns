@@ -12,6 +12,7 @@ type ProductProps = {
 export default async function Decision({ params: { id } }: ProductProps) {
   return (
     <main>
+      
       <div className="mt-7">
         <div className="flex container justify-center">
           <div className="max-w-6xl mt-10">
@@ -74,10 +75,10 @@ export default async function Decision({ params: { id } }: ProductProps) {
                     больших сетей связи.
                   </p>
                   <p className="pb-5">
-                    • Является продолжением линеек 5.0, 6.0 и 7.0.
+                    <mark>• </mark> Является продолжением линеек 5.0, 6.0 и 7.0.
                   </p>
                   <p className="pb-5">
-                    • Представляет собой службу ядро (системную службу Windows),
+                  <mark>• </mark> Представляет собой службу ядро (системную службу Windows),
                     к которой подключаются специализированные рабочие места
                     («Директор», «Клерк», «Отчеты», «Документы», «Платежи»,
                     «Сверка», «Карты», «Детализация netflow»), модули и

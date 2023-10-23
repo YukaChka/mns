@@ -30,7 +30,9 @@ export default function RootLayout({
         <Suspense fallback={<LoadingSkeleton />}>
           <Provider>
             <HeaderV2 />
-            <main className="min-h-screen min-w-full">{children}</main>
+            <main className="min-h-screen min-w-full">
+              {children}
+              </main>
             <FooterV2 />
           </Provider>
         </Suspense>

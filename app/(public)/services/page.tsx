@@ -1,9 +1,8 @@
 export default async function ServicesPage() {
   return (
     <main>
-      <div className="">
-        <div className="flex container justify-center">
-          <div className="min-h-full max-w-6xl">
+<div className="flex container justify-center">
+        <div className="max-w-6xl">
             <div className="mt-10 text-4xl font-bold">
             Дополнительные услуги
               </div>
@@ -50,7 +49,7 @@ export default async function ServicesPage() {
               </div>
             </div>
           </div>
-        </div>
+
     </main>
   );
 }
