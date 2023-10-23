@@ -47,7 +47,7 @@ const HeaderV2 = () => {
                     <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
                       <Button
                         variant="default"
-                        className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="text-lg middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans  font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         data-ripple-light="true"
                       >
                         приобрести
@@ -57,7 +57,7 @@ const HeaderV2 = () => {
                     <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
                       <Button
                         variant="default"
-                        className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-sm font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="middle none center rounded-lg bg-[#009cf3] hover:bg-[#009cf3] py-3.5 px-7 font-sans text-lg font-bold uppercase text-white shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         data-ripple-light="true"
                       >
                         купить
@@ -69,17 +69,17 @@ const HeaderV2 = () => {
 
               {width > 800 ? (
                 <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                  <Link href="/product">Продукты</Link>
+                  <Link className="text-lg" href="/product">Продукты</Link>
                 </li>
               ) : null}
               {width >= 950 ? (
                 <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                  <Link href="/decisions">Решения</Link>
+                  <Link className="text-lg" href="/decisions">Решения</Link>
                 </li>
               ) : null}
               {width > 1080 ? (
                 <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                  <Link href="/about">О нас</Link>
+                  <Link className="text-lg" href="/about">О нас</Link>
                 </li>
               ) : null}
 
@@ -93,7 +93,7 @@ const HeaderV2 = () => {
                 <>
                   {width > 400 ? (
                     <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
-                      <Link href="/posts">Панель админа</Link>
+                      <Link className="text-lg" href="/posts">Панель админа</Link>
                     </li>
                   ) : null}
 
