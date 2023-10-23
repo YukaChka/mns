@@ -61,12 +61,12 @@ export default async function Decision({ params: { id } }: ProductProps) {
                   Проектная версия 8.0
                 </div>
                 <Button
-                  variant="default"
-                  className="mt-5 middle none center rounded-lg bg-[#D9D9D9] hover:bg-[#a4a4a4] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black shadow-md shadow-sky-100 transition-all hover:shadow-lg hover:shadow-sky-200 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  data-ripple-light="true"
-                >
-                  Документация
-                </Button>
+                        variant="default"
+                        className="mt-5 middle none center rounded-lg bg-[#D9D9D9] hover:bg-[#cecece] py-3.5 px-7 font-sans text-sm font-bold uppercase text-black shadow-md shadow-[#f5f5f5] transition-all hover:shadow-lg hover:shadow-[#D9D9D9] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        data-ripple-light="true"
+                      >
+                        Документация
+                      </Button>
                 <div className=" mt-10 text-xl">
                   <p className="pb-5">
                     • Модульная автоматизированная система расчетов для
