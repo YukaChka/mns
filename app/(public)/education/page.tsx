@@ -3,9 +3,9 @@ export default async function AboutPage() {
     <main>
       <div className="">
         <div className="flex container justify-center">
-          <div className="max-w-6xl">
+          <div className="min-h-full max-w-6xl">
             <div className="mt-10 text-4xl font-bold">Обучение</div>
-            <div className="mt-10 text-xl font-bold">
+            <div className="mt-10 text-xl font-medium">
               Осуществляется обучение администрированию и использованию системы,
               включая:
             </div>
@@ -27,12 +27,12 @@ export default async function AboutPage() {
                 Подготовка шаблонов отчетов и драйверов.
               </p>
             </div>
-            <div className="mt-10 text-xl font-bold">
+            <div className="mt-10 text-xl font-medium">
               Базовое дистанционное обучение одного специалиста по связи
               функциям системы включено в стоимость первоначальной поставки
               системы или нового модуля.
             </div>
-            <div className="mt-10 text-xl font-bold">
+            <div className="mt-10 text-xl font-medium">
               Возможен заказ дополнительного обучения
             </div>
           </div>
