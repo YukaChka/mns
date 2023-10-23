@@ -6,8 +6,8 @@ export default function DecisionLayout({
   return (
     <section>
       <main>
-        <div className=" flex container justify-start">
-          <div className="container ">
+        <div className=" container">
+          <div className=" container flex justify-start">
             <div className="max-w-6xl ">
               <div>{children}</div>
             </div>
