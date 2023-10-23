@@ -52,6 +52,7 @@ export default async function ProductPage() {
                 </Link>
               </p>
             </div>
+
             <div className="mt-10 text-3xl font-bold text-[#009CF3]">
               ФонексПро
             </div>
