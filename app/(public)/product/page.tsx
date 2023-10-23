@@ -12,23 +12,43 @@ export default async function ProductPage() {
             </div>
             <div className=" mt-10 text-xl">
               <p className="pb-5">
-                <Link href="/product/1" className="pb-5">
-                  <mark>• </mark> ФонексПро 8.0
+                <Link
+                  href="/product/1"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="group-hover:underline  group-hover:decoration-[#009CF3]  ">
+                    ФонексПро 8.0
+                  </div>
                 </Link>
               </p>
               <p className="pb-5">
-                <Link href="/product/2" className="pb-5">
-                <mark>• </mark> ФонексПро 7.0.6
+                <Link
+                  href="/product/1"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="group-hover:underline  group-hover:decoration-[#009CF3]  ">
+                    ФонексПро 7.0.6
+                  </div>
                 </Link>
               </p>
               <p className="pb-5">
-                <Link href="/product/update" className="pb-5">
-                <mark>• </mark> Обновления
+                <Link
+                  href="/product/update"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div>Обновления</div>
                 </Link>
               </p>
               <p className="pb-5">
-                <Link href="/product/support" className="pb-5">
-                <mark>• </mark> Поддержка
+                <Link
+                  href="/product/support"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div>Поддержка</div>
                 </Link>
               </p>
             </div>
@@ -49,23 +69,39 @@ export default async function ProductPage() {
             </div>
             <div className=" mt-10 text-xl">
               <p className="pb-5">
-                <Link href="/product/certificates" className="pb-5">
-                  • Сертификат соответствия на ФонексПро 8.0
+                <Link
+                  href="/product/certificates"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
               <p className="pb-5">
-                <Link href="/product/certificates" className="pb-5">
-                  • Сертификат соответствия на ФонексПро 8.0
+                <Link
+                  href="/product/certificates"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
               <p className="pb-5">
-                <Link href="/product/certificates" className="pb-5">
-                  • Сертификат соответствия на ФонексПро 8.0
+                <Link
+                  href="/product/certificates"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
               <p className="pb-5">
-                <Link href="/product/certificates" className="pb-5">
-                  • Сертификат соответствия на ФонексПро 8.0
+                <Link
+                  href="/product/certificates"
+                  className="pb-5 flex justify-start place-items-center group "
+                >
+                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
             </div>
