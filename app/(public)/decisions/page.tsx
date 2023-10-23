@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default async function DecisionPage() {
   return (
     <main>
@@ -9,7 +10,7 @@ export default async function DecisionPage() {
               APM модули
             </div>
             <div className=" mt-10 text-xl">
-              <p className="pb-5">• APM директор</p>
+              <p className="pb-5"> <Link href="/decisions/1">• APM директор</Link></p>
               <p className="pb-5">• APM директор</p>
               <p className="pb-5">• APM директор</p>
               <p className="pb-5">• APM директор</p>

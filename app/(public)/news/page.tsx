@@ -26,10 +26,10 @@ export default async function NewsPage() {
   return (
     <main>
       <div className="mt-20">
-        <div className="mb-5 ">
-          <div className="flex container justify-center">
+        <div className="mb-5">
+          <div className="container ">
             <div className="max-w-6xl">
-              <div className=" md:flex md:justify-start">
+              <div className="flex justify-start">
                 <div className="text-6xl">Новости</div>
                 <div>Все</div>
               </div>

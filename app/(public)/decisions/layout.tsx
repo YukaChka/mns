@@ -7,7 +7,7 @@ export default function DecisionLayout({
     <section>
       <main>
         <div className=" flex container justify-start">
-          <div className="flex container ">
+          <div className="container ">
             <div className="max-w-6xl ">
               <div>{children}</div>
             </div>

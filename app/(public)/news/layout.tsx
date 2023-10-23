@@ -5,7 +5,9 @@ export default function NewsLayout({
 }) {
   return (
     <section>
-      <main>{children}</main>
+      <main className="">
+        {children}
+        </main>
     </section>
   );
 }
