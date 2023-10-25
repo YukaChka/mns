@@ -16,7 +16,7 @@ export default async function ProductPage() {
                   href="/product/1"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div className="group-hover:underline  group-hover:decoration-[#009CF3]  ">
                     ФонексПро 8.0
                   </div>
@@ -27,7 +27,7 @@ export default async function ProductPage() {
                   href="/product/1"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div className="group-hover:underline  group-hover:decoration-[#009CF3]  ">
                     ФонексПро 7.0.6
                   </div>
@@ -38,7 +38,7 @@ export default async function ProductPage() {
                   href="/product/update"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Обновления</div>
                 </Link>
               </p>
@@ -47,7 +47,7 @@ export default async function ProductPage() {
                   href="/product/support"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Поддержка</div>
                 </Link>
               </p>
@@ -74,7 +74,7 @@ export default async function ProductPage() {
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
@@ -83,7 +83,7 @@ export default async function ProductPage() {
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
@@ -92,7 +92,7 @@ export default async function ProductPage() {
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
@@ -101,7 +101,7 @@ export default async function ProductPage() {
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
                 >
-                  <div className="h-[5px] w-[5px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
+                  <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
