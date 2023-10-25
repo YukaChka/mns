@@ -69,17 +69,23 @@ const HeaderV2 = () => {
 
               {width > 800 ? (
                 <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                  <Link className="text-lg" href="/product">Продукты</Link>
+                  <Link className="text-lg" href="/product">
+                    Продукты
+                  </Link>
                 </li>
               ) : null}
               {width >= 950 ? (
                 <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                  <Link className="text-lg" href="/decisions">Решения</Link>
+                  <Link className="text-lg" href="/decisions">
+                    Решения
+                  </Link>
                 </li>
               ) : null}
               {width > 1080 ? (
                 <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
-                  <Link className="text-lg" href="/about">О нас</Link>
+                  <Link className="text-lg" href="/about">
+                    О нас
+                  </Link>
                 </li>
               ) : null}
 
@@ -93,7 +99,9 @@ const HeaderV2 = () => {
                 <>
                   {width > 400 ? (
                     <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">
-                      <Link className="text-lg" href="/posts">Панель админа</Link>
+                      <Link className="text-lg" href="/posts">
+                        Панель админа
+                      </Link>
                     </li>
                   ) : null}
 

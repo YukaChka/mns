@@ -54,9 +54,10 @@ export default async function ProductPage() {
             </div>
 
             <div className="mt-10 text-3xl font-bold text-[#009CF3]">
-              ФонексПро
+              Демоверсия
             </div>
-            <div className=" mt-10 text-xl">
+            <div className="flex justify-start mt-5 ml-[10px] text-xl">
+              <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] text-justify rounded-full bg-gray-400 "></div>
               В данном разделе представлены программные продукты и решения,
               предлагаемые нашей компанией. Перед покупкой или эксплуатацией
               наших программных продуктов Вам необходимо ознакомиться с
@@ -65,6 +66,7 @@ export default async function ProductPage() {
               получения более подробной информации по интересующему Вас
               продукту.
             </div>
+
             <div className="mt-10 text-3xl font-bold text-[#009CF3]">
               Сертификаты
             </div>
@@ -78,6 +80,7 @@ export default async function ProductPage() {
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
               </p>
+
               <p className="pb-5">
                 <Link
                   href="/product/certificates"
