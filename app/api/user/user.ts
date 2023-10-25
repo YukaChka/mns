@@ -1,17 +1,11 @@
-import {conn} from "@/lib/db"
+import {Query} from "@/lib/db"
 
 export const dynamic = "force-dynamic";
 
 export async function GetUsers() {
     const query = "select u.email, u.password, u.first_name, u.last_name, tu.role_user from public.user u join public.type_user tu on u.type_user_id  = tu.type_user_id;"
-    const values:any[]=[];
-    const users= await conn.query(query,values)
-    console.log(users.rows)
-    return users.rows as UserProps[];
-
-    
-    
-    
+    const users= await Query<UserProps>({query:query, values:[]});
+    return users.data?.rows
 }
 export interface UserProps
     {

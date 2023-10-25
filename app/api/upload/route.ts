@@ -1,8 +1,17 @@
 import { Query } from '@/lib/db';
 import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
-import {PostImagesProps} from "@/app/api/posts/posts"
+
 export const dynamic = "force-dynamic";
+
+
+
+export interface ImagesProps {
+  id: number;
+  title: string;
+  path: string;
+}
+
 export async function POST(request: NextRequest) {
   const data = await request.formData()
   
@@ -20,13 +29,8 @@ export async function POST(request: NextRequest) {
   
   const path = `public/docs/${file.name}`
   const url =`/docs/${file.name}`
-  await writeFile(path, buffer).finally(async ()=>{
-     await Query<PostImagesProps>({
-      query:`INSERT INTO megatel_db.image(title, path)  VALUES ('${file.name}','${url}');`,
-      values:[]
-    }) 
-  })
+  await writeFile(path, buffer)
   
 
-  return NextResponse.json({ success: true, path:path })
+  return NextResponse.json({ success: true, path:path, url:url })
 }
