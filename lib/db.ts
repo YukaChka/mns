@@ -1,32 +1,15 @@
+import { Pool } from "pg";
 
-import mysql, { RowDataPacket } from "mysql2/promise.js";
+let conn;
 
-interface dbquery<T>{
-    query: string;
-    values: Array<T>;
-    
-}
-
-
-
-export async function Query<T>(params: dbquery<T>) {
-  const dbconn = await 
-  mysql.createConnection({
-    host: "46.161.48.157",
-    port:3306,
+if (!conn) {
+  conn = new Pool({
     user: "root1",
     password: "AdminMM!",
-    database: "megatel_db",
-  })
-  try {
-    
-    const [results] = await dbconn.query<T & RowDataPacket[]>(params.query, params.values);
-    
-    dbconn.end();
-    
-    return results as T;
-  } catch (error) {
-    
-    return error;
-  }
+    host: "91.185.84.230",
+    port: 5432,
+    database: "megatel_db"
+  });
 }
+
+export default conn ;
