@@ -15,10 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import Image, { ImageProps } from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, use, useEffect, useState } from "react";
 import Link from "next/link";
 import { CreateResourseProps, ResourseProps } from "@/app/api/upload/route";
 import { CreatePostProps, PostProps } from "@/app/api/posts/posts";
+import { Loader2 } from "lucide-react";
 
 const FormSchema = z.object({
   date_of_public: z.string(),
@@ -28,6 +29,7 @@ const FormSchema = z.object({
 
 export function CreatePostForm() {
   const [file, setFile] = useState<File>();
+  const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState(Array<CreateResourseProps>);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -61,6 +63,11 @@ export function CreatePostForm() {
   }
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return;
     const post: CreatePostProps = {
       date_of_public: data.date_of_public,
       description: data.description,
@@ -126,7 +133,7 @@ export function CreatePostForm() {
                 <Textarea
                   placeholder="Введите Текст"
                   {...field}
-                  className="max-h-96"
+                  className="max-h-56"
                 />
               </FormControl>
               <FormMessage />
@@ -145,7 +152,7 @@ export function CreatePostForm() {
         </FormControl>
         <FormMessage />
 
-        <div>
+        <div className="max-w-6xl">
           {images && (
             <div className="flex justify-center ">
               {images.map((img) => {
@@ -164,8 +171,15 @@ export function CreatePostForm() {
             </div>
           )}
         </div>
-
-        <Button type="submit">Опубликовать</Button>
+        {isLoading ? (
+          <Button disabled>
+            <>
+              <Loader2 className="h-4 w-4 animate-spin justify-center" />
+            </>
+          </Button>
+        ) : (
+          <Button type="submit">Опубликовать</Button>
+        )}
       </form>
     </Form>
   );
