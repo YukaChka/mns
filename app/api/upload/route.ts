@@ -28,13 +28,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false })
   }
 
-  //const bytes = await file.arrayBuffer()
-  //const buffer = Buffer.from(bytes)
+  const bytes = await file.arrayBuffer()
+  const buffer = Buffer.from(bytes)
 
   const path = `public/docs/${file.name}`
   const url =`/docs/${file.name}`
-  //await writeFile(path, buffer)
-  
+  await writeFile(path, buffer)
+  //const extend = file.name.split(".")[1]
+  //console.log(extend)
 
   return NextResponse.json({ success: true, path:path, url:url })
 }

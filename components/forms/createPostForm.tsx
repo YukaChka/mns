@@ -20,6 +20,7 @@ import Link from "next/link";
 import { CreateResourseProps, ResourseProps } from "@/app/api/upload/route";
 import { CreatePostProps, PostProps } from "@/app/api/posts/posts";
 import { Loader2 } from "lucide-react";
+import { ResourceScroll } from "../admin/resourceScroll";
 
 const FormSchema = z.object({
   date_of_public: z.string(),
@@ -155,19 +156,7 @@ export function CreatePostForm() {
         <div className="max-w-6xl">
           {images && (
             <div className="flex justify-center ">
-              {images.map((img) => {
-                return (
-                  <div key={img.path}>
-                    <Image
-                      src={img.path}
-                      alt={img.title}
-                      className="pointer-events-none p-1   text-white"
-                      height={100}
-                      width={100}
-                    />
-                  </div>
-                );
-              })}
+              <ResourceScroll resource={images} />
             </div>
           )}
         </div>
