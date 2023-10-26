@@ -45,8 +45,8 @@ export async function CreatePostToast() {
             </DialogTitle>
           </DialogHeader>
 
-          <div>
-            <CreatePostForm />
+          <div >
+            <CreatePostForm/>
           </div>
         </DialogContent>
       </Dialog>
