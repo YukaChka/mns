@@ -31,7 +31,7 @@ export function ResourceScroll({
               <div>
               <Image
               src="/img/trash.png"
-              className="absolute mt-[-170px]"
+              className="absolute mt-[-60%] ml-[50%]"
               alt="Search Icon"
               width={25}
               height={25}
