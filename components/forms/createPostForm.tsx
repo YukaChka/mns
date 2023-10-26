@@ -20,7 +20,9 @@ import Link from "next/link";
 import { CreateResourseProps, ResourseProps } from "@/app/api/upload/route";
 import { CreatePostProps, PostProps } from "@/app/api/posts/posts";
 import { Loader2 } from "lucide-react";
-import { ResourceScroll } from "../admin/resourceScroll";
+
+import { ScrollBar, ScrollArea } from "../ui/scroll-area";
+import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
 
 const FormSchema = z.object({
   date_of_public: z.string(),
@@ -156,8 +158,37 @@ export function CreatePostForm() {
         <div className="max-w-6xl">
           {images && (
             <div className="flex justify-center ">
-              <ResourceScroll resource={images}  />
-              
+              <ScrollArea
+                className="w-96 whitespace-nowrap rounded-md border"
+                type="always"
+              >
+                <ScrollBar
+                  orientation="horizontal"
+                  className="cursor-pointer"
+                />
+                <div className="flex w-max space-x-4 p-4">
+                  {images.map((res) => (
+                    <div className="overflow-hidden group  rounded-md flex p-1 justify-end items-center relative">
+                      <Image
+                        src={res.path}
+                        alt={res.title}
+                        className="aspect-[3/4] h-fit w-fit object-cover"
+                        width={100}
+                        height={100}
+                      />
+                      <ResourceDialogDelete
+                        res={res}
+                        setResource={setImages}
+                        resource={images}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <ScrollBar
+                  orientation="horizontal"
+                  className="cursor-pointer"
+                />
+              </ScrollArea>
             </div>
           )}
         </div>
