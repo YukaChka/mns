@@ -8,60 +8,33 @@ import { EditPostToast } from "../toasts/EditPostToast";
 import { PostDialogDelete } from "../toasts/DeletePostToast";
 
 export default function ItemNew({
-  id,
+  post_id,
   title,
-  datapublic,
+  date_of_public,
   description,
-  imgpaths,
+  resourses,
 }: PostProps) {
-  const CurrentDate = new Date(datapublic);
-  const formatter = new Intl.DateTimeFormat("ru-RU", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
-  const date = formatter.format(CurrentDate).split(" ");
-
   return (
     <section className="rounded-md border px-3 py-2 ">
       <div className="">
         <div>
           <a className="font-semibold pr-2">{title}</a>
-          <a className="font-normal">{date[0]}</a>
+          <a className="font-normal">{/*дата */}</a>
         </div>
         <div className="  md:grid-cols-2">
           <div>{description}</div>
-          <div className="flex justify-center p-5 ">
-            {imgpaths[0] && (
-              <Image
-                src={imgpaths[0].path}
-                alt=""
-                className="pointer-events-none p-1 "
-                height={150}
-                width={150}
-              />
-            )}
-            {imgpaths[1] && (
-              <Image
-                src={imgpaths[1].path}
-                alt="qe"
-                className="pointer-events-none p-1"
-                height={150}
-                width={150}
-              />
-            )}
-          </div>
+          <div className="flex justify-center p-5 ">{/*картинки */}</div>
         </div>
       </div>
       <div className=" flex ">
         <EditPostToast
-          id={id}
+          post_id={post_id}
           description={description}
           title={title}
-          datapublic={date[0]}
-          imgpaths={imgpaths}
+          date_of_public={date_of_public}
+          resourses={resourses}
         />
-        <PostDialogDelete id={id} />
+        <PostDialogDelete id={post_id} />
       </div>
     </section>
   );

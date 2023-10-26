@@ -36,11 +36,11 @@ type ImageProps = {
 };
 
 export function EditPostForm({
-  id,
+  post_id,
   title,
-  datapublic,
+  date_of_public,
   description,
-  imgpaths,
+  resourses,
 }: PostProps) {
   const [file, setFile] = useState<File>();
   const [images, setImages] = useState(Array<ImageProps>);
@@ -48,7 +48,7 @@ export function EditPostForm({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      datapublic: datapublic,
+      datapublic: date_of_public,
       title: title,
       description: description,
     },
@@ -153,25 +153,7 @@ export function EditPostForm({
           </FormControl>
           <FormMessage />
         </div>
-        {imgpaths && (
-          <div className="flex justify-start   p-5 ">
-            {images.map((img) => (
-              <div
-                key={img.path}
-                className=" mr-4 hover:bg-no-repeat hover:brightness-50"
-              >
-                <Image
-                  className="justify-center"
-                  src={img.path}
-                  alt={img.title}
-                  height={70}
-                  width={70}
-                />
-                {img.title}
-              </div>
-            ))}
-          </div>
-        )}
+        {/*картинки */}
         <Button type="submit" className="hover:bg-green-500">
           Опубликовать
         </Button>

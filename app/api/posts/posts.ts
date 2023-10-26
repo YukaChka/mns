@@ -1,75 +1,65 @@
-import {Query } from "@/lib/db"
+import {Query, ServiceResponce } from "@/lib/db"
+import { CreateResourseProps, ResourseProps } from "../upload/route";
 
 export interface PostProps  {
-    id: number;
-    title: string;
-    datapublic: string;
+    post_id: number;
     description: string[];
-    imgpaths: Array<PostImagesProps>;
+    date_of_public: string;
+    title: string;
+    resourses: Array<ResourseProps>;
   };
 
   
 export interface PostModel  {
-    id: number;
-    title: string;
-    datapublic: string;
+    post_id: number;
     description: string;
-    imgpaths: Array<PostImagesProps>;
+    date_of_public: string;
+    title: string;
+  };
+
+
+export type CreatePostProps = {
+    description: string;
+    date_of_public: string;
+    title: string;
+    resourses: Array<CreateResourseProps>;
   };
   
-export interface PostImagesProps  {
-    id: number;
-    title: string;
-    path:string
-  };
+
   
 export const dynamic = 'force-dynamic' 
 export async function GetPosts() {
-    const posts= await Query<Array<PostModel>>({
-        query:`SELECT DISTINCT  p.id, p.title, p.description, p.datapublic FROM megatel_db.post p`,
-        values:[],
-    }) as Array<PostModel>;
+    let post_responce= await Query<PostModel>({query:"select p.post_id,p.description, p.date_of_public,  p.title from post p;", values:[]});
     
-    let res:PostProps[]=new Array<PostProps>
-    for(var i=0; i<posts.length; i++){
-        const img= await Query<Array<PostImagesProps>>({
-            query:`SELECT DISTINCT i.id, i.title, i.path FROM megatel_db.image i JOIN megatel_db.postimg p ON p.imgid =i.id WHERE p.postid = ${i}`,
-            values:[],
-        }) as Array<PostImagesProps>;
-        //data[i].imgpaths=img
-        let text=posts[i].description.split("\\n")
-        res.push({id:posts[i].id, datapublic:posts[i].datapublic, description:text, title:posts[i].title, imgpaths:img})
-        
-       }
-
-    return res;
+    if(!post_responce.succes){
+      return [];  
+    }
     
-    
-    
+    let data = post_responce.data?.rows as Array<PostModel>;
+    ;
+  const formatter = new Intl.DateTimeFormat("ru-RU", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+ 
+    const posts = new Array<PostProps>();
+    for(var i=0; i<data.length; i++){
+      let resourse_responce = await Query<ResourseProps>({query:`select r.resource_id , r.title, r.path, r.post_id from  resource r  where r.post_id =${data[i].post_id}`, values:[]})
+      let resources = resourse_responce.data?.rows as Array<ResourseProps>;
+      let date_of_public = new Date(data[i].date_of_public);
+      let date = formatter.format(date_of_public).split(" ")[0].toString();
+      let text = data[i].description.split("\n");
+      posts.push({
+        post_id:data[i].post_id,
+        date_of_public: date,
+        description:text,
+        title:data[i].title,
+        resourses:resources
+      })
+    }
+    return posts
 }
 
 
-export async function СreatePost(post:PostProps) {
-  
-  const imgpaths = post.imgpaths
-  
-  let arrayImage:PostImagesProps[]=new Array<PostImagesProps>()
 
-  for(var i=0; i<imgpaths.length; i++){
-      let img:PostImagesProps[] = await Query<PostImagesProps[]>({
-        query:`SELECT i.id, i.title, i.path FROM megatel_db.image i WHERE i.title='${imgpaths[i].title}' AND i.path='${imgpaths[i].path}'`,
-        values:[]
-      }) as PostImagesProps[]
-      console.log(img)
-      arrayImage.push(img[0])
-      
-  }  
-
-  
-
-  return 
-  
-  
-  
-  
-}

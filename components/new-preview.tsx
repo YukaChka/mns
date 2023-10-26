@@ -3,9 +3,9 @@ import { da } from "date-fns/locale";
 import Link from "next/link";
 
 export default function NewPreview({ params }: { params: PostProps }) {
-  const ROUTE_POST_ID = `news/${params.id}`;
+  const ROUTE_POST_ID = `news/${params.post_id}`;
 
-  const CurrentDate = new Date(params.datapublic);
+  const CurrentDate = new Date(params.date_of_public);
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     month: "long",
     day: "numeric",

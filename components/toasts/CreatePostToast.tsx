@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+
 import {
   Dialog,
   DialogContent,
@@ -10,10 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { PostProps } from "@/app/api/posts/posts";
-import { Dispatch, SetStateAction, useState } from "react";
 import { CreatePostForm } from "../forms/createPostForm";
 import Image from "next/image";
 

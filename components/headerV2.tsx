@@ -41,7 +41,7 @@ const HeaderV2 = () => {
               ) : (
                 <></>
               )}
-              {session.data?.user.role !== "админ" ? (
+              {session.data?.user.role_user !== "админ" ? (
                 <>
                   {width > 800 ? (
                     <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
@@ -89,13 +89,13 @@ const HeaderV2 = () => {
                 </li>
               ) : null}
 
-              {width > 1440 && session.data?.user.role !== "админ" ? (
+              {width > 1440 && session.data?.user.role_user !== "админ" ? (
                 <li className="font-normal text-base text-[#009cf3] mr-auto ml-auto ">
                   +7 (495) 223-89-86 <br />
                   phonex@megatel.ru
                 </li>
               ) : null}
-              {session.data?.user.role === "админ" ? (
+              {session.data?.user.role_user === "админ" ? (
                 <>
                   {width > 400 ? (
                     <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">

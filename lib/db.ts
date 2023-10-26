@@ -7,33 +7,33 @@ interface dbquery<T>{
 }
 
 export interface ServiceResponce<T>{
-  
   data:QueryResult<QueryResultRow>|null;
   status:Number;
   message:String;
-
+  succes:boolean;
 }
 
-
+export const conn=new Pool({
+  user: "root1",
+  password: "AdminMM!",
+  host: "91.185.84.230",
+  port: 5432,
+  database: "megatel_db"
+});
 export async function Query<T>({query, values}:dbquery<T>) {
-  const conn=new Pool({
-    user: "root1",
-    password: "AdminMM!",
-    host: "91.185.84.230",
-    port: 5432,
-    database: "megatel_db"
-  });
+  
   try {
     
     const results = await conn.query<QueryResultRow>(query, values);
-    
+    conn
     conn.end();
    
       
     let res:ServiceResponce<T>={
         data:results,
         status:200,
-        message:"ok"
+        message:"ok",
+        succes:true,
     }
     return res
     
@@ -42,7 +42,8 @@ export async function Query<T>({query, values}:dbquery<T>) {
     let res:ServiceResponce<T>={
       data:null,
       status:400,
-      message:`${error}`
+      message:`${error}`,
+      succes:false,
     } 
   return res
     

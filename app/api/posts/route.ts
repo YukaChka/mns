@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Query } from "@/lib/db";
-import { GetPosts, PostProps, СreatePost } from "./posts";
+import { CreatePostProps, GetPosts, PostProps } from "./posts";
+import { СreatePost } from "./СreatePost";
 
 export const dynamic = 'force-dynamic' 
 export async function GET(req: Request) {
@@ -15,7 +16,7 @@ export async function GET(req: Request) {
     
 
     if(idq){
-      CurrentPost = posts.find(({id})=> id.toString()===idq)
+      CurrentPost = posts.find(({post_id})=> post_id.toString()===idq)
       
     }
     else{
@@ -31,14 +32,14 @@ export async function GET(req: Request) {
 
 
 export async function POST(request: Request) {
-  const post:Promise<PostProps>  =await request.json()
+  const post:Promise<CreatePostProps>  =await request.json()
 
   try {
     
-    console.log(post)
-    const res = await СreatePost(await post)
 
-    return NextResponse.json(res);  
+    const res = await СreatePost(await post)
+    //console.log(post);
+    return NextResponse.json({ok:res});  
   } catch (error) {
     return NextResponse.json(error);
   }

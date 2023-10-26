@@ -17,11 +17,11 @@ import Image from "next/image";
 import { EditPostForm } from "../forms/editPostForm";
 
 export async function EditPostToast({
-  id,
+  post_id,
   title,
-  datapublic,
+  date_of_public,
   description,
-  imgpaths,
+  resourses,
 }: PostProps) {
   return (
     <div>
@@ -55,11 +55,11 @@ export async function EditPostToast({
 
           <div>
             <EditPostForm
-              id={id}
+              post_id={post_id}
               description={description}
               title={title}
-              imgpaths={imgpaths}
-              datapublic={datapublic}
+              resourses={resourses}
+              date_of_public={date_of_public}
             />
           </div>
         </DialogContent>

@@ -20,12 +20,12 @@ export default async function TableNews() {
   return (
     <div className="">
       {posts.map((post: PostProps) => (
-        <div key={post.id} className="p-1">
+        <div key={post.post_id} className="p-1">
           <ItemNew
-            id={post.id}
+            post_id={post.post_id}
             description={post.description}
-            datapublic={post.datapublic}
-            imgpaths={post.imgpaths}
+            date_of_public={post.date_of_public}
+            resourses={post.resourses}
             title={post.title}
           />
         </div>
