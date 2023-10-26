@@ -156,7 +156,8 @@ export function CreatePostForm() {
         <div className="max-w-6xl">
           {images && (
             <div className="flex justify-center ">
-              <ResourceScroll resource={images} />
+              <ResourceScroll resource={images}  />
+              
             </div>
           )}
         </div>
