@@ -1,4 +1,4 @@
-import {Query, ServiceResponce } from "@/lib/db"
+import {Query, ServiceResponce, conn } from "@/lib/db"
 import { CreateResourseProps, ResourseProps } from "../upload/route";
 
 export interface PostProps  {
@@ -62,4 +62,36 @@ export async function GetPosts() {
 }
 
 
+export async function СreatePost(post:CreatePostProps) {
 
+  
+  const client = await conn.connect()
+  const CurrentDate = new Date(post.date_of_public);
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    dateStyle:"short"
+  });
+  const date = formatter.format(CurrentDate).split(" ");
+  try {  
+    await client.query("begin")
+    const create_post_query =`insert into public.post(date_of_public, description, title) values($1,$2,$3) RETURNING post_id;`
+    const post_params=[date,post.description,post.title]
+    const create_post = await client.query(create_post_query, post_params);
+    for(var i=0; i<post.resourses.length; i++){
+      const resourses_params =[post.resourses[i].title,post.resourses[i].path, create_post.rows[0].id]
+      const add_resourses_query = `insert into public.resource(title, "path", post_id) values($1,$2,$3)`;
+      await client.query(add_resourses_query, resourses_params)
+    }
+    await client.query('commit')
+  } catch (e) {
+    await client.query('rollback')
+    throw e
+    
+  } finally{
+    client.release()
+  }
+  
+
+  
+  
+  return  []
+}
