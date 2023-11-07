@@ -4,20 +4,8 @@ import useDownloader from "react-use-downloader";
 import NewPreview from "@/components/new-preview";
 import { PostProps } from "@/app/api/posts/posts";
 
-async function GetPost() {
-  let url = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!url) {
-    url = "https://megatelnextjs.ru/api/posts";
-  } else {
-    url = `${url}/api/posts`;
-  }
-  console.log(url);
-  const res = await fetch(url);
-
-  return res.json() as Promise<PostProps[]>;
-}
 export default async function NewsPage() {
-  const posts = await GetPost();
+  //const posts = await GetPost();
   return (
     <main>
       <div className="mt-20">
@@ -29,9 +17,9 @@ export default async function NewsPage() {
                 <div>Все</div>
               </div>
               <div className=" text-2xl  mt-8">
-                {posts.map((post: PostProps) => (
+                {/*{posts.map((post: PostProps) => (
                   <NewPreview key={post.post_id} params={post} />
-                ))}
+                ))}*/}
               </div>
             </div>
           </div>

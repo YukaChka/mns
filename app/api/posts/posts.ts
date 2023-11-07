@@ -1,18 +1,18 @@
-import {Query, ServiceResponce, conn } from "@/lib/db"
+import {ServiceResponce, client, conn } from "@/lib/db"
 import { CreateResourseProps, ResourseProps } from "../upload/route";
 
 export interface PostProps  {
     post_id: number;
-    description: string[];
+    description: string[] | string;
     date_of_public: string;
     title: string;
-    resourses: Array<ResourseProps>;
+    resourses: Array<ResourseProps> | null;
   };
 
   
 export interface PostModel  {
     post_id: number;
-    description: string;
+    description: string | string[];
     date_of_public: string;
     title: string;
   };
@@ -29,43 +29,55 @@ export type CreatePostProps = {
   
 export const dynamic = 'force-dynamic' 
 export async function GetPosts() {
-    let post_responce= await Query<PostModel>({query:"select p.post_id,p.description, p.date_of_public,  p.title from post p;", values:[]});
+  const client = await conn.connect()
+
+  const posts= new Array<PostProps>() 
+
+  try {  
+    await client.query("begin")
+    const post_query =`select p.post_id,p.description, p.date_of_public,  p.title from post p;`
     
-    if(!post_responce.succes){
-      return [];  
+    const model_posts = await client.query(post_query) ;
+    const data_posts=model_posts.rows as Array<PostModel>
+    for(var i=0; i<data_posts.length; i++){
+      const resourses_query = `select r.resource_id , r.title, r.path, r.post_id from  resource r  where r.post_id =$1`;
+      const resourses_params =[data_posts[i].post_id]
+      let date_of_public = new Date(data_posts[i].date_of_public);
+      data_posts[i].date_of_public = Intl.DateTimeFormat("ru-RU", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      }).format(date_of_public).split(" ")[0].toString();
+      
+      data_posts[i].description = (data_posts[i].description as string).split("\n");
+      const model_resourses = await client.query(resourses_query, resourses_params)
+      const data_resourses=model_resourses.rows as Array<ResourseProps> | null
+      
+      var post = Object.assign({},data_posts[i], {'resourses':data_resourses})
+      post = post as PostProps
+      posts.push(post)
+      
     }
+    client.query('commit')
+  } catch (e) {
+    await client.query('rollback')
     
-    let data = post_responce.data?.rows as Array<PostModel>;
-    ;
-  const formatter = new Intl.DateTimeFormat("ru-RU", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
- 
-    const posts = new Array<PostProps>();
-    for(var i=0; i<data.length; i++){
-      let resourse_responce = await Query<ResourseProps>({query:`select r.resource_id , r.title, r.path, r.post_id from  resource r  where r.post_id =${data[i].post_id}`, values:[]})
-      let resources = resourse_responce.data?.rows as Array<ResourseProps>;
-      let date_of_public = new Date(data[i].date_of_public);
-      let date = formatter.format(date_of_public).split(" ")[0].toString();
-      let text = data[i].description.split("\n");
-      posts.push({
-        post_id:data[i].post_id,
-        date_of_public: date,
-        description:text,
-        title:data[i].title,
-        resourses:resources
-      })
-    }
+    throw e
+    
+  } finally{
+    
+    client.release()
+    
+    
     return posts
+  }
+    
 }
 
 
 export async function СreatePost(post:CreatePostProps) {
-
-  
   const client = await conn.connect()
+  
   const CurrentDate = new Date(post.date_of_public);
   const formatter = new Intl.DateTimeFormat("en-US", {
     dateStyle:"short"
@@ -76,8 +88,9 @@ export async function СreatePost(post:CreatePostProps) {
     const create_post_query =`insert into public.post(date_of_public, description, title) values($1,$2,$3) RETURNING post_id;`
     const post_params=[date,post.description,post.title]
     const create_post = await client.query(create_post_query, post_params);
+    
     for(var i=0; i<post.resourses.length; i++){
-      const resourses_params =[post.resourses[i].title,post.resourses[i].path, create_post.rows[0].id]
+      const resourses_params =[post.resourses[i].title,post.resourses[i].path, create_post.rows[0].post_id]
       const add_resourses_query = `insert into public.resource(title, "path", post_id) values($1,$2,$3)`;
       await client.query(add_resourses_query, resourses_params)
     }
@@ -88,10 +101,39 @@ export async function СreatePost(post:CreatePostProps) {
     
   } finally{
     client.release()
+    
+    
+    return true
   }
-  
-
-  
-  
-  return  []
 }
+
+export async function DeletePost(post_id:string) {
+  const client = await conn.connect()
+  
+  try {  
+    await client.query("begin")
+
+
+    const delete_resourses_query = `delete from public.resource where post_id=$1;`;
+    const resourses_params =[post_id]  
+    await client.query(delete_resourses_query, resourses_params)
+    
+
+    const delete_post_query =`delete from public.post where  post_id =$1;`
+    const post_params=[post_id]
+    await client.query(delete_post_query, post_params);
+    
+    await client.query('commit')
+  } catch (e) {
+    await client.query('rollback')
+    throw e
+    
+  } finally{
+    client.release()
+    
+    
+    return true
+  }
+}
+
+

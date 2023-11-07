@@ -12,11 +12,22 @@ import {
 } from "../ui/dialog";
 import { CreatePostForm } from "../forms/createPostForm";
 import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 
-export async function CreatePostToast() {
+export function CreatePostToast() {
+  const [open, setOpen] = useState(false);
+
+  const props = useMemo(
+    () => ({
+      setOpen,
+      open,
+    }),
+    [open]
+  );
+
   return (
     <div>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild className="">
           <div className="hover:cursor-pointer ">
             <div>
@@ -45,9 +56,7 @@ export async function CreatePostToast() {
             </DialogTitle>
           </DialogHeader>
 
-          <div >
-            <CreatePostForm/>
-          </div>
+          <CreatePostForm props={props} />
         </DialogContent>
       </Dialog>
     </div>

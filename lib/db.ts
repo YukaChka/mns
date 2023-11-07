@@ -15,37 +15,20 @@ export interface ServiceResponce<T>{
 
 export const conn=new Pool({
   user: "root1",
-  password: "AdminMM!",
+  password: "AdminMM!1",
   host: "91.185.84.230",
   port: 5432,
-  database: "megatel_db"
-});
-export async function Query<T>({query, values}:dbquery<T>) {
+  database: "megatel_db",
   
-  try {
-    
-    const results = await conn.query<QueryResultRow>(query, values);
-    conn
-    conn.end();
-   
-      
-    let res:ServiceResponce<T>={
-        data:results,
-        status:200,
-        message:"ok",
-        succes:true,
-    }
-    return res
-    
-     
-  } catch (error) {
-    let res:ServiceResponce<T>={
-      data:null,
-      status:400,
-      message:`${error}`,
-      succes:false,
-    } 
-  return res
-    
-  }
-}
+});
+
+import { Client } from 'pg'
+ 
+export const client = new Client({
+  user: "root1",
+  password: "AdminMM!1",
+  host: "91.185.84.230",
+  port: 5432,
+  database: "megatel_db",
+})
+

@@ -14,26 +14,33 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
-import Image, { ImageProps } from "next/image";
-import { FormEvent, use, useEffect, useState } from "react";
-import Link from "next/link";
-import { CreateResourseProps, ResourseProps } from "@/app/api/upload/route";
-import { CreatePostProps, PostProps } from "@/app/api/posts/posts";
+import Image from "next/image";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { CreateResourseProps } from "@/app/api/upload/route";
+import { CreatePostProps } from "@/app/api/posts/posts";
 import { Loader2 } from "lucide-react";
 
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
-
+import { useRouter } from "next/navigation";
 const FormSchema = z.object({
   date_of_public: z.string(),
   title: z.string(),
   description: z.string(),
 });
 
-export function CreatePostForm() {
+export function CreatePostForm({
+  props: { open, setOpen },
+}: {
+  props: {
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
+  };
+}) {
   const [file, setFile] = useState<File>();
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState(Array<CreateResourseProps>);
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -67,10 +74,7 @@ export function CreatePostForm() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-    return;
+
     const post: CreatePostProps = {
       date_of_public: data.date_of_public,
       description: data.description,
@@ -81,7 +85,9 @@ export function CreatePostForm() {
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify(post),
-    });
+    }).finally(() => setIsLoading(false));
+    router.refresh();
+    return setOpen(false);
   }
 
   useEffect(() => {
@@ -144,7 +150,7 @@ export function CreatePostForm() {
           )}
         />
 
-        <FormLabel>Загрузить фото</FormLabel>
+        <FormLabel>Загрузить фотографии</FormLabel>
         <FormControl>
           <Input
             type="file"
@@ -168,7 +174,10 @@ export function CreatePostForm() {
                 />
                 <div className="flex w-max space-x-4 p-4">
                   {images.map((res) => (
-                    <div className="overflow-hidden group  rounded-md flex p-1 justify-end items-center relative">
+                    <div
+                      key={res.path}
+                      className="overflow-hidden group  rounded-md flex p-1 justify-end items-center relative"
+                    >
                       <Image
                         src={res.path}
                         alt={res.title}

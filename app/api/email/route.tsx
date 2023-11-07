@@ -1,4 +1,3 @@
-import { Query } from "@/lib/db";
 import { writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 

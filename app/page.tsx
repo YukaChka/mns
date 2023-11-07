@@ -91,14 +91,7 @@ export default async function Home() {
                 Партнёры
               </div>
               <div className="  justify-center grid grid-cols-5 gap-4 content-start mt-10">
-                <>
-                  <Image
-                    src="/img/i.png"
-                    alt="qe"
-                    height={11440}
-                    width={1741}
-                  />
-                </>
+                {/*Партнеры */}
               </div>
             </div>
           </div>

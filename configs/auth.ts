@@ -21,7 +21,7 @@ export  const authConfig:AuthOptions ={
             async authorize(credentials) {
 
                 const url = process.env.NEXTAUTH_URL
-                
+                console.log(url)
                 const user  = await (await fetch(`${url}/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
                 let CurrentUser = user as UserProps;

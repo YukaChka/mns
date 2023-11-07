@@ -1,24 +1,36 @@
+"use client";
+
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
 import { CreatePostToast } from "@/components/toasts/CreatePostToast";
 import { PostProps } from "@/app/api/posts/posts";
+import TableNews from "@/components/admin/tableNews";
+import ItemNew from "@/components/admin/itemNew";
+import { useCallback, useEffect, useState } from "react";
 
-async function GetData() {
-  let url = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!url) {
-    url = "https://megatelnextjs.ru/api/posts";
-  } else {
-    url = `${url}/api/posts`;
-  }
-
-  const res = await fetch(url);
-
+async function GetPosts() {
+  let url = "http://localhost:3000/api/posts?";
+  const res = await fetch(url, {
+    next: {
+      revalidate: 10,
+    },
+  });
   return res.json() as Promise<PostProps[]>;
 }
 
-export default async function AdminNewsPage() {
-  const posts = await GetData();
+export default function AdminNewsPage() {
+  const [posts, setPosts] = useState<Array<PostProps>>([]);
+
+  const fetchData = async () => {
+    const data = await GetPosts();
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div>
@@ -47,7 +59,20 @@ export default async function AdminNewsPage() {
           </div>
         </div>
       </div>
-      <div>{/*новости*/}</div>
+      <div>
+        {posts &&
+          posts.map((post) => (
+            <div key={post.post_id}>
+              <ItemNew
+                title={post.title}
+                post_id={post.post_id}
+                description={post.description}
+                date_of_public={post.date_of_public}
+                resourses={post.resourses}
+              />
+            </div>
+          ))}
+      </div>
     </div>
   );
 }

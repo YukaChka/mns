@@ -50,7 +50,7 @@ export function EditPostForm({
     defaultValues: {
       datapublic: date_of_public,
       title: title,
-      description: description,
+      description: description as string[],
     },
   });
   async function onSubmit(data: z.infer<typeof FormSchema>) {}
