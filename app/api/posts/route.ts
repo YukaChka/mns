@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { CreatePostProps, DeletePost, GetPosts, PostProps, СreatePost } from "./posts";
+import { CreatePostProps, DeletePost, GetPosts, PostProps, UpdatePost, UpdatePostProps, СreatePost } from "./posts";
 
 export const dynamic = 'force-dynamic' 
 export async function GET(req: Request) {
@@ -64,3 +64,14 @@ export async function DELETE(request:Request) {
   
 }
 
+export async function PUT(request: Request) {
+  const post:Promise<{post:UpdatePostProps, isEdit:number}>  =await request.json()
+  
+  
+  try {
+    const res = await UpdatePost((await post).post, (await post).isEdit)
+    return NextResponse.json({succes:true});  
+  } catch (error) {
+    return NextResponse.json(error);
+  }
+}

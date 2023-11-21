@@ -7,14 +7,22 @@ export const dynamic = "force-dynamic";
 
 
 export interface ResourseProps  {
-  resourse_id: number;
+  resourse_id: number|null;
   title: string;
-  path:string;
+  path: string;
   post_id:number|null;
   order_id:number|null;
 };
 
-export type CreateResourseProps = {
+export interface CreateResourseProps  {
+  resourse_id: number|null;
+  title: string;
+  path: string;
+  post_id:number|null;
+  order_id:number|null;
+};
+
+export interface UpdateResourseProps  {
   title: string;
   path: string;
 };

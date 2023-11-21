@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
@@ -7,29 +5,16 @@ import { CreatePostToast } from "@/components/toasts/CreatePostToast";
 import { PostProps } from "@/app/api/posts/posts";
 import TableNews from "@/components/admin/tableNews";
 import ItemNew from "@/components/admin/itemNew";
-import { useCallback, useEffect, useState } from "react";
 
 async function GetPosts() {
-  let url = "http://localhost:3000/api/posts?";
-  const res = await fetch(url, {
-    next: {
-      revalidate: 10,
-    },
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
+    cache: "no-cache",
   });
   return res.json() as Promise<PostProps[]>;
 }
 
-export default function AdminNewsPage() {
-  const [posts, setPosts] = useState<Array<PostProps>>([]);
-
-  const fetchData = async () => {
-    const data = await GetPosts();
-    setPosts(data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+export default async function AdminNewsPage() {
+  const posts = await GetPosts();
 
   return (
     <div>
@@ -59,20 +44,14 @@ export default function AdminNewsPage() {
           </div>
         </div>
       </div>
-      <div>
+      <ul>
         {posts &&
-          posts.map((post) => (
-            <div key={post.post_id}>
-              <ItemNew
-                title={post.title}
-                post_id={post.post_id}
-                description={post.description}
-                date_of_public={post.date_of_public}
-                resourses={post.resourses}
-              />
-            </div>
+          posts.map((post, index) => (
+            <li key={Date.now()}>
+              <ItemNew post={post} />
+            </li>
           ))}
-      </div>
+      </ul>
     </div>
   );
 }

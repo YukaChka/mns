@@ -15,17 +15,21 @@ import { PostProps } from "@/app/api/posts/posts";
 
 import Image from "next/image";
 import { EditPostForm } from "../forms/editPostForm";
+import { useMemo, useState } from "react";
 
-export async function EditPostToast({
-  post_id,
-  title,
-  date_of_public,
-  description,
-  resourses,
-}: PostProps) {
+export function EditPostToast({ post }: { post: PostProps }) {
+  const [open, setOpen] = useState(false);
+
+  const props = useMemo(
+    () => ({
+      setOpen,
+      open,
+    }),
+    [open]
+  );
   return (
     <div>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild className="">
           <div className="hover:cursor-pointer ">
             <Button
@@ -54,13 +58,7 @@ export async function EditPostToast({
           </DialogHeader>
 
           <div>
-            <EditPostForm
-              post_id={post_id}
-              description={description}
-              title={title}
-              resourses={resourses}
-              date_of_public={date_of_public}
-            />
+            <EditPostForm props={props} post={post} />
           </div>
         </DialogContent>
       </Dialog>

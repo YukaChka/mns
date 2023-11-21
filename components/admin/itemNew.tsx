@@ -5,13 +5,12 @@ import Image from "next/image";
 import { EditPostToast } from "../toasts/EditPostToast";
 import { PostDialogDelete } from "../toasts/DeletePostToast";
 
-export default async function ItemNew({
-  post_id,
-  title,
-  date_of_public,
-  description,
-  resourses,
-}: PostProps) {
+export default function ItemNew({
+  post: { post_id, title, date_of_public, description, resourses },
+}: {
+  post: PostProps;
+}) {
+  let post = { post_id, title, date_of_public, description, resourses };
   return (
     <div className="rounded-md border px-3 py-2 ">
       <div className="">
@@ -41,13 +40,7 @@ export default async function ItemNew({
         </div>
       </div>
       <div className=" flex ">
-        <EditPostToast
-          post_id={post_id}
-          description={description}
-          title={title}
-          date_of_public={date_of_public}
-          resourses={resourses}
-        />
+        <EditPostToast post={post} />
         <PostDialogDelete id={post_id} />
       </div>
     </div>

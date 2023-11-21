@@ -1,12 +1,12 @@
 import {ServiceResponce, client, conn } from "@/lib/db"
-import { CreateResourseProps, ResourseProps } from "../upload/route";
+import { CreateResourseProps, ResourseProps, UpdateResourseProps } from "../upload/route";
 
 export interface PostProps  {
     post_id: number;
     description: string[] | string;
     date_of_public: string;
     title: string;
-    resourses: Array<ResourseProps> | null;
+    resourses: Array<ResourseProps> ;
   };
 
   
@@ -18,12 +18,21 @@ export interface PostModel  {
   };
 
 
-export type CreatePostProps = {
+export interface CreatePostProps {
     description: string;
     date_of_public: string;
     title: string;
-    resourses: Array<CreateResourseProps>;
+    resourses: Array<ResourseProps>;
   };
+
+  
+export interface UpdatePostProps {
+  post_id: number;
+  description: string;
+  date_of_public: string;
+  title: string;
+  resourses: Array<UpdateResourseProps>
+};
   
 
   
@@ -51,7 +60,7 @@ export async function GetPosts() {
       
       data_posts[i].description = (data_posts[i].description as string).split("\n");
       const model_resourses = await client.query(resourses_query, resourses_params)
-      const data_resourses=model_resourses.rows as Array<ResourseProps> | null
+      const data_resourses=model_resourses.rows as Array<ResourseProps>;
       
       var post = Object.assign({},data_posts[i], {'resourses':data_resourses})
       post = post as PostProps
@@ -73,7 +82,6 @@ export async function GetPosts() {
   }
     
 }
-
 
 export async function СreatePost(post:CreatePostProps) {
   const client = await conn.connect()
@@ -103,6 +111,48 @@ export async function СreatePost(post:CreatePostProps) {
     client.release()
     
     
+    return true
+  }
+}
+
+export async function UpdatePost(post:UpdatePostProps, isEdit:number) {
+  const client = await conn.connect()
+
+  
+
+  const CurrentDate = new Date(post.date_of_public);
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    dateStyle:"short"
+  });
+  const date = formatter.format(CurrentDate).split(" ");
+
+
+
+  try {  
+    await client.query("begin")
+    const update_post_query =`update public.post p set title = $1, description =$2, date_of_public = $3 where post_id =$4`
+    const post_params=[post.title, post.description, date, post.post_id]
+    await client.query(update_post_query, post_params);
+    if(isEdit ==1){
+        const params =[post.post_id]
+        const delete_resourses_query = `delete from resource r where r.post_id = $1`;
+        await client.query(delete_resourses_query, params)
+
+    }
+    
+    for(var i=0; i<post.resourses.length; i++){
+      
+      const resourses_params =[post.resourses[i].title,post.resourses[i].path,post.post_id]
+      const add_resourses_query = `insert into public.resource(title, "path", post_id) values($1,$2,$3)`;
+      await client.query(add_resourses_query, resourses_params)
+    }
+    await client.query('commit')
+  } catch (e) {
+    await client.query('rollback')
+    throw e
+    
+  } finally{
+    client.release()
     return true
   }
 }

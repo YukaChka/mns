@@ -16,13 +16,19 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { CreateResourseProps } from "@/app/api/upload/route";
-import { CreatePostProps } from "@/app/api/posts/posts";
+import {
+  CreateResourseProps,
+  ResourseProps,
+  UpdateResourseProps,
+} from "@/app/api/upload/route";
+
 import { Loader2 } from "lucide-react";
 
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
-import { useRouter } from "next/navigation";
+
+import { AddPost } from "../actions/Post";
+
 const FormSchema = z.object({
   date_of_public: z.string(),
   title: z.string(),
@@ -30,7 +36,7 @@ const FormSchema = z.object({
 });
 
 export function CreatePostForm({
-  props: { open, setOpen },
+  props,
 }: {
   props: {
     open: boolean;
@@ -38,9 +44,11 @@ export function CreatePostForm({
   };
 }) {
   const [file, setFile] = useState<File>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState(Array<CreateResourseProps>);
-  const router = useRouter();
+
+  const [images, setImages] = useState<
+    CreateResourseProps[] | UpdateResourseProps[]
+  >([]);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -71,25 +79,7 @@ export function CreatePostForm({
       console.error(e);
     }
   }
-
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
-    setIsLoading(true);
-
-    const post: CreatePostProps = {
-      date_of_public: data.date_of_public,
-      description: data.description,
-      title: data.title,
-      resourses: images,
-    };
-
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify(post),
-    }).finally(() => setIsLoading(false));
-    router.refresh();
-    return setOpen(false);
-  }
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getPath = async () => {
       const path = await Upload(file);
@@ -97,15 +87,23 @@ export function CreatePostForm({
         let name = path.path.split("/")[2];
         let [domen, dosc] = path.path.split("/");
 
-        setImages([...images, { path: `/${dosc}/${name}`, title: name }]);
+        setImages([
+          ...images,
+          {
+            path: `/${dosc}/${name}`,
+            title: name,
+          },
+        ]);
       }
     };
     getPath();
   }, [file]);
 
+  const addPost = AddPost.bind(null, images);
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
+      <form action={addPost} className=" space-y-6">
         <FormField
           control={form.control}
           name="date_of_public"
@@ -113,7 +111,13 @@ export function CreatePostForm({
             <FormItem>
               <FormLabel>Дата</FormLabel>
               <FormControl>
-                <Input placeholder="Дата публикации" type="date" {...field} />
+                <Input
+                  placeholder="Дата публикации"
+                  type="date"
+                  {...field}
+                  required
+                  name="date_of_public"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -126,7 +130,12 @@ export function CreatePostForm({
             <FormItem>
               <FormLabel>Заголовок</FormLabel>
               <FormControl>
-                <Input placeholder="Введите Название" {...field} />
+                <Input
+                  placeholder="Введите Название"
+                  {...field}
+                  required
+                  name="title"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -143,6 +152,8 @@ export function CreatePostForm({
                   placeholder="Введите Текст"
                   {...field}
                   className="max-h-56"
+                  required
+                  name="description"
                 />
               </FormControl>
               <FormMessage />
@@ -156,10 +167,10 @@ export function CreatePostForm({
             type="file"
             onChange={(e) => {
               setFile(e.target.files?.[0]);
+              e.currentTarget.value = "";
             }}
           />
         </FormControl>
-        <FormMessage />
 
         <div className="max-w-6xl">
           {images && (
@@ -208,7 +219,14 @@ export function CreatePostForm({
             </>
           </Button>
         ) : (
-          <Button type="submit">Опубликовать</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              props.setOpen(false);
+            }}
+          >
+            Опубликовать
+          </Button>
         )}
       </form>
     </Form>

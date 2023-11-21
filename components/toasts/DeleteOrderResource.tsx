@@ -1,5 +1,9 @@
-import { PostProps } from "@/app/api/posts/posts";
-import { CreateResourseProps } from "@/app/api/upload/route";
+import { PostProps, UpdatePostProps } from "@/app/api/posts/posts";
+import {
+  CreateResourseProps,
+  ResourseProps,
+  UpdateResourseProps,
+} from "@/app/api/upload/route";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,9 +24,11 @@ export function ResourceDialogDelete({
   resource,
   setResource,
 }: {
-  res: CreateResourseProps;
-  resource: Array<CreateResourseProps>;
-  setResource: Dispatch<SetStateAction<Array<CreateResourseProps>>>;
+  res: CreateResourseProps | UpdateResourseProps;
+  resource: CreateResourseProps[] | UpdateResourseProps[];
+  setResource: Dispatch<
+    SetStateAction<CreateResourseProps[] | UpdateResourseProps[]>
+  >;
 }) {
   return (
     <AlertDialog>
@@ -39,7 +45,7 @@ export function ResourceDialogDelete({
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Вы хотите удалить заказ?</AlertDialogTitle>
+          <AlertDialogTitle>Вы хотите удалить файл?</AlertDialogTitle>
           <AlertDialogDescription>{res.title}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -48,7 +54,7 @@ export function ResourceDialogDelete({
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              var index = resource.indexOf(res);
+              var index = resource.indexOf(res as ResourseProps);
               if (index !== -1) {
                 setResource(resource.filter((i) => i.title !== res.title));
               }
