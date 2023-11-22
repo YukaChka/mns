@@ -5,7 +5,8 @@ import { CreateResourseProps, ResourseProps, UpdateResourseProps } from "@/app/a
 import { revalidatePath } from "next/cache";
 import { Dispatch, SetStateAction } from "react";
 
-export  async function AddPost(images:CreateResourseProps[]|UpdateResourseProps[], data: FormData) {
+
+export async function AddPost(images:CreateResourseProps[]|UpdateResourseProps[], data: FormData) {
     
     const post: CreatePostProps = {
       date_of_public: data.get("date_of_public") as string,
@@ -18,10 +19,7 @@ export  async function AddPost(images:CreateResourseProps[]|UpdateResourseProps[
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      
       body: JSON.stringify(post),
     });
 
@@ -32,35 +30,39 @@ export  async function AddPost(images:CreateResourseProps[]|UpdateResourseProps[
 export async function UpPost(post_id:number,images:UpdateResourseProps[],curPost:PostProps, data: FormData) {
     
 
-  
+  let isEdit=1;
     const post: UpdatePostProps  = {
       post_id:post_id,
-      date_of_public: data.get("date_of_public") as string,
-      description: data.get("description") as string,
-      title: data.get("title") as string,
+      date_of_public: data.get("date_of_public")?.toString().trim() as string,
+      description: data.get("description")?.toString().replaceAll("\r",'').trim() as string,
+      title: data.get("title")?.toString().trim() as string,
       resourses: images,
     };
-    
-    console.log(post)
 
-    if((JSON.stringify(post) == JSON.stringify(curPost))) return;
-    let isEdit =1
+    if(post.date_of_public==null || post.description ==null || post.title == null) return;
+    
+    
+    
+    console.log(JSON.stringify(post) == JSON.stringify(curPost))
+    if(JSON.stringify(post) == JSON.stringify(curPost)) return;
+
+    
+    
     const body:{
       post:UpdatePostProps,
-      isEdit:Number
+      isEdit:number
     } ={
       post,
       isEdit
     }
+    
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        
-      },
-
       body: JSON.stringify(body),
     });
+    
+    
+    
     
     
     revalidatePath("/posts");

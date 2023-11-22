@@ -39,6 +39,7 @@ import {
 import { OrderProps } from "@/app/api/order/order";
 import { EditOrderToast } from "@/components/toasts/EditOrderToast";
 import { OrderDialogDelete } from "@/components/toasts/DeleteOrderToast";
+import { CreateOrderToast } from "./toasts/CreateOrderToast";
 
 export const columns: ColumnDef<OrderProps>[] = [
   {
@@ -246,6 +247,7 @@ export function OrderTablePro({ data }: { data: OrderProps[] }) {
             Далее
           </Button>
         </div>
+        <CreateOrderToast />
       </div>
     </div>
   );

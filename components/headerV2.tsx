@@ -11,8 +11,9 @@ import { usePathname } from "next/navigation";
 
 const HeaderV2 = () => {
   const { width, height } = useWindowSize();
-  const [open, setOpen] = useState(true);
+
   const session = useSession();
+
   const router = usePathname();
 
   return (

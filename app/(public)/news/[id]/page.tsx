@@ -23,6 +23,7 @@ export default async function New({ params }: NewProps) {
   console.log(post);
 
   const text = post.description as string[];
+  console.log(text);
   return (
     <main>
       <div className="mt-20">

@@ -65,12 +65,13 @@ export async function DELETE(request:Request) {
 }
 
 export async function PUT(request: Request) {
-  const post:Promise<{post:UpdatePostProps, isEdit:number}>  =await request.json()
+  const body:Promise<{post:UpdatePostProps,
+  isEdit:number}> =await request.json()
   
   
   try {
-    const res = await UpdatePost((await post).post, (await post).isEdit)
-    return NextResponse.json({succes:true});  
+    const res = await UpdatePost((await body).post, (await body).isEdit)
+    return NextResponse.json({succes:res});  
   } catch (error) {
     return NextResponse.json(error);
   }

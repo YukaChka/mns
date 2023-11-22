@@ -5,13 +5,12 @@ import Link from "next/link";
 export default function NewPreview({ params }: { params: PostProps }) {
   const ROUTE_POST_ID = `news/${params.post_id}`;
   console.log(params);
-  const date_of_public = params.date_of_public.split(".");
 
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     month: "long",
     day: "numeric",
   });
-
+  const date_of_public = params.date_of_public.split(".");
   const date = formatter
     .format(
       new Date(`${date_of_public[2]}-${date_of_public[1]}-${date_of_public[0]}`)
