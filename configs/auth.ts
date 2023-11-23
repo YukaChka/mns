@@ -1,7 +1,7 @@
 import { UserProps } from "@/app/api/user/user";
 import type { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { use } from "react";
+
 
 
 
@@ -94,5 +94,10 @@ export  const authConfig:AuthOptions ={
     },
     pages:{
         signIn:"/signin"
+    },
+    session:{
+        strategy:"jwt",
+        maxAge:60*60
     }
+
 }

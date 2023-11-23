@@ -23,17 +23,15 @@ import {
 } from "@/app/api/upload/route";
 
 import { Loader2 } from "lucide-react";
+import { SubmitHandler } from "react-hook-form";
 
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
 
 import { AddPost } from "../actions/Post";
+import { FormSchema } from "@/lib/schema";
 
-const FormSchema = z.object({
-  date_of_public: z.string(),
-  title: z.string(),
-  description: z.string(),
-});
+export type Inputs = z.infer<typeof FormSchema>;
 
 export function CreatePostForm({
   props,
@@ -44,7 +42,10 @@ export function CreatePostForm({
   };
 }) {
   const [file, setFile] = useState<File>();
-
+  const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [isButton, setIsButton] = useState(false);
   const [images, setImages] = useState<
     CreateResourseProps[] | UpdateResourseProps[]
   >([]);
@@ -79,7 +80,7 @@ export function CreatePostForm({
       console.error(e);
     }
   }
-  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const getPath = async () => {
       const path = await Upload(file);
@@ -99,6 +100,14 @@ export function CreatePostForm({
     getPath();
   }, [file]);
 
+  useEffect(() => {
+    if (title != "" && desc != "" && date != "") {
+      setIsButton(true);
+    } else {
+      setIsButton(false);
+    }
+  }, [title, desc, date, setDate, setTitle, setDesc]);
+
   const addPost = AddPost.bind(null, images);
 
   return (
@@ -116,6 +125,10 @@ export function CreatePostForm({
                   type="date"
                   {...field}
                   required
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.currentTarget.value);
+                  }}
                   name="date_of_public"
                 />
               </FormControl>
@@ -134,6 +147,10 @@ export function CreatePostForm({
                   placeholder="Введите Название"
                   {...field}
                   required
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.currentTarget.value);
+                  }}
                   name="title"
                 />
               </FormControl>
@@ -153,6 +170,10 @@ export function CreatePostForm({
                   {...field}
                   className="max-h-56"
                   required
+                  value={desc}
+                  onChange={(e) => {
+                    setDesc(e.currentTarget.value);
+                  }}
                   name="description"
                 />
               </FormControl>
@@ -173,7 +194,7 @@ export function CreatePostForm({
         </FormControl>
 
         <div className="max-w-6xl">
-          {images && (
+          {images.length != 0 && (
             <div className="flex justify-center ">
               <ScrollArea
                 className="w-96 whitespace-nowrap rounded-md border"
@@ -212,22 +233,16 @@ export function CreatePostForm({
             </div>
           )}
         </div>
-        {isLoading ? (
-          <Button disabled>
-            <>
-              <Loader2 className="h-4 w-4 animate-spin justify-center" />
-            </>
-          </Button>
-        ) : (
-          <Button
-            type="submit"
-            onClick={() => {
-              props.setOpen(false);
-            }}
-          >
-            Опубликовать
-          </Button>
-        )}
+
+        <Button
+          type="submit"
+          disabled={!isButton}
+          onClick={() => {
+            props.setOpen(false);
+          }}
+        >
+          Опубликовать
+        </Button>
       </form>
     </Form>
   );

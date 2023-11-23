@@ -42,19 +42,20 @@ export function EditPostForm({
   };
   post: PostProps;
 }) {
+  description = description.toString().replaceAll("\r,", "\n");
   const [file, setFile] = useState<File>();
-  const [isEdit, setIsEdit] = useState(0);
+  const [date, setDate] = useState(date_of_public);
+  const [head, setHead] = useState(title);
+  const [desc, setDesc] = useState(description);
+  const [isButton, setIsButton] = useState(false);
   const [images, setImages] = useState<
     UpdateResourseProps[] | CreateResourseProps[]
   >(resourses);
-  description = description.toString().replaceAll("\r,", "\n");
+
+  const submit = false;
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      date_of_public: date_of_public,
-      title: title,
-      description: description,
-    },
   });
   let curPost: PostProps = {
     post_id,
@@ -111,6 +112,14 @@ export function EditPostForm({
     getPath();
   }, [file, setFile]);
 
+  useEffect(() => {
+    if (head.trim() != "" && desc.trim() != "" && date.trim() != "") {
+      setIsButton(true);
+    } else {
+      setIsButton(false);
+    }
+  }, [head, desc, date, setDate, setHead, setDesc]);
+
   const upPost = UpPost.bind(null, post_id, images, curPost);
 
   return (
@@ -123,7 +132,15 @@ export function EditPostForm({
             <FormItem>
               <FormLabel>Дата</FormLabel>
               <FormControl>
-                <Input placeholder="Дата публикации" {...field} />
+                <Input
+                  placeholder="Дата публикации"
+                  {...field}
+                  required
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.currentTarget.value);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -136,7 +153,15 @@ export function EditPostForm({
             <FormItem>
               <FormLabel>Заголовок</FormLabel>
               <FormControl>
-                <Input placeholder="Введите Название" {...field} />
+                <Input
+                  placeholder="Введите Название"
+                  required
+                  {...field}
+                  value={head}
+                  onChange={(e) => {
+                    setHead(e.currentTarget.value);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -153,6 +178,11 @@ export function EditPostForm({
                   placeholder="Введите Текст"
                   className="min-h-[150px] max-h-[230px] "
                   {...field}
+                  required
+                  value={desc}
+                  onChange={(e) => {
+                    setDesc(e.currentTarget.value);
+                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -214,6 +244,7 @@ export function EditPostForm({
 
         <Button
           type="submit"
+          disabled={!isButton}
           className="hover:bg-green-500"
           onClick={() => {
             setOpen(false);

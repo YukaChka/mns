@@ -11,6 +11,7 @@ export default function ItemNew({
   post: PostProps;
 }) {
   let post = { post_id, title, date_of_public, description, resourses };
+
   return (
     <div className="rounded-md border px-3 py-2 ">
       <div className="">
