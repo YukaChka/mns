@@ -27,7 +27,7 @@ export default async function New({ params }: NewProps) {
     <main>
       <div className="mt-20">
         <div className="mb-5 ">
-          <div className="flex container justify-center">
+          <div className="flex container ">
             <div className="max-w-6xl">
               <div className=" ">
                 <Link href="/news" className="text-xl">
