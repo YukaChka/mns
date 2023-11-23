@@ -28,7 +28,7 @@ import { SubmitHandler } from "react-hook-form";
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
 
-import { AddPost } from "../../app/actions/Post";
+import { AddPost } from "../actions/Post";
 import { FormSchema } from "@/lib/schema";
 
 export type Inputs = z.infer<typeof FormSchema>;

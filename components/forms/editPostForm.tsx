@@ -24,7 +24,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
-import { UpPost } from "../../app/actions/Post";
+import { UpPost } from "../actions/Post";
 
 const FormSchema = z.object({
   date_of_public: z.string(),
