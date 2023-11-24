@@ -3,7 +3,10 @@ import { da } from "date-fns/locale";
 import Link from "next/link";
 
 export default function NewPreview({ post }: { post: PostProps }) {
-  const ROUTE_POST_ID = `news/${post.post_id}`;
+  let ROUTE_POST_ID = "/404";
+  if (post) {
+    ROUTE_POST_ID = `news/${post.post_id}`;
+  }
 
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     month: "long",

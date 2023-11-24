@@ -20,9 +20,12 @@ export default async function Home() {
   //const fileUrl = "\\docs\\Phonex_8.0.pdf";
 
   //const filename = fileUrl.split("\\").pop();
+  let news: PostProps[] = [];
+  const posts = await GetPosts();
+  if (posts) {
+    news = posts.filter((month, idx) => idx < 2);
+  }
 
-  const [first, second, three, ...posts] = await GetPosts();
-  const news = [first, second, three];
   return (
     <main>
       <div>
@@ -96,11 +99,11 @@ export default async function Home() {
                 <Link href="/news">Новости</Link>
               </div>
               <div className="text-white mt-10 text-2xl ">
-                <>
-                  {news.map((post: PostProps) => (
-                    <NewPreview key={post.post_id} post={post} />
-                  ))}
-                </>
+                {news.length != 0 ? (
+                  news.map((post: PostProps) => <NewPreview post={post} />)
+                ) : (
+                  <>Пока новостей нет</>
+                )}
               </div>
             </div>
           </div>
