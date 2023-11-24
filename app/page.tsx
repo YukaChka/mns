@@ -100,7 +100,9 @@ export default async function Home() {
               </div>
               <div className="text-white mt-10 text-2xl ">
                 {news.length != 0 ? (
-                  news.map((post: PostProps) => <NewPreview post={post} />)
+                  news.map((post: PostProps) => (
+                    <NewPreview key={post.post_id} post={post} />
+                  ))
                 ) : (
                   <>Пока новостей нет</>
                 )}
