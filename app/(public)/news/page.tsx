@@ -5,7 +5,9 @@ import { PostProps } from "@/app/api/posts/posts";
 
 async function GetPosts() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
-    cache: "no-cache",
+    next: {
+      revalidate: 60,
+    },
   });
   return res.json() as Promise<PostProps[]>;
 }
