@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import useDownloader from "react-use-downloader";
 import { UploadForm } from "@/components/forms/UploadForm";
@@ -10,15 +9,8 @@ import { PostProps } from "@/app/api/posts/posts";
 
 import Link from "next/link";
 
-async function GetData() {
-  let url = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!url) {
-    url = "https://megatelnextjs.ru/api/posts";
-  } else {
-    url = `${url}/api/posts`;
-  }
-
-  const res = await fetch(url);
+async function GetPosts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
 
   return res.json() as Promise<PostProps[]>;
 }
@@ -29,8 +21,8 @@ export default async function Home() {
 
   //const filename = fileUrl.split("\\").pop();
 
-  //const [first, second, three, ...posts] = await GetData();
-  //const news = [first, second, three];
+  const [first, second, three, ...posts] = await GetPosts();
+  const news = [first, second, three];
   return (
     <main>
       <div>
@@ -104,7 +96,11 @@ export default async function Home() {
                 <Link href="/news">Новости</Link>
               </div>
               <div className="text-white mt-10 text-2xl ">
-                <>{/*Новости*/}</>
+                <>
+                  {news.map((post: PostProps) => (
+                    <NewPreview key={post.post_id} post={post} />
+                  ))}
+                </>
               </div>
             </div>
           </div>

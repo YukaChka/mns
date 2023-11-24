@@ -15,30 +15,20 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 const FormSchema = z.object({
-  phone: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  email: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  firstName: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  lastName: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  description: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  phone: z.string(),
+  email: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  description: z.string(),
 });
 
 export function SupportForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
-
   const onSubmit = (values: z.infer<typeof FormSchema>) => {};
 
   return (
@@ -57,8 +47,6 @@ export function SupportForm() {
                   <FormControl>
                     <Input placeholder="Телефон" className="" {...field} />
                   </FormControl>
-
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -77,8 +65,6 @@ export function SupportForm() {
                       {...field}
                     />
                   </FormControl>
-
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -92,8 +78,6 @@ export function SupportForm() {
                   <FormControl>
                     <Input placeholder="Имя" className="" {...field} />
                   </FormControl>
-
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -107,8 +91,6 @@ export function SupportForm() {
                   <FormControl>
                     <Input placeholder="Фамилия" className="" {...field} />
                   </FormControl>
-
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -126,8 +108,6 @@ export function SupportForm() {
                       {...field}
                     />
                   </FormControl>
-
-                  <FormMessage />
                 </FormItem>
               )}
             />

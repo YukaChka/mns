@@ -56,7 +56,7 @@ export async function DELETE(request:Request) {
       res=false
     }
     
-    console.log(res)
+    
     return NextResponse.json({succes:res})
   } catch (error) {
     return NextResponse.json(error);

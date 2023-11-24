@@ -2,15 +2,14 @@ import { PostProps } from "@/app/api/posts/posts";
 import { da } from "date-fns/locale";
 import Link from "next/link";
 
-export default function NewPreview({ params }: { params: PostProps }) {
-  const ROUTE_POST_ID = `news/${params.post_id}`;
-  console.log(params);
+export default function NewPreview({ post }: { post: PostProps }) {
+  const ROUTE_POST_ID = `news/${post.post_id}`;
 
   const formatter = new Intl.DateTimeFormat("ru-RU", {
     month: "long",
     day: "numeric",
   });
-  const date_of_public = params.date_of_public.split(".");
+  const date_of_public = post.date_of_public.split(".");
   const date = formatter
     .format(
       new Date(`${date_of_public[2]}-${date_of_public[1]}-${date_of_public[0]}`)
@@ -29,10 +28,10 @@ export default function NewPreview({ params }: { params: PostProps }) {
 
         <div>
           <div className="ml-11 font-bold text-[20px] lg:text-[30px] ">
-            {params.title}
+            {post.title}
           </div>
           <div className="ml-11 text-[15px] lg:text-[20px] ">
-            {params.description[0]}
+            {post.description[0]}
             <span className="font-bold nobr text-[15px] lg:text-[20px]">
               <Link href={ROUTE_POST_ID}> Подробнее...</Link>
             </span>

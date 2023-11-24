@@ -4,9 +4,7 @@ import NewPreview from "@/components/new-preview";
 import { PostProps } from "@/app/api/posts/posts";
 
 async function GetPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
-    cache: "no-cache",
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
   return res.json() as Promise<PostProps[]>;
 }
 
@@ -24,7 +22,7 @@ export default async function NewsPage() {
               </div>
               <div className=" text-2xl  mt-8">
                 {posts.map((post: PostProps) => (
-                  <NewPreview key={post.post_id} params={post} />
+                  <NewPreview key={post.post_id} post={post} />
                 ))}
               </div>
             </div>

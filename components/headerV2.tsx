@@ -20,7 +20,7 @@ const HeaderV2 = () => {
     <header>
       <div>
         <div className="container w-full mt-8 mb-[5px]">
-          {width != 0 && session ? (
+          {width && session ? (
             <ul className="md:h-auto  justify-center md:ml-3 flex items-center  mr-auto">
               <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
                 <Navbar width={width} />
