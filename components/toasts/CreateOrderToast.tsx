@@ -13,8 +13,9 @@ import {
 import { CreatePostForm } from "../forms/createPostForm";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import { CreateOrderForm } from "../forms/createOrderForm";
 
-export function CreatePostToast() {
+export function CreateOrderToast() {
   const [open, setOpen] = useState(false);
 
   const props = useMemo(
@@ -37,7 +38,7 @@ export function CreatePostToast() {
                 className=" bg-[#009cf3] mr-3  hover:shadow-[inset_0_-2px_4px_rgba(0,0.5,0.5,0.5)] hover:bg-[#009cf3] transition delay-[50] ease-in-out"
                 data-ripple-light="true"
               >
-                Добавить новость
+                Добавить заказ
                 <Image
                   src="/img/addnews.svg"
                   alt="qe"
@@ -52,11 +53,11 @@ export function CreatePostToast() {
         <DialogContent className="">
           <DialogHeader>
             <DialogTitle>
-              <div>Добавить новость</div>
+              <div>Добавить заказ</div>
             </DialogTitle>
           </DialogHeader>
 
-          <CreatePostForm props={props} />
+          <CreateOrderForm props={props} />
         </DialogContent>
       </Dialog>
     </div>

@@ -1,7 +1,7 @@
 import { UserProps } from "@/app/api/user/user";
 import type { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { use } from "react";
+
 
 
 
@@ -21,7 +21,7 @@ export  const authConfig:AuthOptions ={
             async authorize(credentials) {
 
                 const url = process.env.NEXTAUTH_URL
-                
+                console.log(url)
                 const user  = await (await fetch(`${url}/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
                 let CurrentUser = user as UserProps;
@@ -31,9 +31,9 @@ export  const authConfig:AuthOptions ={
                     const person:User ={
                         id:CurrentUser.id,
                         email:CurrentUser.email,
-                        firstname:CurrentUser.firstname, 
-                        lastname:CurrentUser.lastname,
-                        role:CurrentUser.role,
+                        first_name:CurrentUser.first_name, 
+                        last_name:CurrentUser.last_name,
+                        role_user:CurrentUser.role_user,
                         password:CurrentUser.password
                     } 
                     
@@ -80,9 +80,9 @@ export  const authConfig:AuthOptions ={
         async session({ session, token, user}) {
         
             
-            session.user.role=token.user.role
-            session.user.firstname= token.user.firstname
-            session.user.lastname = token.user.lastname
+            session.user.role_user=token.user.role_user
+            session.user.first_name= token.user.first_name
+            session.user.last_name = token.user.last_name
             session.user.email= token.user.email
             
             
@@ -94,5 +94,10 @@ export  const authConfig:AuthOptions ={
     },
     pages:{
         signIn:"/signin"
+    },
+    session:{
+        strategy:"jwt",
+        maxAge:60*60
     }
+
 }

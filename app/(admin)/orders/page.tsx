@@ -1,15 +1,8 @@
-import { OrderProps } from "@/app/api/order/order";
+import { OrderProps } from "@/app/api/orders/orders";
 import { OrderTablePro } from "@/components/table";
 
 async function GetOrders() {
-  let url = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!url) {
-    url = "https://megatelnextjs.ru/api/order";
-  } else {
-    url = `${url}/api/order`;
-  }
-
-  const res = await fetch(url);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`);
 
   return res.json() as Promise<OrderProps[]>;
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Query } from "@/lib/db";
-import { GetPosts, PostProps, СreatePost } from "./posts";
+
+import { CreatePostProps, DeletePost, GetPosts, PostProps, UpdatePost, UpdatePostProps, СreatePost } from "./posts";
 
 export const dynamic = 'force-dynamic' 
 export async function GET(req: Request) {
@@ -10,18 +10,19 @@ export async function GET(req: Request) {
     const idq = searchParams.get("id");
 
     const posts = await GetPosts()
-    let CurrentPost:PostProps | undefined | PostProps[] | []
+    let CurrentPost:PostProps | undefined | PostProps[]
 
     
 
     if(idq){
-      CurrentPost = posts.find(({id})=> id.toString()===idq)
+      CurrentPost = posts.find(({post_id})=> post_id.toString()===idq)
       
     }
     else{
       CurrentPost = posts
     }
-
+    
+    
     return NextResponse.json(CurrentPost)
   } catch (Error) {
     return NextResponse.json(Error);
@@ -31,17 +32,47 @@ export async function GET(req: Request) {
 
 
 export async function POST(request: Request) {
-  const post:Promise<PostProps>  =await request.json()
+  const post:Promise<CreatePostProps>  =await request.json()
 
   try {
-    
-    console.log(post)
     const res = await СreatePost(await post)
-
-    return NextResponse.json(res);  
+    return NextResponse.json({succes:res});  
   } catch (error) {
     return NextResponse.json(error);
   }
 }
 
+export async function DELETE(request:Request) {
+  const { searchParams } = new URL(request.url);
+  
+  
+  try {
+    const idq = searchParams.get("id");
+    let res
+    if(idq){
+       res = await DeletePost(idq)
+    }
+    else{
+      res=false
+    }
+    
+    
+    return NextResponse.json({succes:res})
+  } catch (error) {
+    return NextResponse.json(error);
+  }
+  
+}
 
+export async function PUT(request: Request) {
+  const body:Promise<{post:UpdatePostProps,
+  isEdit:number}> =await request.json()
+  
+  
+  try {
+    const res = await UpdatePost((await body).post, (await body).isEdit)
+    return NextResponse.json({succes:res});  
+  } catch (error) {
+    return NextResponse.json(error);
+  }
+}

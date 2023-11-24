@@ -1,25 +1,36 @@
-import {Query } from "@/lib/db"
+import { client, conn} from "@/lib/db"
 
 export const dynamic = "force-dynamic";
 
 export async function GetUsers() {
-    const users= await Query({
-        query:`SELECT u.email, u.password, u.firstname, u.lastname, ut.role  FROM megatel_db.user u JOIN megatel_db.user_type ut ON u.id_user_type =ut.id_user_type`,
-        values:[],
-    });
-    return users;
+    await client.connect()
+    let users = new Array<UserProps>
     
-    //console.log(users)
     
+    try {  
+      await client.query("begin")
+      const query = "select u.email, u.password, u.first_name, u.last_name, tu.role_user from public.user u join public.type_user tu on u.type_user_id  = tu.type_user_id;"
+      users= (await client.query(query)).rows;
+      client.query('commit')
+    } catch (e) {
+      await client.query('rollback')
+  
+      throw e
+      
+    } finally{
+      client.end
+      return users
+    }
+
 }
 export interface UserProps
     {
     id:string;
     email: string;
     password: string;
-    firstname: string;
-    lastname: string;
-    role: string;
+    first_name: string;
+    last_name: string;
+    role_user: string;
 }
 
 

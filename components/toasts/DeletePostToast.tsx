@@ -1,4 +1,5 @@
-import { PostProps } from "@/app/api/posts/posts";
+"use client";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,14 +13,26 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function PostDialogDelete({ id }: { id: number }) {
+  const router = useRouter();
+  async function DeletePost() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`,
+      {
+        method: "delete",
+      }
+    );
+    router.refresh();
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
           size="sm"
-          className="bg-[#d9d9d9] text-black hover:bg-red-600 hover:text-white transition delay-[1] ease-in-out "
+          className="bg-[#d9d9d9] text-black hover:bg-red-600 hover:text-white transition delay-[1] ease-in-out  "
         >
           Удалить
           <Image
@@ -40,7 +53,10 @@ export function PostDialogDelete({ id }: { id: number }) {
           <AlertDialogCancel className=" hover:text-black">
             Отмена
           </AlertDialogCancel>
-          <AlertDialogAction className=" hover:bg-red-600 hover:text-white">
+          <AlertDialogAction
+            onClick={DeletePost}
+            className=" hover:bg-red-600 hover:text-white"
+          >
             Подтвердить
           </AlertDialogAction>
         </AlertDialogFooter>

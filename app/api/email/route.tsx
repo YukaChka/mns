@@ -1,7 +1,6 @@
-import { Query } from "@/lib/db";
 import { writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
-import { PostImagesProps } from "@/app/api/posts/posts";
+
 import { mailOptions, transporter } from "@/lib/email";
 export const dynamic = "force-dynamic";
 

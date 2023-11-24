@@ -1,7 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
+import {
+  CreateResourseProps,
+  ResourseProps,
+  UpdateResourseProps,
+} from "@/app/api/upload/route";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,45 +20,50 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
 import { PostProps } from "@/app/api/posts/posts";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
+import { UpPost } from "../actions/Post";
 
 const FormSchema = z.object({
-  datapublic: z.string().min(2, {
-    message: "must be at least 2 characters.",
-  }),
-  title: z.string().min(2, {
-    message: "must be at least 2 characters.",
-  }),
-  description: z.string().array().min(2, {
-    message: "must be at least 2 characters.",
-  }),
+  date_of_public: z.string(),
+  title: z.string(),
+  description: z.string(),
 });
 
-type ImageProps = {
-  path: string;
-  title: string;
-};
-
 export function EditPostForm({
-  id,
-  title,
-  datapublic,
-  description,
-  imgpaths,
-}: PostProps) {
+  props: { setOpen, open },
+  post: { resourses, title, date_of_public, description, post_id },
+}: {
+  props: {
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
+  };
+  post: PostProps;
+}) {
+  description = description.toString().replaceAll("\r,", "\n");
   const [file, setFile] = useState<File>();
-  const [images, setImages] = useState(Array<ImageProps>);
+  const [date, setDate] = useState(date_of_public);
+  const [head, setHead] = useState(title);
+  const [desc, setDesc] = useState(description);
+  const [isButton, setIsButton] = useState(false);
+  const [images, setImages] = useState<
+    UpdateResourseProps[] | CreateResourseProps[]
+  >(resourses);
+
+  const submit = false;
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      datapublic: datapublic,
-      title: title,
-      description: description,
-    },
   });
-  async function onSubmit(data: z.infer<typeof FormSchema>) {}
-
+  let curPost: PostProps = {
+    post_id,
+    date_of_public,
+    description,
+    title,
+    resourses,
+  };
   async function Upload(file: any) {
     if (!file) return;
 
@@ -80,6 +89,7 @@ export function EditPostForm({
   useEffect(() => {
     const getPath = async () => {
       const path = await Upload(file);
+
       if (path) {
         let url = path.path.replace(
           "public",
@@ -87,24 +97,50 @@ export function EditPostForm({
         );
         let name = path.path.split("/")[2];
         let [domen, dosc] = path.path.split("/");
-
-        setImages([...images, { path: `/${dosc}/${name}`, title: name }]);
+        if (resourses) {
+          setImages([
+            ...images,
+            {
+              path: `/${dosc}/${name}`,
+              title: name,
+            },
+          ]);
+        }
       }
     };
+
     getPath();
-  }, [file]);
+  }, [file, setFile]);
+
+  useEffect(() => {
+    if (head.trim() != "" && desc.trim() != "" && date.trim() != "") {
+      setIsButton(true);
+    } else {
+      setIsButton(false);
+    }
+  }, [head, desc, date, setDate, setHead, setDesc]);
+
+  const upPost = UpPost.bind(null, post_id, images, curPost);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
+      <form className=" space-y-6" action={upPost}>
         <FormField
           control={form.control}
-          name="datapublic"
+          name="date_of_public"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Дата</FormLabel>
               <FormControl>
-                <Input placeholder="Дата публикации" {...field} />
+                <Input
+                  placeholder="Дата публикации"
+                  {...field}
+                  required
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.currentTarget.value);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -117,7 +153,15 @@ export function EditPostForm({
             <FormItem>
               <FormLabel>Заголовок</FormLabel>
               <FormControl>
-                <Input placeholder="Введите Название" {...field} />
+                <Input
+                  placeholder="Введите Название"
+                  required
+                  {...field}
+                  value={head}
+                  onChange={(e) => {
+                    setHead(e.currentTarget.value);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -134,6 +178,11 @@ export function EditPostForm({
                   placeholder="Введите Текст"
                   className="min-h-[150px] max-h-[230px] "
                   {...field}
+                  required
+                  value={desc}
+                  onChange={(e) => {
+                    setDesc(e.currentTarget.value);
+                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -141,38 +190,66 @@ export function EditPostForm({
           )}
         />
 
-        <div>
-          <FormLabel>Загрузить фото</FormLabel>
-          <FormControl>
-            <Input
-              type="file"
-              onChange={(e) => {
-                setFile(e.target.files?.[0]);
-              }}
-            />
-          </FormControl>
-          <FormMessage />
-        </div>
-        {imgpaths && (
-          <div className="flex justify-start   p-5 ">
-            {images.map((img) => (
-              <div
-                key={img.path}
-                className=" mr-4 hover:bg-no-repeat hover:brightness-50"
+        <FormLabel>Загрузить фотографии</FormLabel>
+        <FormControl>
+          <Input
+            type="file"
+            onChange={(e) => {
+              setFile(e.target.files?.[0]);
+              e.currentTarget.value = "";
+            }}
+          />
+        </FormControl>
+
+        <div className="max-w-6xl">
+          {images && (
+            <div className="flex justify-center ">
+              <ScrollArea
+                className="w-96 whitespace-nowrap rounded-md border"
+                type="always"
               >
-                <Image
-                  className="justify-center"
-                  src={img.path}
-                  alt={img.title}
-                  height={70}
-                  width={70}
+                <ScrollBar
+                  orientation="horizontal"
+                  className="cursor-pointer"
                 />
-                {img.title}
-              </div>
-            ))}
-          </div>
-        )}
-        <Button type="submit" className="hover:bg-green-500">
+                <div className="flex w-max space-x-4 p-4">
+                  {images.map((res) => (
+                    <div
+                      key={res.path}
+                      className="overflow-hidden group  rounded-md flex p-1 justify-end items-center relative"
+                    >
+                      <Image
+                        src={res.path}
+                        alt={res.title}
+                        className="aspect-[3/4] h-fit w-fit object-cover"
+                        width={100}
+                        height={100}
+                      />
+                      <ResourceDialogDelete
+                        res={res}
+                        setResource={setImages}
+                        resource={images}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <ScrollBar
+                  orientation="horizontal"
+                  className="cursor-pointer"
+                />
+              </ScrollArea>
+            </div>
+          )}
+        </div>
+
+        <Button
+          type="submit"
+          disabled={!isButton}
+          className="hover:bg-green-500"
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
           Опубликовать
         </Button>
       </form>

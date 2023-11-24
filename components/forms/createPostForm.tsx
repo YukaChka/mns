@@ -15,26 +15,45 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
-import Link from "next/link";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  CreateResourseProps,
+  ResourseProps,
+  UpdateResourseProps,
+} from "@/app/api/upload/route";
 
-const FormSchema = z.object({
-  datapublic: z.string(),
-  title: z.string(),
-  description: z.string(),
-});
-type ImageProps = {
-  path: string;
-  title: string;
-};
+import { Loader2 } from "lucide-react";
+import { SubmitHandler } from "react-hook-form";
 
-export function CreatePostForm() {
+import { ScrollBar, ScrollArea } from "../ui/scroll-area";
+import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
+
+import { AddPost } from "../actions/Post";
+import { FormSchema } from "@/lib/schema";
+
+export type Inputs = z.infer<typeof FormSchema>;
+
+export function CreatePostForm({
+  props,
+}: {
+  props: {
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
+  };
+}) {
   const [file, setFile] = useState<File>();
-  const [images, setImages] = useState(Array<ImageProps>);
+  const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [isButton, setIsButton] = useState(false);
+  const [images, setImages] = useState<
+    CreateResourseProps[] | UpdateResourseProps[]
+  >([]);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      datapublic: "",
+      date_of_public: "",
       title: "",
       description: "",
     },
@@ -62,10 +81,6 @@ export function CreatePostForm() {
     }
   }
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-  }
-
   useEffect(() => {
     const getPath = async () => {
       const path = await Upload(file);
@@ -73,23 +88,49 @@ export function CreatePostForm() {
         let name = path.path.split("/")[2];
         let [domen, dosc] = path.path.split("/");
 
-        setImages([...images, { path: `/${dosc}/${name}`, title: name }]);
+        setImages([
+          ...images,
+          {
+            path: `/${dosc}/${name}`,
+            title: name,
+          },
+        ]);
       }
     };
     getPath();
   }, [file]);
 
+  useEffect(() => {
+    if (title != "" && desc != "" && date != "") {
+      setIsButton(true);
+    } else {
+      setIsButton(false);
+    }
+  }, [title, desc, date, setDate, setTitle, setDesc]);
+
+  const addPost = AddPost.bind(null, images);
+
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className=" space-y-6">
+      <form action={addPost} className=" space-y-6">
         <FormField
           control={form.control}
-          name="datapublic"
+          name="date_of_public"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Дата</FormLabel>
               <FormControl>
-                <Input placeholder="Дата публикации" type="date" {...field} />
+                <Input
+                  placeholder="Дата публикации"
+                  type="date"
+                  {...field}
+                  required
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.currentTarget.value);
+                  }}
+                  name="date_of_public"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -102,55 +143,106 @@ export function CreatePostForm() {
             <FormItem>
               <FormLabel>Заголовок</FormLabel>
               <FormControl>
-                <Input placeholder="Введите Название" {...field} />
+                <Input
+                  placeholder="Введите Название"
+                  {...field}
+                  required
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.currentTarget.value);
+                  }}
+                  name="title"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div>
-          <FormLabel>Описание</FormLabel>
-          <FormControl>
-            <Textarea placeholder="Введите Текст" className="max-h-96" />
-          </FormControl>
-          <FormMessage />
-        </div>
-        <div>
-          <FormLabel>Загрузить фото</FormLabel>
-          <FormControl>
-            <Input
-              type="file"
-              onChange={(e) => {
-                setFile(e.target.files?.[0]);
-              }}
-            />
-          </FormControl>
-          <FormMessage />
-        </div>
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Описание</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Введите Текст"
+                  {...field}
+                  className="max-h-56"
+                  required
+                  value={desc}
+                  onChange={(e) => {
+                    setDesc(e.currentTarget.value);
+                  }}
+                  name="description"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <div>
-          {images && (
+        <FormLabel>Загрузить фотографии</FormLabel>
+        <FormControl>
+          <Input
+            type="file"
+            onChange={(e) => {
+              setFile(e.target.files?.[0]);
+              e.currentTarget.value = "";
+            }}
+          />
+        </FormControl>
+
+        <div className="max-w-6xl">
+          {images.length != 0 && (
             <div className="flex justify-center ">
-              {images.map((img) => {
-                console.log(img.path);
-                return (
-                  <>
-                    <Image
-                      key={img.path}
-                      src={img.path}
-                      alt={img.title}
-                      className="pointer-events-none p-1   text-white"
-                      height={100}
-                      width={100}
-                    />
-                  </>
-                );
-              })}
+              <ScrollArea
+                className="w-96 whitespace-nowrap rounded-md border"
+                type="always"
+              >
+                <ScrollBar
+                  orientation="horizontal"
+                  className="cursor-pointer"
+                />
+                <div className="flex w-max space-x-4 p-4">
+                  {images.map((res) => (
+                    <div
+                      key={res.path}
+                      className="overflow-hidden group  rounded-md flex p-1 justify-end items-center relative"
+                    >
+                      <Image
+                        src={res.path}
+                        alt={res.title}
+                        className="aspect-[3/4] h-fit w-fit object-cover"
+                        width={100}
+                        height={100}
+                      />
+                      <ResourceDialogDelete
+                        res={res}
+                        setResource={setImages}
+                        resource={images}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <ScrollBar
+                  orientation="horizontal"
+                  className="cursor-pointer"
+                />
+              </ScrollArea>
             </div>
           )}
         </div>
 
-        <Button type="submit">Опубликовать</Button>
+        <Button
+          type="submit"
+          disabled={!isButton}
+          onClick={() => {
+            props.setOpen(false);
+          }}
+        >
+          Опубликовать
+        </Button>
       </form>
     </Form>
   );

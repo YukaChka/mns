@@ -10,14 +10,14 @@ export default withAuth(
         
         
         if (request.nextUrl.pathname.startsWith("/posts")){
-            if(request.nextauth.token?.user.role!== "админ"){
+            if(request.nextauth.token?.user.role_user!== "админ"){
                 
                 return NextResponse.rewrite(new URL("/404", request.url))
             }
         }
 
         if (request.nextUrl.pathname.startsWith("/orders")){
-            if(request.nextauth.token?.user.role!== "админ"){        
+            if(request.nextauth.token?.user.role_user!== "админ"){        
             
                 return NextResponse.rewrite(new URL("/404", request.url))
             }
@@ -40,6 +40,6 @@ export default withAuth(
     )
     
 
-export const config = { matcher: [] }
+export const config = { matcher: ["/orders", "/account", "/posts"] }
 
 

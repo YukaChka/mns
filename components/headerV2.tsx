@@ -11,15 +11,16 @@ import { usePathname } from "next/navigation";
 
 const HeaderV2 = () => {
   const { width, height } = useWindowSize();
-  const [open, setOpen] = useState(true);
+
   const session = useSession();
+
   const router = usePathname();
 
   return (
     <header>
       <div>
         <div className="container w-full mt-8 mb-[5px]">
-          {width != 0 && session ? (
+          {width && session ? (
             <ul className="md:h-auto  justify-center md:ml-3 flex items-center  mr-auto">
               <li className="font-semibold text-base mr-auto ml-auto lg:text-sm ">
                 <Navbar width={width} />
@@ -41,7 +42,7 @@ const HeaderV2 = () => {
               ) : (
                 <></>
               )}
-              {session.data?.user.role !== "админ" ? (
+              {session.data?.user.role_user !== "админ" ? (
                 <>
                   {width > 800 ? (
                     <li className="font-semibold text-base mr-auto ml-auto lg:text-sm">
@@ -89,13 +90,13 @@ const HeaderV2 = () => {
                 </li>
               ) : null}
 
-              {width > 1440 && session.data?.user.role !== "админ" ? (
+              {width > 1440 && session.data?.user.role_user !== "админ" ? (
                 <li className="font-normal text-base text-[#009cf3] mr-auto ml-auto ">
                   +7 (495) 223-89-86 <br />
                   phonex@megatel.ru
                 </li>
               ) : null}
-              {session.data?.user.role === "админ" ? (
+              {session.data?.user.role_user === "админ" ? (
                 <>
                   {width > 400 ? (
                     <li className="font-semibold text-base mr-auto ml-auto  lg:text-sm">

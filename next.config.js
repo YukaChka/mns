@@ -35,6 +35,11 @@ const nextConfig = {
       },
     ];
   },
+  experimental: {
+    serverActions: {
+      allowedForwardedHosts: ["t5dtht9t-3000.euw.devtunnels.ms"],
+    },
+  },
 };
 
 module.exports = nextConfig;

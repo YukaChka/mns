@@ -15,111 +15,80 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
-
+import { PostProps } from "@/app/api/posts/posts";
 import { OrderProps } from "@/app/api/orders/orders";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import {
-  CreateResourseProps,
-  ResourseProps,
-  UpdateResourseProps,
-} from "@/app/api/upload/route";
-import { typeFromAST } from "graphql";
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
-import { UpdateOrder } from "../actions/Order";
-import { strict } from "assert";
+import { AddOrder } from "../actions/Order";
+import {
+  CreateResourseProps,
+  UpdateResourseProps,
+} from "@/app/api/upload/route";
 
 const FormSchema = z.object({
   date_of_delivery: z.string(),
-  quantity_ports: z.number(),
+  quantity_ports: z.string(),
   module: z.string(),
   station: z.string().optional(),
   type_delivery: z.string(),
 });
 
-export function EditOrderForm({
-  order: {
-    date_of_delivery,
-    quantity_ports,
-    module,
-    station,
-    type_delivery,
-    resourses,
-    order_id,
-  },
+export function CreateOrderForm({
   props,
 }: {
-  order: OrderProps;
   props: {
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
   };
 }) {
   const [file, setFile] = useState<File>();
-
   const [images, setImages] = useState<
     CreateResourseProps[] | UpdateResourseProps[]
-  >(resourses);
-  const [date, setDate] = useState(date_of_delivery);
-  const [ports, setPorts] = useState(quantity_ports);
-  const [mod, setModule] = useState(module);
-  const [st, setStation] = useState(station);
-  const [type, setType] = useState(type_delivery);
+  >([]);
+  const [date, setDate] = useState("");
+  const [ports, setPorts] = useState(0);
+  const [module, setModule] = useState("");
+  const [type, setType] = useState("");
   const [isButton, setIsButton] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      date_of_delivery: "",
+      quantity_ports: "",
+      module: "",
+      station: "",
+      type_delivery: "",
+    },
   });
-  const curOrder: OrderProps = {
-    order_id,
-    date_of_delivery,
-    quantity_ports,
-    module,
-    station,
-    type_delivery,
-    resourses,
-  };
 
-  curOrder.module = curOrder.module.toString();
   useEffect(() => {
     const getPath = async () => {
       const path = await Upload(file);
       if (path) {
-        let url = path.path.replace(
-          "public",
-          `${process.env.NEXT_PUBLIC_BASE_URL}`
-        );
         let name = path.path.split("/")[2];
+        let [domen, dosc] = path.path.split("/");
 
-        setImages([...images, { path: url, title: name }]);
+        setImages([
+          ...images,
+          {
+            path: `/${dosc}/${name}`,
+            title: name,
+          },
+        ]);
       }
     };
     getPath();
   }, [file]);
 
   useEffect(() => {
-    if (
-      date.trim() != "" &&
-      mod != "" &&
-      type.trim() != "" &&
-      mod.length <= 200
-    ) {
+    if (date != "" && module != "" && type != "" && module.length <= 150) {
       setIsButton(true);
     } else {
       setIsButton(false);
     }
-  }, [
-    date,
-    ports,
-    mod,
-    st,
-    type,
-    setDate,
-    setPorts,
-    setModule,
-    setStation,
-    setType,
-  ]);
+  }, [date, ports, module, type, setDate, setPorts, setModule, setType]);
 
   async function Upload(file: any) {
     if (!file) return;
@@ -142,10 +111,10 @@ export function EditOrderForm({
       console.error(e);
     }
   }
-  const upOrder = UpdateOrder.bind(null, order_id, images, curOrder);
+  const addOrder = AddOrder.bind(null, images);
   return (
     <Form {...form}>
-      <form action={upOrder} className=" grid grid-cols-2 gap-4">
+      <form action={addOrder} className=" grid grid-cols-2 gap-4">
         <FormField
           control={form.control}
           name="date_of_delivery"
@@ -155,9 +124,10 @@ export function EditOrderForm({
               <FormControl>
                 <Input
                   placeholder="Дата публикации"
+                  type="date"
                   {...field}
                   required
-                  defaultValue={date}
+                  value={date}
                   onChange={(e) => {
                     setDate(e.currentTarget.value);
                   }}
@@ -206,7 +176,7 @@ export function EditOrderForm({
                     {...field}
                     name="module"
                     required
-                    value={mod}
+                    value={module}
                     onChange={(e) => {
                       setModule(e.currentTarget.value);
                     }}
@@ -271,6 +241,7 @@ export function EditOrderForm({
               }}
             />
           </FormControl>
+          <FormMessage />
         </div>
         <div className="max-w-6xl col-span-2">
           {images.length != 0 && (
@@ -316,12 +287,10 @@ export function EditOrderForm({
           <Button
             type="submit"
             disabled={!isButton}
-            onClick={() => {
-              props.setOpen(false);
-            }}
+            onClick={() => props.setOpen(false)}
             className="hover:bg-green-500"
           >
-            Редактировать
+            Добавить
           </Button>
         </div>
       </form>

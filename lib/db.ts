@@ -1,32 +1,34 @@
-
-import mysql, { RowDataPacket } from "mysql2/promise.js";
+import { Pool, QueryResultRow , QueryResultBase, QueryResult} from "pg";
 
 interface dbquery<T>{
-    query: string;
-    values: Array<T>;
-    
+  query: string;
+  values: Array<T>;
+ 
 }
 
-
-
-export async function Query<T>(params: dbquery<T>) {
-  const dbconn = await 
-  mysql.createConnection({
-    host: "46.161.48.157",
-    port:3306,
-    user: "root1",
-    password: "AdminMM!",
-    database: "megatel_db",
-  })
-  try {
-    
-    const [results] = await dbconn.query<T & RowDataPacket[]>(params.query, params.values);
-    
-    dbconn.end();
-    
-    return results as T;
-  } catch (error) {
-    
-    return error;
-  }
+export interface ServiceResponce<T>{
+  data:QueryResult<QueryResultRow>|null;
+  status:Number;
+  message:String;
+  succes:boolean;
 }
+
+export const conn=new Pool({
+  user: "root1",
+  password: "AdminMM!1",
+  host: "91.185.84.230",
+  port: 5432,
+  database: "megatel_db",
+  
+});
+
+import { Client } from 'pg'
+ 
+export const client = new Client({
+  user: "root1",
+  password: "AdminMM!1",
+  host: "91.185.84.230",
+  port: 5432,
+  database: "megatel_db",
+})
+

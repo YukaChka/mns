@@ -13,13 +13,23 @@ import {
 
 import Image from "next/image";
 
-import { OrderProps } from "@/app/api/order/order";
+import { OrderProps } from "@/app/api/orders/orders";
 import { EditOrderForm } from "@/components/forms/editOrderForm";
+import { useMemo, useState } from "react";
 
 export function EditOrderToast({ order }: { order: OrderProps }) {
+  const [open, setOpen] = useState(false);
+
+  const props = useMemo(
+    () => ({
+      setOpen,
+      open,
+    }),
+    [open]
+  );
   return (
     <div>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild className="">
           <div className="hover:cursor-pointer ">
             <Image
@@ -38,7 +48,7 @@ export function EditOrderToast({ order }: { order: OrderProps }) {
             </DialogTitle>
           </DialogHeader>
           <div>
-            <EditOrderForm order={order} />
+            <EditOrderForm order={order} props={props} />
           </div>
         </DialogContent>
       </Dialog>

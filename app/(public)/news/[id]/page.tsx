@@ -1,5 +1,3 @@
-"use client";
-
 import { PostProps } from "@/app/api/posts/posts";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,63 +9,44 @@ type NewProps = {
 };
 
 async function GetPost(id: string) {
-  let url = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!url) {
-    url = `https://megatelnextjs.ru/api/posts?id=${id}`;
-  } else {
-    url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`;
-  }
-
-  const res = await fetch(url);
-
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`,
+    {
+      cache: "no-cache",
+    }
+  );
   return res.json() as Promise<PostProps>;
 }
 
 export default async function New({ params }: NewProps) {
   const post = await GetPost(params.id);
+  console.log(post);
 
-  const CurrentDate = new Date(post.datapublic);
-  const formatter = new Intl.DateTimeFormat("ru-RU", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
-  const date = formatter.format(CurrentDate).split(" ");
-
+  const text = post.description as string[];
+  console.log(text);
   return (
     <main>
       <div className="mt-20">
         <div className="mb-5 ">
-          <div className="flex container justify-center">
+          <div className="flex container ">
             <div className="max-w-6xl">
               <div className=" ">
                 <Link href="/news" className="text-xl">
                   {"<"} Новости
                 </Link>
-                <div className="font-bold mt-2">{date[0]}</div>
+                <div className="font-bold mt-2">{post.date_of_public}</div>
               </div>
               <div className="font-bold text-2xl mt-2 text-center md:text-start">
                 {post.title}
               </div>
               <div className=" text-xl mt-8 text-center md:text-start">
-                {post.description.map((str) => (
-                  <p className="mt-5" key={str}>
+                {text.map((str, i) => (
+                  <p className="mt-5" key={i}>
                     {str}
                   </p>
                 ))}
               </div>
-              <div className="flex justify-center p-9">
-                {post.imgpaths.map((img) => (
-                  <div key={img.id}>
-                    <Image
-                      height={1000}
-                      width={1000}
-                      alt={img.title}
-                      src={img.path}
-                    />
-                  </div>
-                ))}
-              </div>
+              <div className="flex justify-center p-9"></div>
             </div>
           </div>
         </div>

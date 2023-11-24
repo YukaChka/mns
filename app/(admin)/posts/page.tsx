@@ -1,28 +1,21 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import TableNews from "@/components/admin/tableNews";
-import Link from "next/link";
-import { useState } from "react";
+
 import { CreatePostToast } from "@/components/toasts/CreatePostToast";
 import { PostProps } from "@/app/api/posts/posts";
+import TableNews from "@/components/admin/tableNews";
 import ItemNew from "@/components/admin/itemNew";
 
-async function GetData() {
-  let url = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!url) {
-    url = "https://megatelnextjs.ru/api/posts";
-  } else {
-    url = `${url}/api/posts`;
-  }
-
-  const res = await fetch(url);
-
+async function GetPosts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
+    cache: "default",
+  });
   return res.json() as Promise<PostProps[]>;
 }
 
 export default async function AdminNewsPage() {
-  const posts = await GetData();
+  const posts = await GetPosts();
+
   return (
     <div>
       <div>
@@ -51,19 +44,14 @@ export default async function AdminNewsPage() {
           </div>
         </div>
       </div>
-      <div>
-        {posts.map((post) => (
-          <div key={post.id} className="p-1">
-            <ItemNew
-              id={post.id}
-              description={post.description}
-              datapublic={post.datapublic}
-              imgpaths={post.imgpaths}
-              title={post.title}
-            />
-          </div>
-        ))}
-      </div>
+      <ul>
+        {posts &&
+          posts.map((post, index) => (
+            <li key={Date.now()}>
+              <ItemNew post={post} />
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
