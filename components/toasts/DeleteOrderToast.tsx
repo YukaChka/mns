@@ -1,4 +1,5 @@
-import { PostProps } from "@/app/api/posts/posts";
+"use client";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,10 +11,21 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export function OrderDialogDelete({ id }: { id: number }) {
+  const router = useRouter();
+  async function DeletePost() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${id}`,
+      {
+        method: "delete",
+      }
+    );
+    router.refresh();
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -36,7 +48,10 @@ export function OrderDialogDelete({ id }: { id: number }) {
           <AlertDialogCancel className=" hover:text-black">
             Отмена
           </AlertDialogCancel>
-          <AlertDialogAction className=" hover:bg-red-600 hover:text-white">
+          <AlertDialogAction
+            onClick={DeletePost}
+            className=" hover:bg-red-600 hover:text-white"
+          >
             Подтвердить
           </AlertDialogAction>
         </AlertDialogFooter>

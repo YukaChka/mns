@@ -16,31 +16,23 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
 import { PostProps } from "@/app/api/posts/posts";
-import { OrderProps } from "@/app/api/order/order";
+import { OrderProps } from "@/app/api/orders/orders";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
+import { AddOrder } from "../actions/Order";
+import {
+  CreateResourseProps,
+  UpdateResourseProps,
+} from "@/app/api/upload/route";
 
 const FormSchema = z.object({
-  data_delivery: z.string().min(1, {
-    message: "Поле не должно быть пустым",
-  }),
-  quantity_ports: z.string().min(1, {
-    message: "Поле не должно быть пустым",
-  }),
-  module: z.string().min(1, {
-    message: "Поле не должно быть пустым",
-  }),
+  date_of_delivery: z.string(),
+  quantity_ports: z.string(),
+  module: z.string(),
   station: z.string().optional(),
-  delivery_type: z.string().min(1, {
-    message: "Поле не должно быть пустым",
-  }),
+  type_delivery: z.string(),
 });
-
-type ImageProps = {
-  path: string;
-  title: string;
-};
 
 export function CreateOrderForm({
   props,
@@ -51,16 +43,23 @@ export function CreateOrderForm({
   };
 }) {
   const [file, setFile] = useState<File>();
-  const [images, setImages] = useState(Array<ImageProps>);
+  const [images, setImages] = useState<
+    CreateResourseProps[] | UpdateResourseProps[]
+  >([]);
+  const [date, setDate] = useState("");
+  const [ports, setPorts] = useState(0);
+  const [module, setModule] = useState("");
+  const [type, setType] = useState("");
+  const [isButton, setIsButton] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      data_delivery: "",
+      date_of_delivery: "",
       quantity_ports: "",
       module: "",
       station: "",
-      delivery_type: "",
+      type_delivery: "",
     },
   });
 
@@ -68,17 +67,28 @@ export function CreateOrderForm({
     const getPath = async () => {
       const path = await Upload(file);
       if (path) {
-        let url = path.path.replace(
-          "public",
-          `${process.env.NEXT_PUBLIC_BASE_URL}`
-        );
         let name = path.path.split("/")[2];
+        let [domen, dosc] = path.path.split("/");
 
-        setImages([...images, { path: url, title: name }]);
+        setImages([
+          ...images,
+          {
+            path: `/${dosc}/${name}`,
+            title: name,
+          },
+        ]);
       }
     };
     getPath();
   }, [file]);
+
+  useEffect(() => {
+    if (date != "" && module != "" && type != "" && module.length <= 150) {
+      setIsButton(true);
+    } else {
+      setIsButton(false);
+    }
+  }, [date, ports, module, type, setDate, setPorts, setModule, setType]);
 
   async function Upload(file: any) {
     if (!file) return;
@@ -101,22 +111,28 @@ export function CreateOrderForm({
       console.error(e);
     }
   }
-
-  async function onSubmit(data: z.infer<typeof FormSchema>) {}
+  const addOrder = AddOrder.bind(null, images);
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className=" grid grid-cols-2 gap-4"
-      >
+      <form action={addOrder} className=" grid grid-cols-2 gap-4">
         <FormField
           control={form.control}
-          name="data_delivery"
+          name="date_of_delivery"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Дата Поставки</FormLabel>
               <FormControl>
-                <Input placeholder="Дата Поставки" {...field} />
+                <Input
+                  placeholder="Дата публикации"
+                  type="date"
+                  {...field}
+                  required
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.currentTarget.value);
+                  }}
+                  name="date_of_delivery"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -129,7 +145,18 @@ export function CreateOrderForm({
             <FormItem>
               <FormLabel>Количество Портов</FormLabel>
               <FormControl>
-                <Input placeholder="Введите Количество" {...field} />
+                <Input
+                  placeholder="Введите Количество"
+                  type="number"
+                  required
+                  {...field}
+                  value={ports}
+                  min={0}
+                  onChange={(e) => {
+                    setPorts(parseInt(e.currentTarget.value));
+                  }}
+                  name="quantity_ports"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -147,6 +174,12 @@ export function CreateOrderForm({
                     placeholder="Введите Модули"
                     className="min-w-min max-h-40"
                     {...field}
+                    name="module"
+                    required
+                    value={module}
+                    onChange={(e) => {
+                      setModule(e.currentTarget.value);
+                    }}
                   />
                 </FormControl>
                 <FormMessage />
@@ -165,6 +198,7 @@ export function CreateOrderForm({
                   placeholder="Введите Станцию"
                   className="min-w-min max-h-96"
                   {...field}
+                  name="station"
                 />
               </FormControl>
               <FormMessage />
@@ -173,7 +207,7 @@ export function CreateOrderForm({
         />
         <FormField
           control={form.control}
-          name="delivery_type"
+          name="type_delivery"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Тип Поставки</FormLabel>
@@ -182,12 +216,19 @@ export function CreateOrderForm({
                   placeholder="Введите Тип Поставки"
                   className="min-w-min max-h-24"
                   {...field}
+                  name="type_delivery"
+                  value={type}
+                  onChange={(e) => {
+                    setType(e.currentTarget.value);
+                  }}
+                  required
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <div className="col-span-2">
           <FormLabel>Загрузить Документы</FormLabel>
           <FormControl>
@@ -243,7 +284,12 @@ export function CreateOrderForm({
           )}
         </div>
         <div className="col-span-2">
-          <Button type="submit" className="hover:bg-green-500">
+          <Button
+            type="submit"
+            disabled={!isButton}
+            onClick={() => props.setOpen(false)}
+            className="hover:bg-green-500"
+          >
             Добавить
           </Button>
         </div>

@@ -36,24 +36,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { OrderProps } from "@/app/api/order/order";
+import { OrderProps } from "@/app/api/orders/orders";
 import { EditOrderToast } from "@/components/toasts/EditOrderToast";
 import { OrderDialogDelete } from "@/components/toasts/DeleteOrderToast";
 import { CreateOrderToast } from "./toasts/CreateOrderToast";
 
 export const columns: ColumnDef<OrderProps>[] = [
   {
-    accessorKey: "data_delivery",
+    accessorKey: "date_of_delivery",
     header: "Дата Поставки",
     cell: ({ row }) => {
-      const CurrentDate = new Date(row.getValue("data_delivery"));
-      const formatter = new Intl.DateTimeFormat("ru-RU", {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      });
-      const date = formatter.format(CurrentDate).split(" ");
-      return <div className="capitalize text-center">{date[0]}</div>;
+      return (
+        <div className="capitalize text-center">
+          {row.getValue("date_of_delivery")}
+        </div>
+      );
     },
   },
   {
@@ -80,11 +77,11 @@ export const columns: ColumnDef<OrderProps>[] = [
     ),
   },
   {
-    accessorKey: "delivery_type",
+    accessorKey: "type_delivery",
     header: "Тип доставки",
     cell: ({ row }) => (
       <div className="capitalize text-center">
-        {row.getValue("delivery_type")}
+        {row.getValue("type_delivery")}
       </div>
     ),
   },
@@ -109,7 +106,7 @@ export const columns: ColumnDef<OrderProps>[] = [
 
       return (
         <div>
-          <OrderDialogDelete id={order.id_order} />
+          <OrderDialogDelete id={order.order_id} />
         </div>
       );
     },

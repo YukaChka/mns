@@ -36,7 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import { OrderProps } from "@/app/api/order/order";
+import { OrderProps } from "@/app/api/orders/orders";
 import { EditOrderToast } from "../toasts/EditOrderToast";
 import { OrderDialogDelete } from "../toasts/DeleteOrderToast";
 import { OrderTablePro } from "@/components/table";

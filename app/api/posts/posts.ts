@@ -44,7 +44,7 @@ export async function GetPosts() {
 
   try {  
     await client.query("begin")
-    const post_query =`select p.post_id,p.description, p.date_of_public,  p.title from post p;`
+    const post_query =`select p.post_id,p.description, p.date_of_public,  p.title from post p ORDER BY p.date_of_public DESC`
     
     const model_posts = await client.query(post_query) ;
     const data_posts=model_posts.rows as Array<PostModel>
@@ -119,8 +119,6 @@ export async function UpdatePost(post:UpdatePostProps, isEdit:number) {
   const client = await conn.connect()
   try { 
   
-  console.log(post)
-  console.log(isEdit)
 
   
   const formatter = new Intl.DateTimeFormat("en-US", {

@@ -18,10 +18,12 @@ import { useRouter } from "next/navigation";
 export function PostDialogDelete({ id }: { id: number }) {
   const router = useRouter();
   async function DeletePost() {
-    let url = `/api/posts?id=${id}`;
-    const res = await fetch(url, {
-      method: "delete",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`,
+      {
+        method: "delete",
+      }
+    );
     router.refresh();
   }
 
