@@ -7,7 +7,9 @@ import TableNews from "@/components/admin/tableNews";
 import ItemNew from "@/components/admin/itemNew";
 
 async function GetPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
+    cache: "no-cache",
+  });
   return res.json() as Promise<PostProps[]>;
 }
 
