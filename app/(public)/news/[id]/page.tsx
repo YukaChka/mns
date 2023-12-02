@@ -20,10 +20,9 @@ async function GetPost(id: string) {
 
 export default async function New({ params }: NewProps) {
   const post = await GetPost(params.id);
-  console.log(post);
 
   const text = post.description as string[];
-  console.log(text);
+
   return (
     <main>
       <div className="mt-20">
@@ -46,7 +45,7 @@ export default async function New({ params }: NewProps) {
                   </p>
                 ))}
               </div>
-              <div className="flex justify-center p-9"></div>
+              <div className="flex justify-center p-9">{}</div>
             </div>
           </div>
         </div>
