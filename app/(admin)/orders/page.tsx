@@ -1,5 +1,5 @@
 import { OrderProps } from "@/app/api/orders/orders";
-import { OrderTablePro } from "@/components/table";
+import { OrderTablePro } from "@/components/admin/dataOrderTable";
 
 async function GetOrders() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, {

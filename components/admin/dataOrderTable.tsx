@@ -39,7 +39,7 @@ import {
 import { OrderProps } from "@/app/api/orders/orders";
 import { EditOrderToast } from "@/components/toasts/EditOrderToast";
 import { OrderDialogDelete } from "@/components/toasts/DeleteOrderToast";
-import { CreateOrderToast } from "./toasts/CreateOrderToast";
+import { CreateOrderToast } from "../toasts/CreateOrderToast";
 
 export const columns: ColumnDef<OrderProps>[] = [
   {

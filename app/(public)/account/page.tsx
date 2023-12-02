@@ -1,6 +1,7 @@
 "use client";
-import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
+import { UserOrderTable } from "@/components/userOrderTable";
 import { signOut, useSession } from "next-auth/react";
 
 export default function AccountPage() {
@@ -33,6 +34,9 @@ export default function AccountPage() {
                 <p className="pb-5">Фамилия: {user?.last_name}</p>
                 <p className="pb-5">Имя: {user?.first_name}</p>
                 <p className="pb-5">Почта: {user?.email}</p>
+              </div>
+              <div>
+                {user?.user_id && <UserOrderTable user_id={user?.user_id} />}
               </div>
             </div>
           </div>

@@ -20,7 +20,8 @@ export async function GET(req: Request) {
     let CurrentOrder: OrderProps | undefined | OrderProps[];
 
     if (idq) {
-      CurrentOrder = orders.find(({ order_id }) => order_id.toString() === idq);
+      CurrentOrder =
+        orders.filter(({ user_id }) => user_id?.toString() === idq) ?? [];
     } else {
       CurrentOrder = orders;
     }

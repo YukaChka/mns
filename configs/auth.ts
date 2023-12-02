@@ -30,6 +30,7 @@ export  const authConfig:AuthOptions ={
                     
                     const person:User ={
                         id:CurrentUser.user_id,
+                        user_id:CurrentUser.user_id,
                         email:CurrentUser.email,
                         first_name:CurrentUser.first_name, 
                         last_name:CurrentUser.last_name,
@@ -79,7 +80,7 @@ export  const authConfig:AuthOptions ={
         // If you want to use the role in client components
         async session({ session, token, user}) {
         
-            
+            session.user.user_id = token.user.user_id
             session.user.role_user=token.user.role_user
             session.user.first_name= token.user.first_name
             session.user.last_name = token.user.last_name

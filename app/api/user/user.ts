@@ -9,7 +9,7 @@ export async function GetUsers() {
     
     try {  
       await client.query("begin")
-      const query = "select u.email, u.password, u.first_name, u.last_name, tu.role_user from public.user u join public.type_user tu on u.type_user_id  = tu.type_user_id;"
+      const query = "select u.user_id, u.email, u.password, u.first_name, u.last_name, tu.role_user from public.user u join public.type_user tu on u.type_user_id  = tu.type_user_id;"
       users= (await client.query(query)).rows;
       client.query('commit')
     } catch (e) {

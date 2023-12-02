@@ -39,14 +39,14 @@ import Image from "next/image";
 import { OrderProps } from "@/app/api/orders/orders";
 import { EditOrderToast } from "../toasts/EditOrderToast";
 import { OrderDialogDelete } from "../toasts/DeleteOrderToast";
-import { OrderTablePro } from "@/components/table";
+import { OrderTablePro } from "@/components/admin/dataOrderTable";
 
 async function GetOrders() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
   if (!url) {
-    url = "http://megatelnextjs.ru/api/order";
+    url = "http://megatelnextjs.ru/api/orders";
   } else {
-    url = `${url}/api/order`;
+    url = `${url}/api/orders`;
   }
   const responce = await fetch(url);
 
