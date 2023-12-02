@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
-import { PostProps } from "@/app/api/posts/posts";
+import { UserData } from "@/app/api/user/user";
 import { OrderProps } from "@/app/api/orders/orders";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
@@ -26,12 +26,29 @@ import {
   UpdateResourseProps,
 } from "@/app/api/upload/route";
 
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 const FormSchema = z.object({
   date_of_delivery: z.string(),
   quantity_ports: z.string(),
   module: z.string(),
   station: z.string().optional(),
   type_delivery: z.string(),
+  user: z.string(),
 });
 
 export function CreateOrderForm({
@@ -50,6 +67,9 @@ export function CreateOrderForm({
   const [ports, setPorts] = useState(0);
   const [module, setModule] = useState("");
   const [type, setType] = useState("");
+  const [users, setUsers] = useState<UserData[]>([]);
+
+  const [selectUser, setSelectUser] = useState<UserData | null>(null);
   const [isButton, setIsButton] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -60,6 +80,7 @@ export function CreateOrderForm({
       module: "",
       station: "",
       type_delivery: "",
+      user: "",
     },
   });
 
@@ -83,12 +104,40 @@ export function CreateOrderForm({
   }, [file]);
 
   useEffect(() => {
-    if (date != "" && module != "" && type != "" && module.length <= 150) {
+    const getUsers = async () => {
+      const res = await GetEmails();
+      if (res) {
+        console.log(res);
+        setUsers(res);
+      }
+    };
+    getUsers();
+  }, []);
+
+  useEffect(() => {
+    if (
+      date != "" &&
+      module != "" &&
+      type != "" &&
+      module.length <= 150 &&
+      selectUser?.email
+    ) {
       setIsButton(true);
     } else {
       setIsButton(false);
     }
-  }, [date, ports, module, type, setDate, setPorts, setModule, setType]);
+  }, [
+    date,
+    ports,
+    module,
+    type,
+    selectUser,
+    setDate,
+    setPorts,
+    setModule,
+    setType,
+    setSelectUser,
+  ]);
 
   async function Upload(file: any) {
     if (!file) return;
@@ -111,7 +160,13 @@ export function CreateOrderForm({
       console.error(e);
     }
   }
-  const addOrder = AddOrder.bind(null, images);
+
+  async function GetEmails() {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+    return res.json() as Promise<UserData[]>;
+  }
+
+  const addOrder = AddOrder.bind(null, selectUser, images);
   return (
     <Form {...form}>
       <form action={addOrder} className=" grid grid-cols-2 gap-4">
@@ -228,6 +283,66 @@ export function CreateOrderForm({
             </FormItem>
           )}
         />
+        <div className="col-span-2">
+          <FormField
+            control={form.control}
+            name="user"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Выберите Пользователя</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        name="user"
+                        className={cn(
+                          "min-w-full max-h-24",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value
+                          ? users.find((user) => user.email === field.value)
+                              ?.email
+                          : "Выберите Пользователя"}
+                        <ChevronsUpDown className="shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="p-0">
+                    <Command>
+                      <CommandInput placeholder="Введите Почту..." />
+                      <CommandEmpty>Такого Пользователя Нет</CommandEmpty>
+                      <CommandGroup>
+                        {users.map((user) => (
+                          <CommandItem
+                            value={user.email}
+                            key={user.user_id}
+                            onSelect={() => {
+                              form.setValue("user", user.email);
+                              setSelectUser(user);
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                user.email === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                            {user.email}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </FormItem>
+            )}
+          />
+        </div>
 
         <div className="col-span-2">
           <FormLabel>Загрузить Документы</FormLabel>

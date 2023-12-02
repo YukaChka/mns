@@ -23,11 +23,26 @@ import {
   ResourseProps,
   UpdateResourseProps,
 } from "@/app/api/upload/route";
-import { typeFromAST } from "graphql";
 import { ScrollBar, ScrollArea } from "../ui/scroll-area";
 import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
 import { UpdateOrder } from "../actions/Order";
-import { strict } from "assert";
+
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { UserData } from "@/app/api/user/user";
 
 const FormSchema = z.object({
   date_of_delivery: z.string(),
@@ -35,6 +50,7 @@ const FormSchema = z.object({
   module: z.string(),
   station: z.string().optional(),
   type_delivery: z.string(),
+  user: z.string(),
 });
 
 export function EditOrderForm({
@@ -46,6 +62,7 @@ export function EditOrderForm({
     type_delivery,
     resourses,
     order_id,
+    user_id,
   },
   props,
 }: {
@@ -65,6 +82,8 @@ export function EditOrderForm({
   const [mod, setModule] = useState(module);
   const [st, setStation] = useState(station);
   const [type, setType] = useState(type_delivery);
+  const [users, setUsers] = useState<UserData[]>([]);
+  const [selectUser, setSelectUser] = useState<UserData | null>(null);
   const [isButton, setIsButton] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -77,6 +96,7 @@ export function EditOrderForm({
     module,
     station,
     type_delivery,
+    user_id: user_id,
     resourses,
   };
 
@@ -98,11 +118,28 @@ export function EditOrderForm({
   }, [file]);
 
   useEffect(() => {
+    const getUsers = async () => {
+      const res = await GetEmails();
+      if (res) {
+        setUsers(res);
+        let user =
+          res.find(({ user_id }) => user_id === curOrder.user_id) ?? null;
+
+        setSelectUser(user);
+
+        form.setValue("user", user?.email ?? "");
+      }
+    };
+    getUsers();
+  }, []);
+
+  useEffect(() => {
     if (
       date.trim() != "" &&
       mod != "" &&
       type.trim() != "" &&
-      mod.length <= 200
+      mod.length <= 200 &&
+      selectUser?.email
     ) {
       setIsButton(true);
     } else {
@@ -114,11 +151,13 @@ export function EditOrderForm({
     mod,
     st,
     type,
+    selectUser,
     setDate,
     setPorts,
     setModule,
     setStation,
     setType,
+    setSelectUser,
   ]);
 
   async function Upload(file: any) {
@@ -142,7 +181,18 @@ export function EditOrderForm({
       console.error(e);
     }
   }
-  const upOrder = UpdateOrder.bind(null, order_id, images, curOrder);
+
+  async function GetEmails() {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+    return res.json() as Promise<UserData[]>;
+  }
+  const upOrder = UpdateOrder.bind(
+    null,
+    order_id,
+    selectUser,
+    images,
+    curOrder
+  );
   return (
     <Form {...form}>
       <form action={upOrder} className=" grid grid-cols-2 gap-4">
@@ -258,6 +308,67 @@ export function EditOrderForm({
             </FormItem>
           )}
         />
+
+        <div className="col-span-2">
+          <FormField
+            control={form.control}
+            name="user"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Выберите Пользователя</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        name="user"
+                        className={cn(
+                          "min-w-full max-h-24",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value
+                          ? users.find((user) => user.email === field.value)
+                              ?.email
+                          : "Выберите Пользователя"}
+                        <ChevronsUpDown className="shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="p-0">
+                    <Command>
+                      <CommandInput placeholder="Введите Почту..." />
+                      <CommandEmpty>Такого Пользователя Нет</CommandEmpty>
+                      <CommandGroup>
+                        {users.map((user) => (
+                          <CommandItem
+                            value={user.email}
+                            key={user.user_id}
+                            onSelect={() => {
+                              form.setValue("user", user.email);
+                              setSelectUser(user);
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                user.email === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                            {user.email}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </FormItem>
+            )}
+          />
+        </div>
 
         <div className="col-span-2">
           <FormLabel>Загрузить Документы</FormLabel>

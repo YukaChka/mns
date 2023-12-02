@@ -68,3 +68,17 @@ export async function UpPost(post_id:number,images:UpdateResourseProps[],curPost
     revalidatePath("/posts");
     
   }
+
+
+  
+export async function DeletePost(id:number) {
+  console.log("1")
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`,
+      {
+        method: "delete",
+      }
+    );
+
+    revalidatePath("/posts");
+  }

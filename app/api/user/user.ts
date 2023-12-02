@@ -23,14 +23,46 @@ export async function GetUsers() {
     }
 
 }
+
+
+export async function GetUserData() {
+  const client=  await conn.connect()
+  let user:UserData[];
+  try {  
+    await client.query("begin")
+    const query = "select u.user_id, u.email from public.user u where type_user_id=2"
+    
+    user =(await client.query(query)).rows as  UserData[]
+    client.query('commit')
+    return user
+  } catch (e) {
+    await client.query('rollback')
+
+    throw e
+    
+  } finally{
+    client.release();
+    
+  }
+
+}
+
+
 export interface UserProps
     {
-    id:string;
+    user_id:string;
     email: string;
     password: string;
     first_name: string;
     last_name: string;
     role_user: string;
+}
+
+export interface UserData
+    {
+    user_id:number;
+    email: string;
+   
 }
 
 

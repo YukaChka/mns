@@ -21,15 +21,15 @@ export  const authConfig:AuthOptions ={
             async authorize(credentials) {
 
                 const url = process.env.NEXTAUTH_URL
-                console.log(url)
-                const user  = await (await fetch(`${url}/api/user?email=${credentials?.email}&pass=${credentials?.password}`)).json();
+                
+                const user  = await (await fetch(`${url}/api/auth?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
                 let CurrentUser = user as UserProps;
                 
                 if (credentials?.email === CurrentUser.email && credentials?.password === CurrentUser.password) {
                     
                     const person:User ={
-                        id:CurrentUser.id,
+                        id:CurrentUser.user_id,
                         email:CurrentUser.email,
                         first_name:CurrentUser.first_name, 
                         last_name:CurrentUser.last_name,

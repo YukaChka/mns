@@ -8,6 +8,7 @@ export interface OrderProps {
   module: string | string[];
   station: string | null;
   type_delivery: string;
+  user_id: number | null | undefined;
   resourses: Array<ResourseProps>;
 }
 
@@ -18,6 +19,7 @@ export interface UpdateOrderProps {
   module: string;
   station: string | null;
   type_delivery: string;
+  user_id: number | null | undefined;
   resourses: Array<UpdateResourseProps>;
 }
 
@@ -27,6 +29,7 @@ export interface CreateOrderProps {
   module: string | string[];
   station: string | null;
   type_delivery: string;
+  user_id: number | null | undefined;
   resourses: Array<ResourseProps>;
 }
 
@@ -37,6 +40,7 @@ interface OrderModel {
   module: string | string[];
   station: string | null;
   type_delivery: string;
+  user_id: number | null | undefined;
 }
 
 export const dynamic = "force-dynamic";
@@ -46,7 +50,7 @@ export async function GetOrders() {
   const orders = new Array<OrderProps>();
   try {
     await client.query("begin");
-    const order_query = `select o.order_id , o.date_of_delivery, o.quantity_ports, o."module", o.station, o.type_delivery from "order" o`;
+    const order_query = `select o.order_id , o.date_of_delivery, o.quantity_ports, o."module", o.station, o.type_delivery, o.user_id from "order" o`;
 
     const model_orders = await client.query(order_query);
     const data_orders = model_orders.rows as Array<OrderModel>;
@@ -110,13 +114,14 @@ export async function СreateOrder(order: CreateOrderProps) {
 
   try {
     await client.query("begin");
-    const create_order_query = `insert into public.order(date_of_delivery, quantity_ports,"module",station,type_delivery) values($1,$2,$3,$4,$5) RETURNING order_id;`;
+    const create_order_query = `insert into public.order(date_of_delivery, quantity_ports,"module",station,type_delivery,user_id) values($1,$2,$3,$4,$5,$6) RETURNING order_id;`;
     const order_params = [
       date,
       order.quantity_ports,
       order.module,
       order.station,
       order.type_delivery,
+      order.user_id,
     ];
     const create_order = await client.query(create_order_query, order_params);
 
@@ -157,13 +162,14 @@ export async function UpdateOrder(order: UpdateOrderProps, isEdit: number) {
       .split(" ");
 
     await client.query("begin");
-    const update_post_query = `update public.order o set date_of_delivery = $1, quantity_ports =$2, "module" = $3, station=$4,type_delivery=$5  where order_id =$6`;
+    const update_post_query = `update public.order o set date_of_delivery = $1, quantity_ports =$2, "module" = $3, station=$4,type_delivery=$5, user_id=$6  where order_id =$7`;
     const post_params = [
       date,
       order.quantity_ports,
       order.module,
       order.station,
       order.type_delivery,
+      order.user_id,
       order.order_id,
     ];
     await client.query(update_post_query, post_params);

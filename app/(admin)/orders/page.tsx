@@ -10,6 +10,7 @@ async function GetOrders() {
 
   return res.json() as Promise<OrderProps[]>;
 }
+
 export default async function AdminOrdersPage() {
   const data = await GetOrders();
 

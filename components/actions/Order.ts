@@ -2,9 +2,10 @@
 
 import { CreateOrderProps, OrderProps, UpdateOrderProps } from "@/app/api/orders/orders";
 import { CreateResourseProps, UpdateResourseProps } from "@/app/api/upload/route";
+import { UserData } from "@/app/api/user/user";
 import { revalidatePath } from "next/cache";
 
-export async function AddOrder(images:CreateResourseProps[]|UpdateResourseProps[], data: FormData) {
+export async function AddOrder(selectUser:UserData|null,images:CreateResourseProps[]|UpdateResourseProps[], data: FormData) {
     
     const order: CreateOrderProps = {
         date_of_delivery: data.get("date_of_delivery") as string,
@@ -12,6 +13,7 @@ export async function AddOrder(images:CreateResourseProps[]|UpdateResourseProps[
         module: data.get("module") as string,
         station: data.get("station") as string,
         type_delivery: data.get("type_delivery") as string,
+        user_id:selectUser?.user_id,
         resourses: images as CreateResourseProps[],
       };
   
@@ -30,7 +32,7 @@ export async function AddOrder(images:CreateResourseProps[]|UpdateResourseProps[
 }
 
 
-export async function UpdateOrder(order_id:number,images:UpdateResourseProps[],curOrder:OrderProps, data: FormData) {
+export async function UpdateOrder(order_id:number,user:UserData|null,images:UpdateResourseProps[],curOrder:OrderProps, data: FormData) {
     
   
   let isEdit=1;
@@ -41,6 +43,7 @@ export async function UpdateOrder(order_id:number,images:UpdateResourseProps[],c
       module: data.get("module") as string,
       station: data.get("station") as string,
       type_delivery: data.get("type_delivery") as string,
+      user_id:user?.user_id,
       resourses: images,
     };
     console.log(JSON.stringify(order))
@@ -67,11 +70,17 @@ export async function UpdateOrder(order_id:number,images:UpdateResourseProps[],c
       method: "PUT",
       body: JSON.stringify(body),
     });
-    
-    
-    
-    
-    
+
     revalidatePath("/orders");
     
+  }
+
+ export async function DeleteOrder(id:number, data:FormData) {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${id}`,
+      {
+        method: "delete",
+      }
+    );
+    revalidatePath("/orders");
   }

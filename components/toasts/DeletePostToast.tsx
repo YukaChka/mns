@@ -13,19 +13,10 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { DeletePost } from "../actions/Post";
 
 export function PostDialogDelete({ id }: { id: number }) {
-  const router = useRouter();
-  async function DeletePost() {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?id=${id}`,
-      {
-        method: "delete",
-      }
-    );
-    router.refresh();
-  }
+  const deletePost = DeletePost.bind(null, id);
 
   return (
     <AlertDialog>
@@ -53,12 +44,14 @@ export function PostDialogDelete({ id }: { id: number }) {
           <AlertDialogCancel className=" hover:text-black">
             Отмена
           </AlertDialogCancel>
-          <AlertDialogAction
-            onClick={DeletePost}
-            className=" hover:bg-red-600 hover:text-white"
-          >
-            Подтвердить
-          </AlertDialogAction>
+          <form action={deletePost}>
+            <Button
+              type="submit"
+              className=" hover:bg-red-600 hover:text-white"
+            >
+              Подтвердить
+            </Button>
+          </form>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

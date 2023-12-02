@@ -1,33 +1,37 @@
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/configs/auth";
 
 import { NextResponse } from "next/server";
-import {GetUsers,  UserProps} from "./user"
+import {GetUserData, GetUsers,  UserData,  UserProps} from "./user"
+import { array } from "zod";
 
 
 export const dynamic = 'force-dynamic' 
 export async function GET(req: Request){
     try {
-    const {searchParams}= new URL(req.url);
-    const emailq= searchParams.get("email");
-    const passwordq = await searchParams.get("pass");
     
-    let data = await GetUsers();
-    const users:Array<UserProps>= data as Array<UserProps>;
-    let CurrentUser = users as any;
+        let CurrentUser:any;
+        const session = await getServerSession(authConfig);
 
-    if(!emailq || !passwordq){
-        throw  new Error("заполни все поля");
-    }
+        if(session?.user.role_user =="админ")
+        {
+            let data = await GetUserData();
+            const {searchParams}= new URL(req.url);
+    
+            const emailq= searchParams.get("email");
 
-    if(emailq && passwordq){
+
+            const users:Array<UserData>= data as Array<UserData>;
+            CurrentUser= users as Array<UserData>;
+
+            if(emailq){
         
-        CurrentUser=users.find(({email , password}) => email===emailq && password === passwordq )
+                CurrentUser=users.find(({email}) => email===emailq)
+                
         
+            } 
+        }
 
-    } 
-
-    if(!CurrentUser){
-        throw  new Error("не наход");
-    }
     return NextResponse.json(CurrentUser)
     }
     catch (error) {

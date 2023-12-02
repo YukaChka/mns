@@ -11,21 +11,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
+
 import Image from "next/image";
+import { Button } from "../ui/button";
+import { DeleteOrder } from "../actions/Order";
 
 export function OrderDialogDelete({ id }: { id: number }) {
-  const router = useRouter();
-  async function DeletePost() {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${id}`,
-      {
-        method: "delete",
-      }
-    );
-    router.refresh();
-  }
-
+  const deleteOrder = DeleteOrder.bind(null, id);
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -48,12 +40,14 @@ export function OrderDialogDelete({ id }: { id: number }) {
           <AlertDialogCancel className=" hover:text-black">
             Отмена
           </AlertDialogCancel>
-          <AlertDialogAction
-            onClick={DeletePost}
-            className=" hover:bg-red-600 hover:text-white"
-          >
-            Подтвердить
-          </AlertDialogAction>
+          <form action={deleteOrder}>
+            <Button
+              type="submit"
+              className=" hover:bg-red-600 hover:text-white"
+            >
+              Подтвердить
+            </Button>
+          </form>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
