@@ -38,11 +38,12 @@ export interface UpdatePostProps {
   
 export const dynamic = 'force-dynamic' 
 export async function GetPosts() {
-  const client = await conn.connect()
+  
 
   const posts= new Array<PostProps>() 
-
+  const client = await conn.connect()
   try {  
+    
     await client.query("begin")
     const post_query =`select p.post_id,p.description, p.date_of_public,  p.title from post p ORDER BY p.date_of_public DESC`
     
@@ -68,19 +69,14 @@ export async function GetPosts() {
       
     }
     client.query('commit')
+    return posts
   } catch (e) {
     await client.query('rollback')
-    
-    throw e
-    
-  } finally{
-    
     client.release()
+    return null
     
     
-    return posts
-  }
-    
+  }   
 }
 
 export async function СreatePost(post:CreatePostProps) {

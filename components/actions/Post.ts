@@ -4,6 +4,7 @@ import { CreatePostProps, PostProps, UpdatePostProps } from "@/app/api/posts/pos
 import { CreateResourseProps, ResourseProps, UpdateResourseProps } from "@/app/api/upload/route";
 import { revalidatePath } from "next/cache";
 import { Dispatch, SetStateAction } from "react";
+import { toast } from "../ui/use-toast";
 
 
 export async function AddPost(images:CreateResourseProps[]|UpdateResourseProps[], data: FormData) {

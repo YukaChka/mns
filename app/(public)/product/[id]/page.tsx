@@ -23,39 +23,39 @@ export default async function Decision({ params: { id } }: ProductProps) {
               Все актуальные версии ФонексПро:
             </div>
             <div className=" mt-5 text-xl">
-              <p className="pb-5 flex justify-start ">
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Опираются на опыт разработчика АСР с 1992 года.
-              </p>
+              </div>
 
-              <p className="pb-5 flex justify-start ">
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Обладают действующим сертификатом Системы сертификации в области
                 связи (№ ОС-3-СТ-0550, ТУ 4251-001-69603108-2016), и
                 соответствуют установленным требованиям «Правила применения
                 автоматизированных систем расчетов», утвержденным Приказом
                 Мининформсвязи России от 02.07.2007 № 73.
-              </p>
-              <p className="pb-5 flex justify-start ">
+              </div>
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Совместимы как с современным, так и с основным унаследованным
                 оборудованием связи, и адаптируемы к широкому спектру
                 оборудования.
-              </p>
-              <p className="pb-5 flex justify-start ">
+              </div>
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Поставляются с одним годом бесплатной стандартной поддержки.
-              </p>
-              <p className="pb-5 flex justify-start ">
+              </div>
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Совместимы с новыми решениями для специалистов по связи и
                 безопасности — модулями «Аналитика» и «АнтиФрод».
-              </p>
-              <p className="pb-5 flex justify-start ">
+              </div>
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Разработаны в России без участия иностранного капитала
                 (соответствует стратегии по реализации импортозамещения).
-              </p>
+              </div>
             </div>
             <div className="mt-10 text-xl font-bold">
               Примечание: пользователям линейки ФонексПро 5.0.4, 6.0.4, 7.0.4 в
@@ -75,17 +75,17 @@ export default async function Decision({ params: { id } }: ProductProps) {
                   Документация
                 </Button>
                 <div className=" mt-10 text-xl">
-                  <p className="pb-5 flex justify-start ">
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Модульная автоматизированная система расчетов для
                     специальных конфигураций, многопользовательской работы или
                     больших сетей связи.
-                  </p>
-                  <p className="pb-5 flex justify-start ">
+                  </div>
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Является продолжением линеек 5.0, 6.0 и 7.0.
-                  </p>
-                  <p className="pb-5 flex justify-start ">
+                  </div>
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Представляет собой службу ядро (системную службу Windows), к
                     которой подключаются специализированные рабочие места
@@ -95,31 +95,31 @@ export default async function Decision({ params: { id } }: ProductProps) {
                     Captive Portal и СМС-авторизацией, «Экспорт», «Телефонный
                     справочник», «Веб-статистика/Личный кабинет», «Веб-платежи»,
                     новые — «Веб-Аналитика», «АнтиФрод»).
-                  </p>
-                  <p className="pb-5 flex justify-start ">
+                  </div>
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Отвечает повышенным требованиям к отказоустойчивости.
-                  </p>
-                  <p className="pb-5 flex justify-start ">
+                  </div>
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Использует внешний SQL-cервер баз данных.
-                  </p>
-                  <p className="pb-5 flex justify-start ">
+                  </div>
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Позволяет активно управлять оборудованием связи (авторизация
                     доступа к услугам связи, прекращение соединений и т.п.)
-                  </p>
-                  <p className="pb-5 flex justify-start ">
+                  </div>
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Широкие возможности интеграции с ERP, CRM-системами, СКУД и
                     т.п.
-                  </p>
+                  </div>
 
-                  <p className="pb-5 flex justify-start ">
+                  <div className="pb-5 flex justify-start ">
                     <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                     Оптимизирована для сетей голосовой связи от 500 до 100 000
                     абонентов и более, либо сетей передачи данных.
-                  </p>
+                  </div>
                 </div>
               </div>
               <div>

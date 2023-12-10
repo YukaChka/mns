@@ -30,6 +30,7 @@ import { ResourceDialogDelete } from "../toasts/DeleteOrderResource";
 
 import { AddPost } from "../actions/Post";
 import { FormSchema } from "@/lib/schema";
+import { useToast } from "../ui/use-toast";
 
 export type Inputs = z.infer<typeof FormSchema>;
 
@@ -43,9 +44,11 @@ export function CreatePostForm({
 }) {
   const [file, setFile] = useState<File>();
   const [date, setDate] = useState("");
+  const { toast } = useToast();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [isButton, setIsButton] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState<
     CreateResourseProps[] | UpdateResourseProps[]
   >([]);
@@ -109,7 +112,12 @@ export function CreatePostForm({
   }, [title, desc, date, setDate, setTitle, setDesc]);
 
   const addPost = AddPost.bind(null, images);
-
+  useEffect(() => {
+    const CheckPost = async () => {};
+    if (isSubmit) {
+      CheckPost;
+    }
+  }, [addPost]);
   return (
     <Form {...form}>
       <form action={addPost} className=" space-y-6">
@@ -238,7 +246,8 @@ export function CreatePostForm({
           type="submit"
           disabled={!isButton}
           onClick={() => {
-            props.setOpen(false);
+            setIsSubmit(true);
+            //props.setOpen(false);
           }}
         >
           Опубликовать

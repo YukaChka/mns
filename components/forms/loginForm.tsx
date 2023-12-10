@@ -16,18 +16,20 @@ import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
 
 const FormSchema = z.object({
-  email: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  email: z.string().min(1, {
+    message: "Поле не может быть пустым",
   }),
-  password: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  password: z.string().min(1, {
+    message: "Поле не может быть пустым",
   }),
 });
 
 export function LoginForm() {
   const router = useRouter();
+  const { toast } = useToast();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/account";
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -44,6 +46,16 @@ export function LoginForm() {
       redirect: false,
       callbackUrl,
     });
+
+    if (!res?.ok) {
+      toast({
+        variant: "destructive",
+        title: res?.status.toString(),
+        description: res?.error,
+      });
+      form.setValue("email", "");
+      form.setValue("password", "");
+    }
     if (!res?.error) {
       router.push(callbackUrl);
     }

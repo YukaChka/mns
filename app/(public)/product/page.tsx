@@ -11,7 +11,7 @@ export default async function ProductPage() {
               ФонексПро
             </div>
             <div className=" mt-10 text-xl">
-              <p className="pb-5">
+              <div className="pb-5">
                 <Link
                   href="/product/1"
                   className="pb-5 flex justify-start place-items-center group "
@@ -21,8 +21,8 @@ export default async function ProductPage() {
                     ФонексПро 8.0
                   </div>
                 </Link>
-              </p>
-              <p className="pb-5">
+              </div>
+              <div className="pb-5">
                 <Link
                   href="/product/1"
                   className="pb-5 flex justify-start place-items-center group "
@@ -32,8 +32,8 @@ export default async function ProductPage() {
                     ФонексПро 7.0.6
                   </div>
                 </Link>
-              </p>
-              <p className="pb-5">
+              </div>
+              <div className="pb-5">
                 <Link
                   href="/product/update"
                   className="pb-5 flex justify-start place-items-center group "
@@ -41,8 +41,8 @@ export default async function ProductPage() {
                   <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Обновления</div>
                 </Link>
-              </p>
-              <p className="pb-5">
+              </div>
+              <div className="pb-5">
                 <Link
                   href="/product/support"
                   className="pb-5 flex justify-start place-items-center group "
@@ -50,7 +50,7 @@ export default async function ProductPage() {
                   <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Поддержка</div>
                 </Link>
-              </p>
+              </div>
             </div>
 
             <div className="mt-10 text-3xl font-bold text-[#009CF3]">
@@ -71,7 +71,7 @@ export default async function ProductPage() {
               Сертификаты
             </div>
             <div className=" mt-10 text-xl">
-              <p className="pb-5">
+              <div className="pb-5">
                 <Link
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
@@ -79,9 +79,9 @@ export default async function ProductPage() {
                   <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
-              </p>
+              </div>
 
-              <p className="pb-5">
+              <div className="pb-5">
                 <Link
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
@@ -89,8 +89,8 @@ export default async function ProductPage() {
                   <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
-              </p>
-              <p className="pb-5">
+              </div>
+              <div className="pb-5">
                 <Link
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
@@ -98,8 +98,8 @@ export default async function ProductPage() {
                   <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
-              </p>
-              <p className="pb-5">
+              </div>
+              <div className="pb-5">
                 <Link
                   href="/product/certificates"
                   className="pb-5 flex justify-start place-items-center group "
@@ -107,7 +107,7 @@ export default async function ProductPage() {
                   <div className="h-[6px] w-[6px] mr-1 rounded-full bg-gray-400 group-hover:bg-[#009CF3] "></div>
                   <div>Сертификат соответствия на ФонексПро 8.0</div>
                 </Link>
-              </p>
+              </div>
             </div>
           </div>
         </div>

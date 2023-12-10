@@ -25,9 +25,10 @@ export default async function NewsPage() {
                 <div>Все</div>
               </div>
               <div className=" text-2xl  mt-8">
-                {posts.map((post: PostProps) => (
-                  <NewPreview key={post.post_id} post={post} />
-                ))}
+                {posts &&
+                  posts.map((post: PostProps) => (
+                    <NewPreview key={post.post_id} post={post} />
+                  ))}
               </div>
             </div>
           </div>

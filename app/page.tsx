@@ -22,9 +22,6 @@ export default async function Home() {
   //const filename = fileUrl.split("\\").pop();
   let news: PostProps[] = [];
   const posts = await GetPosts();
-  if (posts) {
-    news = posts.filter((month, idx) => idx < 2);
-  }
 
   return (
     <main>
@@ -99,7 +96,7 @@ export default async function Home() {
                 <Link href="/news">Новости</Link>
               </div>
               <div className="text-white mt-10 text-2xl ">
-                {news.length != 0 ? (
+                {news ? (
                   news.map((post: PostProps) => (
                     <NewPreview key={post.post_id} post={post} />
                   ))

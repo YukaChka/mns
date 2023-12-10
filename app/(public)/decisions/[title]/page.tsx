@@ -62,18 +62,18 @@ export default async function Decision({ params: { title } }: DecisionProps) {
               Что делает:
             </div>
             <div className=" mt-5 text-xl">
-              <p className="pb-5 flex justify-start ">
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Позволяет собирать и отправлять данные об услугах связи
                 постояльцев для выставления счетов непосредственно из
                 гостиничной системы, фильтруя услуги связи персонала и
                 арендаторов;
-              </p>
-              <p className="pb-5 flex justify-start ">
+              </div>
+              <div className="pb-5 flex justify-start ">
                 <div className="h-[5px] w-[5px] mr-1 p-1 mt-[10px] rounded-full bg-[#009CF3] "></div>
                 Позволяет управлять гостиничным оборудованием и блокировать
                 услуги связи.
-              </p>
+              </div>
             </div>
           </div>
         </div>

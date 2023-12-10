@@ -6,7 +6,7 @@ import Link from "next/link";
 export const FooterV2 = () => {
   const { width, height } = useWindowSize();
   return (
-    <footer className="bg-[#009cf3] w-full ">
+    <footer className="bg-[#009cf3]  w-full ">
       <li className="flex container justify-center">
         <div className="grid grid-cols-1 md:grid-cols-10  place-items-center m-3 ">
           <ul className="text-white text-[20px] sm:text-[21px]  col-start-1 md:col-start-2 col-end-6 ">

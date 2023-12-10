@@ -11,7 +11,9 @@ export async function GET(req: Request) {
 
     const posts = await GetPosts()
     let CurrentPost:PostProps | undefined | PostProps[]
-
+    if(!posts){
+      return NextResponse.json(null);
+    }
     
 
     if(idq){
@@ -25,7 +27,7 @@ export async function GET(req: Request) {
     
     return NextResponse.json(CurrentPost)
   } catch (Error) {
-    return NextResponse.json(Error);
+    return NextResponse.json(null);
   }
 }
 
