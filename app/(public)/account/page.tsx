@@ -5,7 +5,7 @@ import { UserOrderTable } from "@/components/userOrderTable";
 import { signOut, useSession } from "next-auth/react";
 
 export default function AccountPage() {
-  const { data: session } = useSession();
+  const { data: session, update, status } = useSession();
   const user = session?.user;
 
   return (
@@ -19,9 +19,9 @@ export default function AccountPage() {
                 <div className="flex justify-center md:justify-end">
                   <Button
                     className="bg-[#009CF3]"
-                    onClick={() =>
-                      signOut({ callbackUrl: `${window.location.origin}` })
-                    }
+                    onClick={() => {
+                      signOut({ callbackUrl: `${window.location.origin}` });
+                    }}
                   >
                     Выйти
                   </Button>
@@ -36,7 +36,9 @@ export default function AccountPage() {
                 <p className="pb-5">Почта: {user?.email}</p>
               </div>
               <div>
-                {user?.user_id && <UserOrderTable user_id={user?.user_id} />}
+                {user?.user_id && user?.role_user !== "админ" && (
+                  <UserOrderTable user_id={user?.user_id} />
+                )}
               </div>
             </div>
           </div>

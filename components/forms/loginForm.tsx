@@ -43,7 +43,7 @@ export function LoginForm() {
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
-      redirect: false,
+      redirect: true,
       callbackUrl,
     });
 
@@ -56,7 +56,7 @@ export function LoginForm() {
       form.setValue("email", "");
       form.setValue("password", "");
     }
-    if (!res?.error) {
+    if (res?.status === 200) {
       router.push(callbackUrl);
     }
   }

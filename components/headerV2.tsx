@@ -42,6 +42,7 @@ const HeaderV2 = () => {
               ) : (
                 <></>
               )}
+
               {session.data?.user.role_user !== "админ" ? (
                 <>
                   {width > 800 ? (

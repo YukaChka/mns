@@ -21,13 +21,32 @@ export  const authConfig:AuthOptions ={
             async authorize(credentials) {
 
                 const url = process.env.NEXTAUTH_URL
+                //await (await fetch(`${url}/api/auth?email=${credentials?.email}&pass=${credentials?.password}`)).json();
+                let users:UserProps[]  =[ {
+                    user_id:"1",
+                    email:"admin@mail.ru" ,
+                    password:"root",
+                    first_name:"1",
+                    last_name:"1",
+                    role_user: "админ"
+                },{
+                    user_id:"2",
+                    email:"mike@gmail.com" ,
+                    password:"1234",
+                    first_name:"2",
+                    last_name:"2",
+                    role_user: "пользователь"
+                }]
+
                 
-                const user  = await (await fetch(`${url}/api/auth?email=${credentials?.email}&pass=${credentials?.password}`)).json();
                 
-                let CurrentUser = user as UserProps;
-                
-                if (credentials?.email === CurrentUser.email && credentials?.password === CurrentUser.password) {
-                    
+                //let CurrentUser = users as UserProps[];
+                let CurrentUser = users.find((user)=>user.email === credentials?.email && user.password === credentials.password )
+                if(!CurrentUser){
+                    return null
+                }
+                if (credentials?.email === CurrentUser?.email && credentials?.password === CurrentUser?.password) {
+                    console.log("auth")
                     const person:User ={
                         id:CurrentUser.user_id,
                         user_id:CurrentUser.user_id,
@@ -56,12 +75,13 @@ export  const authConfig:AuthOptions ={
       },
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
+            
             return true
           },
           
         async redirect({ url, baseUrl }) {
             
-            return url
+            return baseUrl
           },
         //Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user, session, trigger }) {

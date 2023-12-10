@@ -16,8 +16,11 @@ export async function GET(req: Request) {
     const idq = searchParams.get("id");
 
     const orders = await GetOrders();
-
+    console.log(orders);
     let CurrentOrder: OrderProps | undefined | OrderProps[];
+    if (!orders) {
+      return NextResponse.json(null);
+    }
 
     if (idq) {
       CurrentOrder =
@@ -28,7 +31,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json(CurrentOrder);
   } catch (Error) {
-    return NextResponse.json(Error);
+    return NextResponse.json(null);
   }
 }
 
