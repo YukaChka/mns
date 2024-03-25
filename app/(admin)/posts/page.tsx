@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 
 import { CreatePostToast } from "@/components/toasts/CreatePostToast";
 import { PostProps } from "@/app/api/posts/posts";
-import TableNews from "@/components/admin/tableNews";
+
 import ItemNew from "@/components/admin/itemNew";
 
 async function GetPosts() {

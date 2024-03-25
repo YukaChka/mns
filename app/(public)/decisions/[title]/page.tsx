@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import TableNews from "@/components/admin/tableNews";
+
 import Link from "next/link";
-import { useState } from "react";
-import { CreatePostToast } from "@/components/toasts/CreatePostToast";
-import ItemNew from "@/components/admin/itemNew";
-import { signOut, useSession } from "next-auth/react";
 
 type DecisionProps = {
   params: {

@@ -16,10 +16,10 @@ export async function GET(req: Request) {
     const idq = searchParams.get("id");
 
     const orders = await GetOrders();
-    console.log(orders);
+
     let CurrentOrder: OrderProps | undefined | OrderProps[];
     if (!orders) {
-      return NextResponse.json(null);
+      return NextResponse.json([]);
     }
 
     if (idq) {
@@ -31,18 +31,24 @@ export async function GET(req: Request) {
 
     return NextResponse.json(CurrentOrder);
   } catch (Error) {
-    return NextResponse.json(null);
+    return NextResponse.json([]);
   }
 }
 
 export async function POST(request: Request) {
-  const post: Promise<CreateOrderProps> = await request.json();
-
+  const order = await request;
+  console.log(order.body);
   try {
-    const res = await СreateOrder(await post);
-    return NextResponse.json({ succes: res });
+    if (!order.body) {
+      return NextResponse.json([]);
+    }
+    let test = await order.json();
+    console.log(order.json());
+    //const res = await СreateOrder(order.json());
+
+    return NextResponse.json({ succes: test });
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json([]);
   }
 }
 
@@ -53,7 +59,7 @@ export async function PUT(request: Request) {
     const res = await UpdateOrder((await body).order, (await body).isEdit);
     return NextResponse.json({ succes: res });
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json([]);
   }
 }
 
@@ -72,6 +78,6 @@ export async function DELETE(request: Request) {
     console.log(res);
     return NextResponse.json({ succes: res });
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json([]);
   }
 }

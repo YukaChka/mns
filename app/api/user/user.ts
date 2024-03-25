@@ -3,7 +3,7 @@ import { client, conn} from "@/lib/db"
 export const dynamic = "force-dynamic";
 
 export async function GetUsers() {
-    await client.connect()
+  const client=  await conn.connect()
     let users = new Array<UserProps>
     
     
@@ -12,15 +12,17 @@ export async function GetUsers() {
       const query = "select u.user_id, u.email, u.password, u.first_name, u.last_name, tu.role_user from public.user u join public.type_user tu on u.type_user_id  = tu.type_user_id;"
       users= (await client.query(query)).rows;
       client.query('commit')
+      return users
     } catch (e) {
       await client.query('rollback')
   
       throw e
       
     } finally{
-      client.end
-      return users
+      client.release();
+      
     }
+  
 
 }
 

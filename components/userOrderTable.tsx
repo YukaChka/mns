@@ -9,20 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import axios from "axios";
 
-async function GetOrders(user_id: string) {
-  const responce = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${user_id}`
-  );
-
-  return responce.json() as Promise<OrderProps[] | null>;
-}
-export async function UserOrderTable({ user_id }: { user_id: string }) {
-  const orders = await GetOrders(user_id);
-
+export function UserOrderTable({ data }: { data: OrderProps[] }) {
   return (
-    <>
-      {orders ? (
+    <div>
+      {data.length !== 0 && (
         <Table>
           <TableHeader>
             <TableRow>
@@ -34,9 +26,9 @@ export async function UserOrderTable({ user_id }: { user_id: string }) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.length !== 0 ? (
+            {data && (
               <>
-                {orders.map((order) => (
+                {data.map((order: OrderProps) => (
                   <TableRow key={order.order_id}>
                     <TableCell>{order.date_of_delivery}</TableCell>
                     <TableCell>{order.quantity_ports}</TableCell>
@@ -46,18 +38,10 @@ export async function UserOrderTable({ user_id }: { user_id: string }) {
                   </TableRow>
                 ))}
               </>
-            ) : (
-              <>
-                <TableRow>
-                  <TableCell>Нет Заказов</TableCell>
-                </TableRow>
-              </>
             )}
           </TableBody>
         </Table>
-      ) : (
-        <></>
       )}
-    </>
+    </div>
   );
 }

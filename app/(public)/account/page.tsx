@@ -1,12 +1,20 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
+import Account from "@/components/account";
 import { UserOrderTable } from "@/components/userOrderTable";
-import { signOut, useSession } from "next-auth/react";
+import axios from "axios";
+import { getServerSession } from "next-auth/next";
+import { useSession } from "next-auth/react";
+import { useSessionStorage } from "usehooks-ts";
 
-export default function AccountPage() {
-  const { data: session, update, status } = useSession();
-  const user = session?.user;
+async function GetOrders(user_id: string) {
+  const responce = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${user_id}`
+  );
+
+  return responce;
+}
+
+export default async function AccountPage() {
+  const orders = await GetOrders("1");
 
   return (
     <main>
@@ -14,31 +22,9 @@ export default function AccountPage() {
         <div className="mt-10">
           <div className="flex container justify-center">
             <div className="max-w-6xl min-w-full">
-              <div className="mt-10 text-4xl font-bold grid md:grid-cols-2 ">
-                <div>Личный кабинет</div>
-                <div className="flex justify-center md:justify-end">
-                  <Button
-                    className="bg-[#009CF3]"
-                    onClick={() => {
-                      signOut({ callbackUrl: `${window.location.origin}` });
-                    }}
-                  >
-                    Выйти
-                  </Button>
-                </div>
-              </div>
-              <div className="mt-10 text-xl font-bold text-[#009CF3]">
-                Личные данные
-              </div>
-              <div className=" mt-10 text-xl">
-                <p className="pb-5">Фамилия: {user?.last_name}</p>
-                <p className="pb-5">Имя: {user?.first_name}</p>
-                <p className="pb-5">Почта: {user?.email}</p>
-              </div>
+              <Account />
               <div>
-                {user?.user_id && user?.role_user !== "админ" && (
-                  <UserOrderTable user_id={user?.user_id} />
-                )}
+                <UserOrderTable data={orders.data} />
               </div>
             </div>
           </div>

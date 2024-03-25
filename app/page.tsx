@@ -8,9 +8,13 @@ import { useEffect, useState } from "react";
 import { PostProps } from "@/app/api/posts/posts";
 
 import Link from "next/link";
+import axios from "axios";
+import { th } from "date-fns/locale";
 
 async function GetPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
+    cache: "no-store",
+  });
 
   return res.json() as Promise<PostProps[]>;
 }
@@ -21,8 +25,11 @@ export default async function Home() {
 
   //const filename = fileUrl.split("\\").pop();
   let news: PostProps[] = [];
-  const posts = await GetPosts();
-
+  const res = await GetPosts();
+  if (res.length !== 0) {
+    let [one, two, three, ...posts] = res;
+    news = [one, two, three];
+  }
   return (
     <main>
       <div>
@@ -96,7 +103,7 @@ export default async function Home() {
                 <Link href="/news">Новости</Link>
               </div>
               <div className="text-white mt-10 text-2xl ">
-                {news ? (
+                {news.length != 0 ? (
                   news.map((post: PostProps) => (
                     <NewPreview key={post.post_id} post={post} />
                   ))

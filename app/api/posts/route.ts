@@ -8,11 +8,11 @@ export async function GET(req: Request) {
 
     const { searchParams } = new URL(req.url);
     const idq = searchParams.get("id");
-
+    
     const posts = await GetPosts()
     let CurrentPost:PostProps | undefined | PostProps[]
     if(!posts){
-      return NextResponse.json(null);
+      return NextResponse.json([]);
     }
     
 
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     
     return NextResponse.json(CurrentPost)
   } catch (Error) {
-    return NextResponse.json(null);
+    return NextResponse.json([]);
   }
 }
 
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const res = await СreatePost(await post)
     return NextResponse.json({succes:res});  
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json([]);
   }
 }
 
@@ -61,7 +61,7 @@ export async function DELETE(request:Request) {
     
     return NextResponse.json({succes:res})
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json([]);
   }
   
 }
@@ -75,6 +75,6 @@ export async function PUT(request: Request) {
     const res = await UpdatePost((await body).post, (await body).isEdit)
     return NextResponse.json({succes:res});  
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json([]);
   }
 }

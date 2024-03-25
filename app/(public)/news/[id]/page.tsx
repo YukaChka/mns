@@ -1,6 +1,7 @@
 import { PostProps } from "@/app/api/posts/posts";
 import Link from "next/link";
 import Image from "next/image";
+import test from "node:test";
 
 type NewProps = {
   params: {
@@ -45,7 +46,21 @@ export default async function New({ params }: NewProps) {
                   </p>
                 ))}
               </div>
-              <div className="flex justify-center p-9">{}</div>
+              <div className="flex justify-center items-center p-9">
+                {post.resourses.length !== 0 &&
+                  post.resourses.map((img) => (
+                    <>
+                      <Image
+                        className="pointer-events-none"
+                        key={img.resourse_id}
+                        src={img.path}
+                        width={300}
+                        alt={img.title}
+                        height={300}
+                      />
+                    </>
+                  ))}
+              </div>
             </div>
           </div>
         </div>

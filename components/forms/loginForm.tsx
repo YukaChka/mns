@@ -43,21 +43,25 @@ export function LoginForm() {
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
-      redirect: true,
+      redirect: false,
       callbackUrl,
     });
 
-    if (!res?.ok) {
+    if (res?.status === 401) {
       toast({
         variant: "destructive",
-        title: res?.status.toString(),
-        description: res?.error,
+        title: "Ошибка авторизации",
+        description: "Неправильная почта или пароль",
       });
       form.setValue("email", "");
       form.setValue("password", "");
     }
     if (res?.status === 200) {
-      router.push(callbackUrl);
+      router.push("/");
+      toast({
+        variant: "access",
+        title: "Успешная авторизация",
+      });
     }
   }
 

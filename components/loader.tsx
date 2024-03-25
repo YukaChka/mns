@@ -6,7 +6,7 @@ export function LoadingSkeleton() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setOpen(true), 10);
+    setTimeout(() => setOpen(true), 1);
   }, []);
 
   return (

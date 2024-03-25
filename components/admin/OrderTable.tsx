@@ -40,6 +40,7 @@ import { OrderProps } from "@/app/api/orders/orders";
 import { EditOrderToast } from "../toasts/EditOrderToast";
 import { OrderDialogDelete } from "../toasts/DeleteOrderToast";
 import { OrderTablePro } from "@/components/admin/dataOrderTable";
+import axios from "axios";
 
 async function GetOrders() {
   let url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -48,13 +49,14 @@ async function GetOrders() {
   } else {
     url = `${url}/api/orders`;
   }
-  const responce = await fetch(url);
+  const responce = await axios.get(url);
 
-  return responce.json() as Promise<OrderProps[]>;
+  return responce.data as Promise<OrderProps[]>;
 }
 
 export async function OrderTable() {
   const data = await GetOrders();
+
   return (
     <div>
       <OrderTablePro data={data} />

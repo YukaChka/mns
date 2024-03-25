@@ -247,7 +247,7 @@ export function CreatePostForm({
           disabled={!isButton}
           onClick={() => {
             setIsSubmit(true);
-            //props.setOpen(false);
+            props.setOpen(false);
           }}
         >
           Опубликовать

@@ -35,7 +35,7 @@ export async function GET(req: Request){
     return NextResponse.json(CurrentUser)
     }
     catch (error) {
-        return NextResponse.json(error);
+        return NextResponse.json([]);
     }
     
     

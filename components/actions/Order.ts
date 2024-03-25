@@ -3,6 +3,7 @@
 import { CreateOrderProps, OrderProps, UpdateOrderProps } from "@/app/api/orders/orders";
 import { CreateResourseProps, UpdateResourseProps } from "@/app/api/upload/route";
 import { UserData } from "@/app/api/user/user";
+import axios from "axios";
 import { revalidatePath } from "next/cache";
 
 export async function AddOrder(selectUser:UserData|null,images:CreateResourseProps[]|UpdateResourseProps[], data: FormData) {
@@ -17,13 +18,14 @@ export async function AddOrder(selectUser:UserData|null,images:CreateResoursePro
         resourses: images as CreateResourseProps[],
       };
   
+      console.log(JSON.stringify(order))
+      
       
     
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, {
-        method: "POST",
-        
-        body: JSON.stringify(order),
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, {
+        order
       });
+      console.log(res.data)
   
       revalidatePath("/orders");
       
@@ -66,21 +68,17 @@ export async function UpdateOrder(order_id:number,user:UserData|null,images:Upda
       isEdit
     }
     
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, {
-      method: "PUT",
-      body: JSON.stringify(body),
-    });
+    const res = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, 
+      body)
+    
 
     revalidatePath("/orders");
     
   }
 
  export async function DeleteOrder(id:number, data:FormData) {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${id}`,
-      {
-        method: "delete",
-      }
+    const res = await axios.delete(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders?id=${id}`
     );
     revalidatePath("/orders");
   }

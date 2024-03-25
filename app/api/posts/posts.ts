@@ -1,4 +1,4 @@
-import {ServiceResponce, client, conn } from "@/lib/db"
+import { client, conn } from "@/lib/db"
 import { CreateResourseProps, ResourseProps, UpdateResourseProps } from "../upload/route";
 
 export interface PostProps  {

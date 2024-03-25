@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-
+import containerplagin from "@tailwindcss/container-queries"
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -22,6 +22,6 @@ const config: Config = {
       
     },
   },
-  plugins: [],
+  plugins: [containerplagin],
 }
 export default config

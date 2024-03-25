@@ -111,10 +111,12 @@ export async function СreateOrder(order: CreateOrderProps) {
       )
     )
     .split(" ");
-
+  console.log(date);
   try {
     await client.query("begin");
+
     const create_order_query = `insert into public.order(date_of_delivery, quantity_ports,"module",station,type_delivery,user_id) values($1,$2,$3,$4,$5,$6) RETURNING order_id;`;
+
     const order_params = [
       date,
       order.quantity_ports,
@@ -124,7 +126,7 @@ export async function СreateOrder(order: CreateOrderProps) {
       order.user_id,
     ];
     const create_order = await client.query(create_order_query, order_params);
-
+    console.log(create_order.rows[0].order_id);
     for (var i = 0; i < order.resourses.length; i++) {
       const resourses_params = [
         order.resourses[i].title,

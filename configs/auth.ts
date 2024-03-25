@@ -1,4 +1,8 @@
+
+
 import { UserProps } from "@/app/api/user/user";
+import axios from "axios";
+
 import type { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
@@ -21,32 +25,19 @@ export  const authConfig:AuthOptions ={
             async authorize(credentials) {
 
                 const url = process.env.NEXTAUTH_URL
-                //await (await fetch(`${url}/api/auth?email=${credentials?.email}&pass=${credentials?.password}`)).json();
-                let users:UserProps[]  =[ {
-                    user_id:"1",
-                    email:"admin@mail.ru" ,
-                    password:"root",
-                    first_name:"1",
-                    last_name:"1",
-                    role_user: "админ"
-                },{
-                    user_id:"2",
-                    email:"mike@gmail.com" ,
-                    password:"1234",
-                    first_name:"2",
-                    last_name:"2",
-                    role_user: "пользователь"
-                }]
+                
+                let users:UserProps[] 
 
                 
                 
-                //let CurrentUser = users as UserProps[];
-                let CurrentUser = users.find((user)=>user.email === credentials?.email && user.password === credentials.password )
+                
+                let res = await axios.get(`${url}/api/auth?email=${credentials?.email}&pass=${credentials?.password}`);
+                let CurrentUser :UserProps=res.data
                 if(!CurrentUser){
                     return null
                 }
-                if (credentials?.email === CurrentUser?.email && credentials?.password === CurrentUser?.password) {
-                    console.log("auth")
+                if (credentials?.email === CurrentUser.email && credentials?.password === CurrentUser?.password) {
+                    
                     const person:User ={
                         id:CurrentUser.user_id,
                         user_id:CurrentUser.user_id,
@@ -66,7 +57,7 @@ export  const authConfig:AuthOptions ={
     ],
     secret:`${process.env.NEXTAUTH_SECRET}`,
     events: {
-        async signIn(message) { /* on successful sign in */ },
+        async signIn({user}) { /* on successful sign in */ },
         async signOut(message) { /* on signout */ },
         async createUser(message) { /* user created */ },
         async updateUser(message) { /* user updated - e.g. their email was verified */ },

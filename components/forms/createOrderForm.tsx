@@ -41,6 +41,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import axios from "axios";
 
 const FormSchema = z.object({
   date_of_delivery: z.string(),
@@ -107,7 +108,6 @@ export function CreateOrderForm({
     const getUsers = async () => {
       const res = await GetEmails();
       if (res) {
-        console.log(res);
         setUsers(res);
       }
     };
@@ -162,8 +162,8 @@ export function CreateOrderForm({
   }
 
   async function GetEmails() {
-    let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
-    return res.json() as Promise<UserData[]>;
+    let res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+    return res.data as Promise<UserData[]>;
   }
 
   const addOrder = AddOrder.bind(null, selectUser, images);
@@ -315,26 +315,27 @@ export function CreateOrderForm({
                       <CommandInput placeholder="Введите Почту..." />
                       <CommandEmpty>Такого Пользователя Нет</CommandEmpty>
                       <CommandGroup>
-                        {users.map((user) => (
-                          <CommandItem
-                            value={user.email}
-                            key={user.user_id}
-                            onSelect={() => {
-                              form.setValue("user", user.email);
-                              setSelectUser(user);
-                            }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-2 h-4 w-4",
-                                user.email === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {user.email}
-                          </CommandItem>
-                        ))}
+                        {users.length > 0 &&
+                          users.map((user) => (
+                            <CommandItem
+                              value={user.email}
+                              key={user.user_id}
+                              onSelect={() => {
+                                form.setValue("user", user.email);
+                                setSelectUser(user);
+                              }}
+                            >
+                              <Check
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  user.email === field.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                              {user.email}
+                            </CommandItem>
+                          ))}
                       </CommandGroup>
                     </Command>
                   </PopoverContent>
